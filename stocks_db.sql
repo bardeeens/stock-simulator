@@ -1,0 +1,1 @@
+CREATE DATABASE stocks_db;
