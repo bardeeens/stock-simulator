@@ -1,4 +1,6 @@
-
+jsons
+*.json
+config.json*
 /config/config.json
 # Logs
 logs
