@@ -14,10 +14,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             },
-            datePurchased: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            },
             dateSold: {
             type: DataTypes.DATE,
             allowNull: true,

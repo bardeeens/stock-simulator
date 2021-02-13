@@ -9,10 +9,31 @@ module.exports = function(app) {
   });
 
   app.post("/api/buy", function(req, res) {
-    db.Transaction.create(req.body).then(function(transaction) {
-      res.json(transaction);
-    });
-  });
+	let transactionData = {
+		fkUserId: body.req.userId,
+		fkStockId: body.req.stockId,
+		qtyPurchased: body.req.qty,
+		dateSold: "",
+		purchaseDateValue: ""
+	}
+	db.Stock.findAll(
+		{
+			where: {
+				id: req.stock.id
+			}
+		}
+	).then ( 
+		(response) => {
+			transactionData.purchaseDateValue = response.value;		//what is the column name in the stock table?
+			db.Transaction.create(transactionData)
+			.then(
+				function(transaction) {
+					res.json(transaction);
+				}
+			)
+		}
+	)		
+}
 
   app.post("/api/authors", function(req, res) {
     // db.Author.create(req.body).then(function(dbAuthor) {
