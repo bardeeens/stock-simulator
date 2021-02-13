@@ -7,6 +7,7 @@
 
 // Requiring our models
 var db = require("../models");
+const axios = require('axios');
 
 // Routes
 // =============================================================
@@ -14,6 +15,13 @@ module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/posts", function(req, res) {
+
+// Make a request for a user with a given ID
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
     // var query = {};
     // if (req.query.author_id) {
     //   query.AuthorId = req.query.author_id;
