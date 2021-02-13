@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-    var Transaction = sequelize.define("Transactions", 
+    var Transaction = sequelize.define("Transaction", 
         {
             fkUserId: {
             type: DataTypes.INTEGER,
@@ -22,13 +22,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: true,
             },
-            purachseDateValue: {
+            purchaseDateValue: {
             type: DataTypes.DECIMAL (10,2),
             allowNull: true,
-            },
-            password: {
-            type: DataTypes.STRING,
-            allowNull: false
             }
         }
     )

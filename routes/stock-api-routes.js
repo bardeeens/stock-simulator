@@ -8,9 +8,9 @@ module.exports = function(app) {
     // });
   });
 
-  app.post("/api/buy/:id", function(req, res) {
+  app.post("/api/buy", function(req, res) {
     db.Transaction.create(req.body).then(function(transaction) {
-      res.json(dbAuthor);
+      res.json(transaction);
     });
   });
 
