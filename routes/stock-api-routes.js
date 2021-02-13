@@ -8,15 +8,10 @@ module.exports = function(app) {
     // });
   });
 
-  app.get("/api/authors/:id", function(req, res) {
-    // 2; Add a join to include all of the Author's Posts here
-    // db.Author.findOne({
-    //   where: {
-    //     id: req.params.id
-    //   }
-    // }).then(function(dbAuthor) {
-    //   res.json(dbAuthor);
-    // });
+  app.post("/api/buy/:id", function(req, res) {
+    db.Transaction.create(req.body).then(function(transaction) {
+      res.json(dbAuthor);
+    });
   });
 
   app.post("/api/authors", function(req, res) {

@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-    var Transactions = sequelize.define("Transactions", 
+    var Transaction = sequelize.define("Transactions", 
         {
             fkUserId: {
             type: DataTypes.INTEGER,
@@ -32,4 +32,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     )
+    return Transaction;
 }
