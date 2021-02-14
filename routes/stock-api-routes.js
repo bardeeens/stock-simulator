@@ -1,12 +1,22 @@
 var db = require("../models");
 
 module.exports = function(app) {
+<<<<<<< HEAD
 	app.get("/api/authors", function(req, res) {
 		// 1. Add a join to include all of each Author's Posts
 		// db.Author.findAll({}).then(function(dbAuthor) {
 		//   res.json(dbAuthor);
 		// });
 	});
+=======
+  app.get("/api/stocks", function(req, res) {
+    db.Stock.findAll({}).then(function(dbStock) {
+      console.log("Hello"+ dbStock);
+      res.json(dbStock);
+  
+  });
+  });
+>>>>>>> 18d689f93c876f951328af934190478e1e0f122d
 
 	app.post("/api/buy", 
 		function(req, res) {
@@ -50,10 +60,11 @@ module.exports = function(app) {
 		}
 	)
 
-  app.post("/api/authors", function(req, res) {
-    // db.Author.create(req.body).then(function(dbAuthor) {
-    //   res.json(dbAuthor);
-    // });
+  app.post("/api/stocks", function(req, res) {
+    db.Stock.create(req.body).then(function(result) {
+      console.log("asdf" , result);
+      res.json(result);
+    });
   });
 
   app.delete("/api/authors/:id", function(req, res) {
