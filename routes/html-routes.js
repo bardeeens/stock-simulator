@@ -40,7 +40,7 @@ module.exports = function(app) {
     ]
     };
     console.log(hbsObject);
-    res.render("dashboard", hbsObject);
+    res.render("availableStocks", hbsObject);
   // });
   })
 
