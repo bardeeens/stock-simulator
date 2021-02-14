@@ -11,11 +11,12 @@ module.exports = function(app) {
 
 	app.post("/api/buy", 
 		function(req, res) {
+			// change this to req.body
 			let qtyPurchased = body.req.qty
 			let transactionData = {									//an oject to create the transaction row
 				fkUserId: req. body.userId,
-				fkStockId: req.bod.stockId,
-				qtyPurchased: req.bod.qty,
+				fkStockId: req.body.stockId,
+				qtyPurchased: req.body.qty,
 				dateSold: "",
 				purchasePrice: "",
 				totalValue: ""
@@ -34,13 +35,13 @@ module.exports = function(app) {
 				}
 			).then (												//creates the transaction
 				(transactionData) => {
-					db.Transaction.create(transactionData);
+					return db.Transaction.create(transactionData);
 				}
 			).then (												//returns the transaction creation response
 				() => { 
 					res.json(transactionData);
 					return transactionData }
-			).then (												//finds the user and decrements their balance by the transaction total value
+			).then (												//finds the user and decrements their balance by the transaction total value - switch order
 				( { fkUserId, totalValue } ) => {
 					db.Users.update(
 						{ currentBalance: users.currentBalance - totalValue },  //??????????how to add to an existing value
@@ -52,10 +53,19 @@ module.exports = function(app) {
 	)
 
   app.post("/api/stocks", function(req, res) {
-    db.Stock.create(req.body).then(function(result) {
-      console.log("asdf" , result);
-      res.json(result);
-    });
+
+	  db.Stocks.getOne().then(function(result){
+		if(result){
+			//   update by id
+		  } else {
+			db.Stock.create(req.body).then(function(result) {
+				console.log("asdf" , result);
+				res.json(result);
+			  });
+		  }
+	  })
+	  
+    
   });
 
   app.delete("/api/authors/:id", function(req, res) {
