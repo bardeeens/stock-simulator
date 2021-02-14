@@ -18,11 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DECIMAL(10,2),
             allowNull: false,
             },
-            dateStartedInvesting: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            },
-            beginningInvestmentAmount: {
+            beginingInvestmentAmount: {
             type: DataTypes.DECIMAL (10,2),
             allowNull: false,
             }
