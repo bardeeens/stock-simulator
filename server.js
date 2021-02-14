@@ -1,5 +1,6 @@
 var express = require("express");
 
+
 var app = express();
 var PORT = process.env.PORT || 8080;
 
@@ -18,9 +19,6 @@ app.set("view engine", "handlebars");
 require("./routes/html-routes.js")(app);
 require("./routes/stock-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
-
-
-
 
 
 db.sequelize.sync({ force: true }).then(function() {

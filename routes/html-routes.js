@@ -18,6 +18,10 @@ module.exports = function(app) {
   app.get("/", (req, res) =>{
     res.render("index")
   })
+  
+  app.get("/addUser", (req, res) =>{
+    res.render("addUser.html")
+  })
 
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "./"));
