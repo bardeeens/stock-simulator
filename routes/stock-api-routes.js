@@ -12,9 +12,9 @@ module.exports = function(app) {
 		function(req, res) {
 			let qtyPurchased = body.req.qty
 			let transactionData = {									//an oject to create the transaction row
-				fkUserId: body.req.userId,
-				fkStockId: body.req.stockId,
-				qtyPurchased: body.req.qty,
+				fkUserId: req. body.userId,
+				fkStockId: req.bod.stockId,
+				qtyPurchased: req.bod.qty,
 				dateSold: "",
 				purchasePrice: "",
 				totalValue: ""
@@ -22,13 +22,13 @@ module.exports = function(app) {
 			db.Stock.findAll(										//finds the stock to be purchased
 				{
 					where: {
-						id: req.stock.id
+						id: req.body.stockId
 					}
 				}
 			).then ( 												//sets transaction purchase price to current stock price
 				( { price } ) => {
-					transactionData.purchaseDateValue = price;		//?????????????what is the column name in the stock table?
-					transactionData.totalValue = response.price * transactionData.qtyPurchased;
+					transactionData.purchasePrice = price;		//?????????????what is the column name in the stock table?
+					transactionData.totalValue = price * transactionData.qtyPurchased;
 					return transactionData;
 				}
 			).then (												//creates the transaction
@@ -66,8 +66,8 @@ module.exports = function(app) {
     // });
   });
 
-  axios.get('/user?ID=12345')
-    .then(function (response) {
-	  console.log(response);
+//   axios.get('/user?ID=12345')
+//     .then(function (response) {
+// 	  console.log(response);
 
 };
