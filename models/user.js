@@ -1,31 +1,32 @@
 
 module.exports = function(sequelize, DataTypes) {
-    var Transaction = sequelize.define("Transaction", 
+    var User = sequelize.define("Transaction", 
         {
-            fkUserId: {
-            type: DataTypes.INTEGER,
+            firstName: {
+            type: DataTypes.STRING,
             allowNull: false,
             },
-            fkStockId: {
-            type: DataTypes.INTEGER,
+            lastName: {
+            type: DataTypes.STRING,
             allowNull: false,
             },
-            qtyOwned: {
-            type: DataTypes.INTEGER,
+            currentBalance: {
+            type: DataTypes.DECIMAL(10,2),
             allowNull: false,
             },
-            dateSold: {
+            totalHoldings: {
+            type: DataTypes.DECIMAL(10,2),
+            allowNull: false,
+            },
+            dateStartedInvesting: {
             type: DataTypes.DATE,
-            },
-            purchase: {
-            type: DataTypes.DECIMAL (10,2),
             allowNull: false,
             },
-            totalValue: {
+            beginningInvestmentAmount: {
             type: DataTypes.DECIMAL (10,2),
             allowNull: false,
             }
         }
     )
-    return Transaction;
+    return User;
 }
