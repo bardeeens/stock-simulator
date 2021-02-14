@@ -1,0 +1,18 @@
+ <table class="pricing-table hover">
+        <thead>
+            <h1> Available Stocks</h1>
+          <tr>
+            <th class="name" width="200">Name</th>
+            <th class="price" width="100">Price</th>
+            <th class="symbol" width="150">Symbol</th>
+            <th class="purchase" width="150">Purchase</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {{#each stocks}}
+          {{> stocks/stock-block}}
+        {{/each}}
+
+        </tbody>
+      </table>
