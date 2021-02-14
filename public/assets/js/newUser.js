@@ -1,11 +1,11 @@
 module.exports = 
-$('addUserBtn').click (
+$('#addUserBtn').click (
 	function () {
-		let userFirstName = $('#firstNameInput').text;
-		let userLastName = $('#lastNameInput').text;
+		let userFirstName = $('#firstNameInput').val;
+		let userLastName = $('#lastNameInput').val;
 		$.ajax(
 			{ 				
-				url: '/api/user',  			
+				url: '/api/addUser',  			
 				method: "POST",
 				data: {
 					firstName: userFirstName,

@@ -20,7 +20,7 @@ module.exports = function(app) {
   })
   
   app.get("/addUser", (req, res) =>{
-    res.render("addUser.html")
+    res.render("addUser")
   })
 
   app.get("/AvailableStocks", (req, res) =>{

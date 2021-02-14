@@ -1,4 +1,4 @@
-require('newUser.js');
+// require('newUser.js');
 
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 // $(function() {
@@ -44,4 +44,39 @@ require('newUser.js');
 //       }
 //     );
 //   });
+// });
+// $(document).ready( function () {
+// alert ('running js file');
+
+// $('#createUserBtn').on("click", function () {alert ('click working');});
+
+
+// $( "#createUserBtn" ).click(function() {
+//   alert( "Handler for .click() called." );
+// });
+
+$('#createUserBtn').click(
+	function (event) {
+		// event.preventDefault();
+		// alert ('working');
+		userFirstName = $('#firstNameInput').val();
+		userLastName = $('#lastNameInput').val();
+		$.ajax(
+			{ 				
+				url: '/api/user',  			
+				method: "POST",
+				data: {
+					firstName: userFirstName,
+					lastName: userLastName
+				}		
+			}
+		).then (
+			function(response) { -	
+				console.log(response);		
+				console.log(response.keyName);
+			}
+		);
+	}
+);
+
 // });
