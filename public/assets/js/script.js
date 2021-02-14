@@ -1,4 +1,5 @@
-require('newUser.js');
+// require('newUser.js');
+console.log("ballsacks");
 
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 // $(function() {
