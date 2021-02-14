@@ -64,13 +64,12 @@ module.exports = function(app) {
 				);
 		} 
 	);
-	
 	app.put("/api/sell/:id",
 		function (request, response) {
 			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
 			db.Transaction.update( 
 				{ type: "sell" }, 
-				{ where: { id: request.paramas.id } }
+				{ where: { id: request.params.id } }
 			).then (
 				(result) => {
 					console.log(result);
