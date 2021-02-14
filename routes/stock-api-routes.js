@@ -19,10 +19,10 @@ module.exports = function(app) {
 			).then (										//finds the user and decrements their balance by the transaction total value
 				( { fkUserId, totalValue } ) => {
 					db.User.increment (
-						{ currentBalance: +totalValue },  //??????????how to add to an existing value
+						{ currentBalance: -totalValue },  //??????????how to add to an existing value
 						{ where: { id: fkUserId } }
 					);
-					console.log('VARIABLES!!!!!!!!!!!!!!!!!!', fkUserId, totalValue);
+					// console.log('VARIABLES!!!!!!!!!!!!!!!!!!', fkUserId, totalValue);
 					// Model.increment(
 					// 	{ seq: +5 },
 					// 	{ where: { id: 4 } }
@@ -30,7 +30,7 @@ module.exports = function(app) {
 				}
 			).then (
 				(result) => {
-					console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+					// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
 					response.json (result);
 				}
 			)
