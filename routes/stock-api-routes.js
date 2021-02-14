@@ -8,7 +8,7 @@ module.exports = function(app) {
             });
       });
 
-	app.post("/api/buy", 
+	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 		function(request, response) {
 		      db.Transaction.create(request.body)
 			.then (
@@ -19,14 +19,9 @@ module.exports = function(app) {
 			).then (										//finds the user and decrements their balance by the transaction total value
 				( { fkUserId, totalValue } ) => {
 					db.User.increment (
-						{ currentBalance: -totalValue },  //??????????how to add to an existing value
+						{ currentBalance: -totalValue }, 
 						{ where: { id: fkUserId } }
 					);
-					// console.log('VARIABLES!!!!!!!!!!!!!!!!!!', fkUserId, totalValue);
-					// Model.increment(
-					// 	{ seq: +5 },
-					// 	{ where: { id: 4 } }
-					//   );
 				}
 			).then (
 				(result) => {
