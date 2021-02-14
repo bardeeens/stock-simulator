@@ -72,4 +72,15 @@ module.exports = function(app) {
 //     .then(function (response) {
 // 	  console.log(response);
 
+app.post("/api/user", 
+      function(req, res) {
+            db.User.create(req.body)
+            .then(
+                  function(result) {
+                        console.log("New user created " , result);
+                        res.json(result);
+                  }     
+            );
+      } 
+);
 };
