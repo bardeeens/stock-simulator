@@ -39,29 +39,43 @@ module.exports = function(app) {
 		});
 	});
 
-  app.delete("/api/authors/:id", function(req, res) {
-    // db.Author.destroy({
-    //   where: {
-    //     id: req.params.id
-    //   }
-    // }).then(function(dbAuthor) {
-    //   res.json(dbAuthor);
-    // });
-  });
+	app.delete("/api/authors/:id", function(req, res) {
+		// db.Author.destroy({
+		//   where: {
+		//     id: req.params.id
+		//   }
+		// }).then(function(dbAuthor) {
+		//   res.json(dbAuthor);
+		// });
+	});
 
 //   axios.get('/user?ID=12345')
 //     .then(function (response) {
 // 	  console.log(response);
 
-app.post("/api/user", 
-      function(req, res) {
-            db.User.create(req.body)
-            .then(
-                  function(result) {
-                        console.log("New user created " , result);
-                        res.json(result);
-                  }     
-            );
-      } 
-);
+	app.post("/api/user", 
+		function(req, res) {
+				db.User.create(req.body)
+				.then(
+					function(result) {
+							console.log("New user created " , result);
+							res.json(result);
+					}     
+				);
+		} 
+	);
+	
+	app.put("/api/sell/:id",
+		function (request, response) {
+			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
+			db.Transaction.update( 
+				{ type: "sell" }, 
+				{ where: { id: request.paramas.id } }
+			).then (
+				(result) => {
+					console.log(result);
+				}
+			)
+		})
+
 };
