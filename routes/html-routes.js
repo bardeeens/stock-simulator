@@ -19,6 +19,27 @@ module.exports = function(app) {
     res.render("index")
   })
 
+  app.get("/AvailableStocks", (req, res) =>{
+    // stock.all(function(data) {
+    var hbsObject = {
+      stocks: [
+        {
+          stockName: "Google",
+          price: 500,
+          symbol: "something",
+        },
+        {
+          stockName: "Microsft",
+          price: 400,
+          symbol: "something2",
+        }
+    ]
+    };
+    console.log(hbsObject);
+    res.render("dashboard", hbsObject);
+  // });
+  })
+
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "./"));
   // });
