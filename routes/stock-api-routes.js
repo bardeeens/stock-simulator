@@ -55,6 +55,7 @@ module.exports = function(app) {
 
 	app.post("/api/user", 
 		function(req, res) {
+			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
 				db.User.create(req.body)
 				.then(
 					function(result) {
