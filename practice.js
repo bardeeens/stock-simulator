@@ -7,16 +7,32 @@ let axios = require('axios')
 //     .then(function (response) {
 //       console.log(response);
 //     });
-let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,BRK.A,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
+let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,GME,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
 let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
 
 
 axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`).then(function (response) {
-        // for (let i = 0; i < 50; i++) {
-        //   const element = array[i];
+let stockNameArray = [];
+let stockSymbolArray = [];
+let stockPriceArray = [];
+let stockObj = {
+  name: [],
+  symbol: [],
+  price: []
+}
+for (let i = 0; i < response.data.length; i++) {
           
-        // }    
-console.log(response.data[0]);
+          stockNameArray.push(response.data[i].name);
+          stockSymbolArray.push(response.data[i].symbol);
+          stockPriceArray.push(response.data[i].price);
+          
+        }    
+        // stockObj.name.push(stockNameArray)
+				// stockObj.symbol.push(stockSymbolArray)
+				// stockObj.price.push(stockPriceArray)
+				// console.log(stockObj);
+        console.log(response.data);
+
   })
 
   
