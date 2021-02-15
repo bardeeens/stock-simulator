@@ -1,4 +1,7 @@
 var db = require("../models");
+let axios = require('axios');
+let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,GME,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
+let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
 
 module.exports = function(app) {
       app.get("/api/stocks", function(req, res) {
@@ -32,12 +35,45 @@ module.exports = function(app) {
 		}
 	);
 
-	app.post("/api/stocks", function(req, res) {
-		db.Stock.create(req.body).then(function(result) {
-			console.log("asdf" , result);
-			res.json(result);
-		});
-	});
+  app.post("/api/stocks", function(req, res) {
+	axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`).then(function (response) {
+		// let stockNameArray = [];
+		// let stockSymbolArray = [];
+		// let stockPriceArray = [];
+		// let stockObj = {
+		// 	name: [],
+		// 	symbol: [],
+		// 	price: []
+		// }
+		// for (let i = 0; i < response.data.length; i++) {
+				  
+		// 		  stockNameArray.push(response.data[i].name);
+		// 		  stockSymbolArray.push(response.data[i].symbol);
+		// 		  stockPriceArray.push(response.data[i].price);
+				  
+		// 		} 
+				// stockObj.name.push(stockNameArray)
+				// stockObj.symbol.push(stockSymbolArray)
+				// stockObj.price.push(stockPriceArray)
+				// console.log(stockObj);
+				db.Stock.bulkCreate(response.data).then(function(result) {
+					console.log(result);
+					console.log("ballsacks");
+					res.json(result)
+				})
+	//   db.Stocks.getOne().then(function(result){
+	// 	if(result){
+	// 		//   update by id
+	// 	  } else {
+	// 		db.Stock.create(req.body).then(function(result) {
+	// 			console.log("asdf" , result);
+	// 			res.json(result);
+	// 		  });
+	// 	  }
+	//   })
+	  
+    
+  });
 
 	app.delete("/api/authors/:id", function(req, res) {
 		// db.Author.destroy({
@@ -79,4 +115,5 @@ module.exports = function(app) {
 			)
 		})
 
-};
+  });
+}
