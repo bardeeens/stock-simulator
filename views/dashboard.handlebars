@@ -5,7 +5,7 @@
         <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
           <li class="menu-text">My Dashboard</li>
           <li>
-            <a href="#">Market</a>
+            <a href="#">Marketplace</a>
           </li>
           <li><a href="#">Transactions</a></li>
           <li><a href="#">Sign Out</a></li>
@@ -16,7 +16,7 @@
 
 <div class="card-profile-stats">
     <div class="card-profile-stats-intro">
-      <img class="card-profile-stats-intro-pic" src="https://pbs.twimg.com/profile_images/732634911761260544/OxHbNdTF.jpg" alt="profile-image" />
+      <img class="card-profile-stats-intro-pic" src="../assets/images/placeholder.jpg" alt="profile-image" />
       <div class="card-profile-stats-intro-content">
         <h3>Joe Smith</h3>
         <p>Joined Jan.16th 2017</small></p>
@@ -59,13 +59,16 @@
                 <th class="name" width="200">Name</th>
                 <th class="symbol" width="100">Ticker</th>
                 <th class="value" width="100">Value</th>
+            <th class="shares" width="150">Number Of Shares For Sale</th>
+
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Content Goes Here</td>
-                <td>Symbol Insert Here</td>
-                <td>Value</td>
+                <td id="name">Content Goes Here</td>
+                <td id="symbol">Symbol Insert Here</td>
+                <td id="value">Value</td>
+                <td><input id="sell" type="text" placeholder="Value"><a href="#" class="button postfix">Sell now</a></td> 
               </tr>
             </tbody>
     </div>
