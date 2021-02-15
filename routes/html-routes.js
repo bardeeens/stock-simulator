@@ -18,9 +18,9 @@ module.exports = function(app) {
     res.render("addUser")
   })
 
-  app.get("/AvailableStocks", (req, res) =>{
+  app.get("/market", (req, res) =>{
     db.Stock.findAll().then(response => {
-      res.render("availableStocks", { stock: unpack(response) })
+      res.render("market", { stock: unpack(response) })
   })
   })
 
