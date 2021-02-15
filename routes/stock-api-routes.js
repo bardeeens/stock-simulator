@@ -4,12 +4,7 @@ let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,D
 let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
 
 module.exports = function(app) {
-      app.get("/api/stocks", function(req, res) {
-            db.Stock.findAll({}).then(function(dbStock) {
-                  console.log("Hello"+ dbStock);
-                  res.json(dbStock);
-            });
-      });
+      
 
 	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 		function(request, response) {
@@ -37,57 +32,16 @@ module.exports = function(app) {
 
   app.post("/api/stocks", function(req, res) {
 	axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`).then(function (response) {
-		// let stockNameArray = [];
-		// let stockSymbolArray = [];
-		// let stockPriceArray = [];
-		// let stockObj = {
-		// 	name: [],
-		// 	symbol: [],
-		// 	price: []
-		// }
-		// for (let i = 0; i < response.data.length; i++) {
-				  
-		// 		  stockNameArray.push(response.data[i].name);
-		// 		  stockSymbolArray.push(response.data[i].symbol);
-		// 		  stockPriceArray.push(response.data[i].price);
-				  
-		// 		} 
-				// stockObj.name.push(stockNameArray)
-				// stockObj.symbol.push(stockSymbolArray)
-				// stockObj.price.push(stockPriceArray)
-				// console.log(stockObj);
+		
 				db.Stock.bulkCreate(response.data).then(function(result) {
 					console.log(result);
-					console.log("ballsacks");
 					res.json(result)
 				})
-	//   db.Stocks.getOne().then(function(result){
-	// 	if(result){
-	// 		//   update by id
-	// 	  } else {
-	// 		db.Stock.create(req.body).then(function(result) {
-	// 			console.log("asdf" , result);
-	// 			res.json(result);
-	// 		  });
-	// 	  }
-	//   })
-	  
-    
   });
 
-	app.delete("/api/authors/:id", function(req, res) {
-		// db.Author.destroy({
-		//   where: {
-		//     id: req.params.id
-		//   }
-		// }).then(function(dbAuthor) {
-		//   res.json(dbAuthor);
-		// });
-	});
-
-//   axios.get('/user?ID=12345')
-//     .then(function (response) {
-// 	  console.log(response);
+	// app.delete("/api/authors/:id", function(req, res) {
+	
+	// });
 
 	app.post("/api/user", 
 		function(req, res) {
@@ -111,6 +65,8 @@ module.exports = function(app) {
 			).then (
 				(result) => {
 					console.log(result);
+					// res.json needed
+
 				}
 			)
 		})
