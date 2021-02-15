@@ -20,7 +20,28 @@ module.exports = function(app) {
   })
   
   app.get("/addUser", (req, res) =>{
-    res.render("addUser.html")
+    res.render("addUser")
+  })
+
+  app.get("/AvailableStocks", (req, res) =>{
+    // stock.all(function(data) {
+    var hbsObject = {
+      stocks: [
+        {
+          stockName: "Google",
+          price: 500,
+          symbol: "something",
+        },
+        {
+          stockName: "Microsft",
+          price: 400,
+          symbol: "something2",
+        }
+    ]
+    };
+    console.log(hbsObject);
+    res.render("availableStocks", hbsObject);
+  // });
   })
 
   // app.get("/", function(req, res) {

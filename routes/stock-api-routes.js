@@ -91,6 +91,7 @@ module.exports = function(app) {
 
 	app.post("/api/user", 
 		function(req, res) {
+			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
 				db.User.create(req.body)
 				.then(
 					function(result) {
@@ -100,6 +101,7 @@ module.exports = function(app) {
 				);
 		} 
 	);
+	
 	app.put("/api/sell/:id",
 		function (request, response) {
 			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
