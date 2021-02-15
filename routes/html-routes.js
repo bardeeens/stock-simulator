@@ -1,9 +1,4 @@
-// *********************************************************************************
-// html-routes.js - this file offers a set of routes for sending users to the various html pages
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
+var db = require("../models");
 var router = require('express').Router();
 var path = require("path");
 let unpack = (data) => JSON.parse(JSON.stringify(data));
@@ -24,24 +19,9 @@ module.exports = function(app) {
   })
 
   app.get("/AvailableStocks", (req, res) =>{
-    // stock.all(function(data) {
-    var hbsObject = {
-      stocks: [
-        {
-          stockName: "Google",
-          price: 500,
-          symbol: "something",
-        },
-        {
-          stockName: "Microsft",
-          price: 400,
-          symbol: "something2",
-        }
-    ]
-    };
-    console.log(hbsObject);
-    res.render("availableStocks", hbsObject);
-  // });
+    db.Stock.findAll().then(response => {
+      res.render("availableStocks", { stock: unpack(response) })
+  })
   })
 
   // app.get("/", function(req, res) {
