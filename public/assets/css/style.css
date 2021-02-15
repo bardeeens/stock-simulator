@@ -19,7 +19,7 @@
 
 .hero-full-screen .middle-content-section {
   text-align: top;
-  color:blue;
+  color:black;
   font-weight: bolder;
   text-shadow: 50px;
 }
@@ -219,7 +219,7 @@ background-color: #ededed;
 }
 
 .holy-grail-header {
--ms-grid-column: 1 ;
+-ms-grid-column: ;
     grid-column-start: 1;
 grid-column-end: 4;
 -ms-grid-row: 1;
