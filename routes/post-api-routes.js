@@ -1,19 +1,28 @@
 // *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
-
+  // https://www.npmjs.com/package/axios
+  
 // Requiring our models
 var db = require("../models");
-
+const axios = require('axios');
 // Routes
 // =============================================================
 module.exports = function(app) {
 
   // GET route for getting all of the posts
   app.get("/api/posts", function(req, res) {
+    axios.get('/user?ID=12345')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+    res.json()
+  });
     // var query = {};
     // if (req.query.author_id) {
     //   query.AuthorId = req.query.author_id;
