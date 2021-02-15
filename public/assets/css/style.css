@@ -105,68 +105,6 @@
   margin-bottom: 4px;
 }
 
-/* Navbar */
-
-
-.menu-hover-lines {
-text-align: center;
-text-transform: uppercase;
-font-weight: 700;
-letter-spacing: 0px;
-transition: all 0.35s ease;
-font-size: 20px;
-}
-
-.menu-hover-lines li a {
-padding: 0.75rem 0;
-color: rgba(10, 10, 10, 0.5);
-position: relative;
-margin-left: 2rem;
-}
-
-.menu-hover-lines li:first-child a {
-margin-left: 0;
-}
-
-.menu-hover-lines li.active > a {
-background-color: transparent;
-}
-
-.menu-hover-lines a:before,
-.menu-hover-lines a::after {
-height: 3px;
-position: absolute;
-content: '';
-transition: all 0.35s ease;
-background-color: #1779ba;
-width: 0;
-}
-
-.menu-hover-lines a::before {
-top: 0;
-left: 0;
-}
-
-.menu-hover-lines a::after {
-bottom: 0;
-right: 0;
-}
-
-.menu-hover-lines a:hover,
-.menu-hover-lines li.active > a {
-color: #0a0a0a;
-transition: all 0.35s ease;
-}
-
-.menu-hover-lines a:hover::before,
-.menu-hover-lines .active a::before,
-.menu-hover-lines a:hover::after,
-.menu-hover-lines .active a::after {
-width: 100%;
-}
-
-
-
 body {
 background-color: #1779ba;
 }
@@ -193,7 +131,7 @@ display: grid;
 -ms-grid-rows: 1fr 8fr 1fr;
     grid-template-rows: 1fr 8fr 1fr;
 grid-gap: 10px;
-height: 100vh;
+height: 10vh;
 }
 
 @media screen and (max-width: 60em) {
@@ -203,39 +141,11 @@ height: 100vh;
 }
 }
 
-.holy-grail-header,
-.holy-grail-left,
-.holy-grail-right,
-.holy-grail-footer {
-padding: 1rem;
-;
-}
-
 .holy-grail-middle,
 .holy-grail-header {
 padding: 1rem;
 border: 1px solid #ededed;
 background-color: #ededed;
-}
-
-.holy-grail-header {
--ms-grid-column: ;
-    grid-column-start: 1;
-grid-column-end: 4;
--ms-grid-row: 1;
-    grid-row-start: 1;
-    height: 10vh;
-
-}
-
-@media screen and (max-width: 60em) {
-.holy-grail-left {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  grid-column-end: 4;
-}
 }
 
 @media screen and (max-width: 60em) {
@@ -248,13 +158,103 @@ grid-column-end: 4;
 }
 }
 
-@media screen and (max-width: 60em) {
-.right-nav {
-  -ms-grid-row: 4;
-      grid-row-start: 4;
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  grid-column-end: 4;
+
+
+@media screen and (max-width: 39.9375em) {
+.no-js .top-bar {
+  display: none;
+}
+}
+
+@media print, screen and (min-width: 40em) {
+.no-js .title-bar {
+  display: none;
+}
+}
+
+[data-sticky] {
+width: 100%;
+}
+
+.sticky-container {
+z-index: 5;
+}
+
+/* Profile card */
+
+.card-profile-stats {
+border: 1px solid #cacaca;
+margin: 0 0 1.25rem;
+padding: 1.25rem;
+background: #fefefe;
+}
+
+.card-profile-stats .card-profile-stats-intro {
+text-align: center;
+}
+
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
+border-radius: 50%;
+margin: 0 0 1.25rem;
+}
+
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-content p:last-child {
+margin: 0;
+}
+
+.card-profile-stats .card-profile-stats-container {
+text-align: center;
+}
+
+.card-profile-stats .card-profile-stats-container .card-profile-stats-statistic {
+margin: 0 0 1.25rem;
+}
+
+.card-profile-stats .card-profile-stats-container .card-profile-stats-statistic p:last-child {
+margin: 0;
+}
+
+.card-profile-stats .card-profile-stats-more .card-profile-stats-more-link {
+margin: 0;
+text-align: center;
+font-size: 1.5rem;
+color: #0a0a0a;
+padding: 0.5rem;
+cursor: pointer;
+}
+
+.card-profile-stats .card-profile-stats-more .card-profile-stats-more-content {
+display: none;
+}
+
+
+@media print, screen and (min-width: 64em) {
+.card-profile-stats .card-profile-stats-intro {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  text-align: left;
+}
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
+  margin: 0 1.25rem 0 0;
+  max-width: 250px;
+}
+.card-profile-stats .card-profile-stats-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
 }
 }
 
