@@ -23,7 +23,7 @@ module.exports = function(app) {
     res.render("addUser")
   })
 
-  app.get("/AvailableStocks", (req, res) =>{
+  app.get("/market", (req, res) =>{
     // stock.all(function(data) {
     var hbsObject = {
       stocks: [
@@ -40,12 +40,16 @@ module.exports = function(app) {
     ]
     };
     console.log(hbsObject);
-    res.render("availableStocks", hbsObject);
+    res.render("market", hbsObject);
   // });
   })
 
   app.get("/dashboard", (req, res) =>{
     res.render("dashboard")
+  })
+
+  app.get("/transaction", (req, res) =>{
+    res.render("transaction")
   })
 
   // app.get("/", function(req, res) {
