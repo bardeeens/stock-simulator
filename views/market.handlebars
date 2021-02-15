@@ -1,0 +1,43 @@
+<div data-sticky-container>
+    <div data-sticky data-options="marginTop:0;">
+  
+      <div class="top-bar" id="example-menu">
+        <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
+          <li class="menu-text">Market</li>
+          <li>
+            <a href="#">My Dashbaord</a>
+          </li>
+          <li><a href="#">Transactions</a></li>
+          <li><a href="#">Sign Out</a></li>
+        </ul>
+      </div>
+  </div>
+      <br>
+        <div class="holy-grail-middle">
+            <div class="holy-grail-middle">
+               <table class="pricing-table hover">
+        <thead>
+            <h3> Available Stocks</h3>
+          <tr>
+            <th class="name" width="200">Name</th>
+            <th class="price" width="100">Current Price</th>
+            <th class="symbol" width="100">Ticker</th>
+            <th class="shares" width="150">Number Of Shares For Purchase</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {{#each stocks}}
+          {{> stocks/stock-block}}
+        {{/each}}
+
+        </tbody>
+      </table>
+            </div>
+        </div>
+ 
+ 
+ 
+ 
+ 
+ 

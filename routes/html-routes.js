@@ -24,6 +24,14 @@ module.exports = function(app) {
   })
   })
 
+  app.get("/dashboard", (req, res) =>{
+    res.render("dashboard")
+  })
+
+  app.get("/transaction", (req, res) =>{
+    res.render("transaction")
+  })
+
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "./"));
   // });

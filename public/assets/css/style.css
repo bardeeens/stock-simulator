@@ -19,7 +19,7 @@
 
 .hero-full-screen .middle-content-section {
   text-align: top;
-  color:blue;
+  color:black;
   font-weight: bolder;
   text-shadow: 50px;
 }
@@ -68,7 +68,7 @@
 
 
 .pricing-table {
-  background-color: #fefefe;
+  background-color: grey;
   border: solid 4px #cacaca;
   width: 100%;
   text-align: left;
@@ -92,7 +92,7 @@
 
 .pricing-table  {
   background-color: #e6e6e6;
-  font-size: 20px;
+  font-size: 15px;
   border-bottom: 0;
 }
 
@@ -103,5 +103,158 @@
 
 .pricing-table :last-child {
   margin-bottom: 4px;
+}
+
+body {
+background-color: #1779ba;
+}
+
+.headings {
+font-size:20px;
+}
+
+h3 {
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+
+}
+
+/* test */
+
+
+.holy-grail-grid {
+display: -ms-grid;
+display: grid;
+-ms-grid-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+-ms-grid-rows: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+grid-gap: 10px;
+height: 10vh;
+}
+
+@media screen and (max-width: 60em) {
+.holy-grail-grid {
+  -ms-grid-rows: 1fr 1fr 5fr 1fr;
+      grid-template-rows: 1fr 1fr 5fr 1fr;
+}
+}
+
+.holy-grail-middle,
+.holy-grail-header {
+padding: 1rem;
+border: 1px solid #ededed;
+background-color: #ededed;
+}
+
+@media screen and (max-width: 60em) {
+.holy-grail-middle {
+  -ms-grid-row: 3;
+      grid-row-start: 3;
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 4;
+}
+}
+
+
+
+@media screen and (max-width: 39.9375em) {
+.no-js .top-bar {
+  display: none;
+}
+}
+
+@media print, screen and (min-width: 40em) {
+.no-js .title-bar {
+  display: none;
+}
+}
+
+[data-sticky] {
+width: 100%;
+}
+
+.sticky-container {
+z-index: 5;
+}
+
+/* Profile card */
+
+.card-profile-stats {
+border: 1px solid #cacaca;
+margin: 0 0 1.25rem;
+padding: 1.25rem;
+background: #fefefe;
+}
+
+.card-profile-stats .card-profile-stats-intro {
+text-align: center;
+}
+
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
+border-radius: 50%;
+margin: 0 0 1.25rem;
+}
+
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-content p:last-child {
+margin: 0;
+}
+
+.card-profile-stats .card-profile-stats-container {
+text-align: center;
+}
+
+.card-profile-stats .card-profile-stats-container .card-profile-stats-statistic {
+margin: 0 0 1.25rem;
+}
+
+.card-profile-stats .card-profile-stats-container .card-profile-stats-statistic p:last-child {
+margin: 0;
+}
+
+.card-profile-stats .card-profile-stats-more .card-profile-stats-more-link {
+margin: 0;
+text-align: center;
+font-size: 1.5rem;
+color: #0a0a0a;
+padding: 0.5rem;
+cursor: pointer;
+}
+
+.card-profile-stats .card-profile-stats-more .card-profile-stats-more-content {
+display: none;
+}
+
+
+@media print, screen and (min-width: 64em) {
+.card-profile-stats .card-profile-stats-intro {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  text-align: left;
+}
+.card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
+  margin: 0 1.25rem 0 0;
+  max-width: 250px;
+}
+.card-profile-stats .card-profile-stats-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
 }
 
