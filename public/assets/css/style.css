@@ -155,9 +155,9 @@ background-color: #ededed;
 
 @media screen and (max-width: 60em) {
 .holy-grail-middle {
-  -ms-grid-row: 3;
+  /* -ms-grid-row: 3; */
       grid-row-start: 3;
-  -ms-grid-column: 1;
+  /* -ms-grid-column: 1; */
       grid-column-start: 1;
   grid-column-end: 4;
 }
