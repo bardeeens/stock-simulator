@@ -23,32 +23,27 @@
             <th class="name" width="100">Name</th>
             <th class="symbol" width="75">Ticker</th>
             <th class="price" width="75">Purchase Price</th>
-            <th class="shares" width="100">Number Of Shares For Purchase</th>
-            <th class="shares" width="75">Value</th>
-            <th class="shares" width="75">Current Price</th>
-            <th class="shares" width="75">Buy</th>
-            <th class="shares" width="75">Sell</th>
-
+            <th class="sharesPurchased" width="100">Number Of Shares Purchased</th>
+            <th class="sharesSold" width="100">Number Of Shares Sold</th>
+            <th class="value" width="75">Value</th>
+            <th class="currentPrice" width="75">Current Price</th>
           </tr>
         </thead>
         <tbody>
 
         {{#each stocks}}
          <tr>
-	<td>{{stockName}}</td>
-	<td>{{ticker}}</td>
-	<td>{{purchasePrice}}</td>
-    <td>{{shares}}</td>
-	<td>{{stockValue}}</td>
-	<td>{{price}}</td>
-	<td><a href="#" class="button postfix">Buy Now</a>
-        </div></td>
-</tr>
+	        <td>{{stockName}}</td>
+	        <td>{{ticker}}</td>
+	        <td>{{purchasePrice}}</td>
+            <td>{{sharesPurchased}}</td>
+            <td>{{sharesSold}}</td>
+	        <td>{{stockValue}}</td>
+	        <td>{{price}}</td>
+        </tr>
         {{/each}}
 
         </tbody>
       </table>
-            </div>
-        </div>
-  
+                  
 </div>
