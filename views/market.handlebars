@@ -12,32 +12,47 @@
         </ul>
       </div>
   </div>
-      <br>
-        <div class="holy-grail-middle">
-            <div class="holy-grail-middle">
-               <table class="pricing-table hover">
+  <br>
+  <div class="holy-grail-middle">
+    <div class="holy-grail-middle">
+      <table class="pricing-table hover">
         <thead>
-            <h3> Available Stocks</h3>
+          <h3> Available Stocks</h3>
           <tr>
             <th class="name" width="200">Name</th>
             <th class="price" width="100">Current Price</th>
-            <th class="symbol" width="100">Ticker</th>
+            <th class="symbol" width="100">Symbol</th>
+            <th class="ticker" width="100">Ticker</th>
             <th class="shares" width="150">Number Of Shares For Purchase</th>
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Apple</td>
+            <td>$277.83</td>
+            <td>AAP</td>
+            <td>-6.54%</td>
+            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Amazon</td>
+            <td>$2,408.63</td>
+            <td>AMZN</td>
+            <td>+10.22%</td>
+            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
+          </tr>
+          <tr>
+            <td>Facebook</td>
+            <td>$181.41</td>
+            <td>FB</td>
+            <td>-0.70%</td>
+            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
+          </tr>
 
-        {{#each stock}}
+          {{#each stock}}
           {{> stocks/stock-block}}
-        {{/each}}
-
+          {{/each}}
         </tbody>
       </table>
-            </div>
-        </div>
- 
- 
- 
- 
- 
- 
+    </div>
+  </div>

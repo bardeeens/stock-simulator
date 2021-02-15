@@ -13,37 +13,63 @@
       </div>
   </div>
 </div>
-  <br>
-   <div class="holy-grail-middle">
-            <div class="holy-grail-middle">
-               <table class="pricing-table hover">
-        <thead>
-            <h3> My Transaction History</h3>
-          <tr>
-            <th class="name" width="100">Name</th>
-            <th class="symbol" width="75">Ticker</th>
-            <th class="price" width="75">Purchase Price</th>
-            <th class="sharesPurchased" width="100">Number Of Shares Purchased</th>
-            <th class="sharesSold" width="100">Number Of Shares Sold</th>
-            <th class="value" width="75">Value</th>
-            <th class="currentPrice" width="75">Current Price</th>
-          </tr>
-        </thead>
-        <tbody>
+<br>
+<div class="holy-grail-middle">
+    <div class="holy-grail-middle">
+        <table class="pricing-table hover">
+            <thead>
+                <h3> My Transaction History</h3>
+                <tr>
+                    <th class="name" width="100">Name</th>
+                    <th class="symbol" width="75">Ticker</th>
+                    <th class="price" width="75">Purchase Price</th>
+                    <th class="sharesPurchased" width="100">Number Of Shares Purchased</th>
+                    <th class="sharesSold" width="100">Number Of Shares Sold</th>
+                    <th class="value" width="75">Value</th>
+                    <th class="currentPrice" width="75">Current Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apple</td>
+                    <td>-6.54%</td>
+                    <td>$277.83</td>
+                    <td>20</td>
+                    <td>0</td>
+                    <td>$390</td>
+                    <td>$1,500</td>
+                </tr>
+                <tr>
+                    <td>Amazon</td>
+                    <td>-8.24%</td>
+                    <td>$137.83</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>$190</td>
+                    <td>$3,500</td>
+                </tr>
+                <tr>
+                    <td>Google</td>
+                    <td>+6.24%</td>
+                    <td>$49.83</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>$990</td>
+                    <td>$13,800</td>
+                </tr>
+                {{#each stocks}}
+                <tr>
+                    <td>{{stockName}}</td>
+                    <td>{{ticker}}</td>
+                    <td>{{purchasePrice}}</td>
+                    <td>{{sharesPurchased}}</td>
+                    <td>{{sharesSold}}</td>
+                    <td>{{stockValue}}</td>
+                    <td>{{price}}</td>
+                </tr>
+                {{/each}}
 
-        {{#each stocks}}
-         <tr>
-	        <td>{{stockName}}</td>
-	        <td>{{ticker}}</td>
-	        <td>{{purchasePrice}}</td>
-            <td>{{sharesPurchased}}</td>
-            <td>{{sharesSold}}</td>
-	        <td>{{stockValue}}</td>
-	        <td>{{price}}</td>
-        </tr>
-        {{/each}}
+            </tbody>
+        </table>
 
-        </tbody>
-      </table>
-                  
-</div>
+    </div>
