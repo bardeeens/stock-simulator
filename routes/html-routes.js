@@ -12,11 +12,9 @@ module.exports = function(app) {
   // index route loads view.html
   app.get("/", (req, res) =>{
     res.render("index")
+    // data needed-user list
   })
   
-  app.get("/addUser", (req, res) =>{
-    res.render("addUser")
-  })
 
   app.get("/market", (req, res) =>{
     db.Stock.findAll().then(response => {
@@ -24,31 +22,16 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard", (req, res) =>{
+  app.get("/dashboard/", (req, res) =>{
     res.render("dashboard")
+    // needs user information
   })
 
   app.get("/transaction", (req, res) =>{
     res.render("transaction")
+    // needs data
   })
 
-  // app.get("/", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "./"));
-  // });
-
-  // cms route loads cms.html
-  // app.get("/cms", function(req, res) {
-    // res.sendFile(path.join(__dirname, "../public/cms.html"));
-  // });
-
-  // blog route loads blog.html
-  // app.get("/blog", function(req, res) {
-    // res.sendFile(path.join(__dirname, "../public/blog.html"));
-  // });
-
-  // authors route loads author-manager.html
-  // app.get("/authors", function(req, res) {
-    // res.sendFile(path.join(__dirname, "../public/author-manager.html"));
-  // });
-
 };
+
+
