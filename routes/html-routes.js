@@ -44,6 +44,10 @@ module.exports = function(app) {
   // });
   })
 
+  app.get("/dashboard", (req, res) =>{
+    res.render("dashboard")
+  })
+
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "./"));
   // });
