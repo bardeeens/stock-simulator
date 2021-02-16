@@ -1,8 +1,14 @@
 
 $('#createUser').click(
 	function (event) {
-	
+
 		let userName = $('#userName').val();
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "PUT",
+			}
+		)
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
@@ -11,24 +17,36 @@ $('#createUser').click(
 					userName: userName
 				}		
 			}
-		).then (
-			function(response) { -	
-				console.log(response);
-				console.log("then");
+		).then (function(response) { 
+			sessionStorage.setItem('id', response.id)
+			let data = sessionStorage.getItem('id')
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
-// redirect needed
-			}
-		);
+				
+			});
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-console.log(this.id);
-		window.location.href = `/dashboard/${this.id}`;
+		
+		let id = this.id
+		
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "PUT",
+			}
+			).then (
+				function(response) { 	
+					console.log(id);
+					console.log(response);
+					
+					window.location.href = `/dashboard/${id}`;
+				});
+		
 	}
-)
+);
 // click event for login selection
 
 // sell click events
