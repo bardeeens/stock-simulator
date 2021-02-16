@@ -24,7 +24,7 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard/:id", 
+  app.get("/dashboard/:id", 			// renders dashboard with user information and transactions summarized by company
 	(req, res) => {
 		db.User.findAll (
 			{ 
@@ -50,12 +50,6 @@ module.exports = function(app) {
 				for (let i = 0; i < transactionsArr.length; i++) {
 					if (position === -1 || 
 					transactionsArr[i].Stock.id !== summaryArr[position].id) {
-						// console.log('POSITION ', position);
-						// console.log('SUMMARY TRANSACTION AT CURRENT POSTIION ', summaryArr[position]);
-						// console.log('TRANSACTION ARRAY STOCK ID ',transactionsArr[i].Stock.id);
-						// if (position !== -1){
-						// 	console.log('SUMMARY TRANSACTION ID', summaryArr[position].id);
-						// }
 						let transactionObj = {};
 						transactionObj.id = transactionsArr[i].Stock.id;
 						transactionObj.name = transactionsArr[i].Stock.name;
@@ -72,11 +66,6 @@ module.exports = function(app) {
 						transactionObj.totalVal = transactionObj.qty * transactionObj.price;
 						summaryArr.push (transactionObj);
 						position ++;
-						// console.log('POSITION AT THE END',position);
-	
-					
-						// console.log('SUMMARY ARRAY STOCK NAME ',summaryArr[position].name);
-
 					}
 					console.log('SUMMARY ARRAY ',summaryArr);
 				}
