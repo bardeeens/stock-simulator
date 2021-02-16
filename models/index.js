@@ -4,6 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
+if (process.env.JAWSDB_URL) {
+  // for Heroku
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {});
+} 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
