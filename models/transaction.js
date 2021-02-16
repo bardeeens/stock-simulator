@@ -32,6 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	)
+<<<<<<< HEAD
 
 	// Transaction.associate = function(models) {
 	// 	Transaction.hasOne ( models.User );
@@ -40,6 +41,15 @@ module.exports = function(sequelize, DataTypes) {
 	// Transaction.associate = function(models) {
 	// 	Transaction.hasOne ( models.Stock );
 	// };
+=======
+	Transaction.associate = function(models) {
+		Transaction.belongsTo(models.User, 
+			{ foreignKey: { allowNull: false } } 
+		);
+	}
+
+
+>>>>>>> main
 	
     return Transaction;
 }

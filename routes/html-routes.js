@@ -32,11 +32,16 @@ module.exports = function(app) {
 				include: [ { model: db.Transaction } ]
 			}
 		).then ( 
-			response => {
-				console.log(response);
-				res.render ( 
-					"dashboard", 
-					{ user: unpack(response) }
+			(response) => {
+				let userObj = unpack(response);
+				let transactionsArr = userObj.Transactions;
+				console.log('UNPACKED RESPONSE', unpack(response));
+				res.render ( "dashboard", 
+					{ 
+						user: userObj,
+						transactions: transactionsArr
+					 }
+					// { user: unpack(response) }
 				)
 			}
 		)
