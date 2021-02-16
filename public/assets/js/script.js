@@ -5,30 +5,47 @@ $('#createUser').click(
 		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
+				url: '/api/stocks',  			
+				method: "PUT",
+			}
+		)
+		$.ajax(
+			{ 				
 				url: '/api/user',  			
 				method: "POST",
 				data: {
 					userName: userName
 				}		
 			}
-		).then (
-			function(response) { -	
+		).then (function(response) { 
 				console.log(response);
 				console.log("then");
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
-// redirect needed
-			}
-		);
+			});
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-console.log(this.id);
-		window.location.href = `/dashboard/${this.id}`;
+		
+		let id = this.id
+		// window.location.href = `/dashboard/${this.id}`;
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "PUT",
+			}
+			).then (
+				function(response) { 	
+					console.log(id);
+					console.log(response);
+					
+					window.location.href = `/dashboard/${id}`;
+				});
+		
 	}
-)
+);
 // click event for login selection
 
 // sell click events
