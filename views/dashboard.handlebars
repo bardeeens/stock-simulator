@@ -62,10 +62,13 @@
                 <th class="symbol" width="100">Ticker</th>
                 <th class="value" width="100">Value</th>
             <th class="shares" width="150">Number Of Shares For Sale</th>
-
+{{/each}}
               </tr>
             </thead>
-            <tbody>
+				{{#each transactions}}
+					{{> stocks/transaction-block}}
+				{{/each}}
+            {{!-- <tbody>
               <tr>
                 <td>Facebook</td>
                 <td>FB</td>
@@ -87,8 +90,8 @@
 	          <td>$277.83</td>
             <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td> 
           </tr>
-            </tbody>
+            </tbody> --}}
     </div>
   
 </div>
-{{/each}}
+
