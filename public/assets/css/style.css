@@ -74,14 +74,15 @@
 
 .pricing-table {
   background-color: grey;
-  border: solid 4px #cacaca;
+  border: solid 3px black;
+  border-bottom: solid 3px black;
   width: 100%;
   text-align: left;
   list-style-type: none;
 }
 
 .pricing-table li {
-  border-bottom: dotted 1px #cacaca;
+  border-bottom: solid 1px black;
   padding: 0.875rem 1.125rem;
 }
 
@@ -92,7 +93,7 @@
 .pricing-table .title {
   background-color: #0a0a0a;
   color: #fefefe;
-  border-bottom: 0;
+  border-bottom: solid 4px black;
 }
 
 .pricing-table  {
@@ -124,6 +125,20 @@ font-size: 30px;
 text-align: center;
 
 }
+
+th {
+  color:black;
+  background-color:darkgrey;
+  font-size:17px;
+  border-bottom: 2;
+}
+
+td {
+  border: 1px solid black;
+  font-size:14px;
+  font-weight:bold;
+}
+
 
 /* test */
 

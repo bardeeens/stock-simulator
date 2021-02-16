@@ -40,9 +40,19 @@ module.exports = function(app) {
   });
 });
 
-	// app.delete("/api/authors/:id", function(req, res) {
-	
-	// });
+	app.delete("/api/stocks", function(req, res) {
+	db.Stock.destroy({where:{}}).then(function (result){
+		console.log("deleted baby");
+		res.send("delete successful")
+	})
+	});
+
+	app.put("/api/stocks", function(req, res) {
+		let ids = [1,50]
+		db.Stock.update({},{where:{id: ids}}).then(function (result){
+			res.send("delete successful")
+		})
+		});
 
 	app.post("/api/user", function(req, res) {
 			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
@@ -60,7 +70,7 @@ module.exports = function(app) {
 	app.get("/api/user", function(req, res) {
 		console.log("api/user route hit !!!!!!!!!!!!!!!!!");
 	console.log(req.body);
-			db.User.create(req.body)
+			db.User.findAll()
 			.then(
 				function(result) {
 						console.log("New user created " , result);

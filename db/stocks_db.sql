@@ -1,1 +1,1 @@
-CREATE TABLE stock_db 
+USE tovbxifnev4yp241;
