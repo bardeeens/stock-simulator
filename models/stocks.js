@@ -94,5 +94,12 @@ module.exports = function(sequelize, DataTypes) {
 
 
     });
+
+	Stock.associate = function(models) {
+		Stock.hasMany(models.Transaction, 
+			{ onDelete: "cascade" }
+		);
+	};
+
     return Stock;
   }
