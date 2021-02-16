@@ -1,22 +1,22 @@
 
-$('#createUserBtn').click(
+$('#createUser').click(
 	function (event) {
 	
-		userFirstName = $('#firstNameInput').val();
-		userLastName = $('#lastNameInput').val();
+		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
 				method: "POST",
 				data: {
-					firstName: userFirstName,
-					lastName: userLastName
+					userName: userName
 				}		
 			}
 		).then (
 			function(response) { -	
-				console.log(response);		
-				console.log(response.keyName);
+				console.log(response);
+				console.log("then");
+				window.location.redirect
+				window.location.href = `/dashboard/${response.id}`;
 // redirect needed
 			}
 		);

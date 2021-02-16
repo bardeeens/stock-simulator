@@ -1,6 +1,7 @@
 var db = require("../models");
 var router = require('express').Router();
 var path = require("path");
+// const { where } = require("sequelize/types");
 let unpack = (data) => JSON.parse(JSON.stringify(data));
 
 // Routes
@@ -11,8 +12,9 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", (req, res) =>{
-    res.render("index")
-    // data needed-user list
+    db.User.findAll().then(response => {
+      res.render("index", { user: unpack(response) })
+  })
   })
   
 
@@ -22,8 +24,15 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard/", (req, res) =>{
-    res.render("dashboard")
+  app.get("/dashboard/:id", (req, res) =>{
+    db.User.findAll({where:{
+      id: [req.params.id]
+    }}).then(response => {
+      console.log(response);
+      
+      res.render("dashboard", { user: unpack(response) })
+    })
+    
     // needs user information
   })
 
