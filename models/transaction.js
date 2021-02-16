@@ -18,13 +18,13 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: false,
 			},
-			totalPurcahsedValue: {
+			totalPurchaseValue: {
 			type: DataTypes.DECIMAL (10,2),
-			allowNull: false,
+			allowNull: true,
 			},
 			totalCurrentValue: {
 			type: DataTypes.DECIMAL (10,2),
-			allowNull: false
+			allowNull: true
 			}
 		}
 	)

@@ -41,13 +41,12 @@ module.exports = function(app) {
 				let transactionsArr = userObj[0].Transactions;
 				console.log('UNPACKED RESPONSE', unpack(response));
 				console.log('TRANSACTIONS', transactionsArr);
-				console.log('STOCK', transactionsArr[3].Stock);
-				console.log('STOCK NAME ', transactionsArr[3].Stock.name);
+				console.log('response ', response);
 				res.render ( "dashboard", 
 					{ 
 						user: userObj,
 						transactions: transactionsArr
-					 }
+					}
 					// { user: unpack(response) }
 				)
 			}
