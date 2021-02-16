@@ -29,13 +29,20 @@ module.exports = function(app) {
 		db.User.findAll (
 			{ 
 				where: { id: [req.params.id] },
-				include: [ { model: db.Transaction } ]
+				include: [ 
+					{ model: db.Transaction, 
+						include: [ { model: db.Stock } ] 
+					} 
+				]
 			}
 		).then ( 
 			(response) => {
 				let userObj = unpack(response);
-				let transactionsArr = userObj.Transactions;
+				let transactionsArr = userObj[0].Transactions;
 				console.log('UNPACKED RESPONSE', unpack(response));
+				console.log('TRANSACTIONS', transactionsArr);
+				console.log('STOCK', transactionsArr[3].Stock);
+				console.log('STOCK NAME ', transactionsArr[3].Stock.name);
 				res.render ( "dashboard", 
 					{ 
 						user: userObj,
