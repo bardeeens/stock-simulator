@@ -1,7 +1,7 @@
 
 $('#createUser').click(
 	function (event) {
-	
+
 		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
@@ -18,10 +18,11 @@ $('#createUser').click(
 				}		
 			}
 		).then (function(response) { 
-				console.log(response);
-				console.log("then");
+			sessionStorage.setItem('id', response.id)
+			let data = sessionStorage.getItem('id')
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
+				
 			});
 	}
 );
@@ -30,7 +31,7 @@ $('.userBtn').click(
 	function (event) {
 		
 		let id = this.id
-		// window.location.href = `/dashboard/${this.id}`;
+		
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
