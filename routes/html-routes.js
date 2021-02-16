@@ -24,17 +24,37 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard/:id", (req, res) =>{
-    db.User.findAll({where:{
-      id: [req.params.id]
-    }}).then(response => {
-      console.log(response);
-      
-      res.render("dashboard", { user: unpack(response) })
-    })
-    
-    // needs user information
-  })
+  app.get("/dashboard/:id", 
+	(req, res) => {
+		db.User.findAll (
+			{ 
+				where: { id: [req.params.id] },
+				include: [ 
+					{ model: db.Transaction, 
+						include: [ { model: db.Stock } ] 
+					} 
+				]
+			}
+		).then ( 
+			(response) => {
+				let userObj = unpack(response);
+				let transactionsArr = userObj[0].Transactions;
+				console.log('UNPACKED RESPONSE', unpack(response));
+				console.log('TRANSACTIONS', transactionsArr);
+				console.log('response ', response);
+				res.render ( "dashboard", 
+					{ 
+						user: userObj,
+						transactions: transactionsArr
+					}
+					// { user: unpack(response) }
+				)
+			}
+		)
+	}
+  )
+
+
 
   app.get("/transaction", (req, res) =>{
     res.render("transaction")

@@ -2,14 +2,6 @@
 module.exports = function(sequelize, DataTypes) {
 	var Transaction = sequelize.define("Transaction", 
 		{
-			fkUserId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			},
-			fkStockId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			},
 			type: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -26,12 +18,17 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: false,
 			},
-			totalValue: {
+			totalPurchaseValue: {
 			type: DataTypes.DECIMAL (10,2),
-			allowNull: false,
+			allowNull: true,
+			},
+			totalCurrentValue: {
+			type: DataTypes.DECIMAL (10,2),
+			allowNull: true
 			}
 		}
 	)
+<<<<<<< HEAD
 
 	// Transaction.associate = function(models) {
 	// 	Transaction.hasOne ( models.User );
@@ -41,5 +38,19 @@ module.exports = function(sequelize, DataTypes) {
 	// 	Transaction.hasOne ( models.Stock );
 	// };
 	
+=======
+	Transaction.associate = function(models) {
+		Transaction.belongsTo(models.User, 
+			{ foreignKey: { allowNull: false } } 
+		);
+	}
+
+	Transaction.associate = function(models) {
+		Transaction.belongsTo(models.Stock, 
+			{ foreignKey: { allowNull: false } } 
+		);
+	}
+
+>>>>>>> main
     return Transaction;
 }
