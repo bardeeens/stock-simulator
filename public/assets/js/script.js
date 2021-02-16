@@ -23,6 +23,12 @@ $('#createUser').click(
 	}
 );
 
+$('.userBtn').click(
+	function (event) {
+console.log(this.id);
+		window.location.href = `/dashboard/${this.id}`;
+	}
+)
 // click event for login selection
 
 // sell click events

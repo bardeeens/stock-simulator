@@ -26,7 +26,7 @@ module.exports = function(app) {
 
   app.get("/dashboard/:id", 
 	(req, res) => {
-		db.User.findAll(
+		db.User.findAll (
 			{ 
 				where: { id: [req.params.id] },
 				include: [ { model: db.Transaction } ]
@@ -41,6 +41,7 @@ module.exports = function(app) {
 			}
 		)
 	}
+  )
 
 
 
