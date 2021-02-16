@@ -1,16 +1,16 @@
 <div data-sticky-container>
-    <div data-sticky data-options="marginTop:0;">
-  
-      <div class="top-bar" id="example-menu">
-        <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
-          <li class="menu-text">Marketplace</li>
-          <li>
-            <a href="./dashboard">My Dashbaord</a>
-          </li>
-          <li><a href="./transaction">Transactions</a></li>
-          <li><a href="#">Sign Out</a></li>
-        </ul>
-      </div>
+  <div data-sticky data-options="marginTop:0;">
+
+    <div class="top-bar" id="example-menu">
+      <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
+        <li class="menu-text">Marketplace</li>
+        <li>
+          <a href="./dashboard">My Dashbaord</a>
+        </li>
+        <li><a href="./transaction">Transactions</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </div>
   </div>
   <br>
   <div class="holy-grail-middle">
@@ -26,8 +26,8 @@
             <th class="shares" width="150">Number Of Shares For Purchase</th>
           </tr>
         </thead>
-        {{!-- <tbody>
-          <tr>
+        <tbody>
+          {{!-- <tr>
             <td>Apple</td>
             <td>$277.83</td>
             <td>AAP</td>
@@ -40,19 +40,22 @@
             <td>AMZN</td>
             <td>+10.22%</td>
             <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr>
+          </tr> --}}
           <tr>
             <td>Facebook</td>
             <td>$181.41</td>
             <td>FB</td>
             <td>-0.70%</td>
-            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr> --}}
+            <td><input id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix">Buy Now</button></td>
+          </tr>
 
           {{#each stock}}
           {{> stocks/stock-block}}
           {{/each}}
         </tbody>
+        {{> stocks/modals}}
+
       </table>
+  
     </div>
   </div>
