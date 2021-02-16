@@ -38,14 +38,15 @@ module.exports = function(app) {
 					res.json(result)
 				})
   });
+});
 
 	// app.delete("/api/authors/:id", function(req, res) {
 	
 	// });
 
-	app.post("/api/user", 
-		function(req, res) {
+	app.post("/api/user", function(req, res) {
 			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+		console.log(req.body);
 				db.User.create(req.body)
 				.then(
 					function(result) {
@@ -55,6 +56,21 @@ module.exports = function(app) {
 				);
 		} 
 	);
+
+	app.get("/api/user", function(req, res) {
+		console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+	console.log(req.body);
+			db.User.create(req.body)
+			.then(
+				function(result) {
+						console.log("New user created " , result);
+						res.json(result);
+				}     
+			);
+	} 
+);
+
+	
 	
 	app.put("/api/sell/:id",
 		function (request, response) {
@@ -71,5 +87,5 @@ module.exports = function(app) {
 			)
 		})
 
-  });
-}
+  }
+

@@ -1,3 +1,4 @@
+{{#each user}}
 <div data-sticky-container>
     <div data-sticky data-options="marginTop:0;">
   
@@ -18,7 +19,7 @@
     <div class="card-profile-stats-intro">
       <img class="card-profile-stats-intro-pic" src="../assets/images/placeholder.jpg" alt="profile-image" />
       <div class="card-profile-stats-intro-content">
-        <h3>Joe Smith</h3>
+        <h3>{{userName}}</h3>
         <p>Joined Jan.16th 2017</small></p>
       </div> <!-- /.card-profile-stats-intro-content -->
     </div> <!-- /.card-profile-stats-intro -->
@@ -27,16 +28,16 @@
   
     <div class="card-profile-stats-container">
         <div class="card-profile-stats-statistic">
-         <span class="stat">$1,000</span>
-            <p>Current Balance:</p>
+         <span class="stat">{{currentBalance}}</span>
+            <p>Current Balance</p>
       </div> <!-- /.card-profile-stats-statistic -->
       <div class="card-profile-stats-statistic">
-        <span class="stat">$1,000</span>
-        <p>Total Holdings:</p>
+        <span class="stat">{{totalHoldings}}</span>
+        <p>Total Holdings</p>
       </div> <!-- /.card-profile-stats-statistic -->
       <div class="card-profile-stats-statistic">
-        <span class="stat">$1,000</span>
-        <p>Total Net Worth:</p>
+        <span class="stat">not yet possible</span>
+        <p>Total Net Worth</p>
       </div> <!-- /.card-profile-stats-statistic -->
     </div> <!-- /.card-profile-stats-container -->
   
@@ -90,3 +91,4 @@
     </div>
   
 </div>
+{{/each}}

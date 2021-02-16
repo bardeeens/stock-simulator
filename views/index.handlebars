@@ -23,17 +23,17 @@
       <span class="input-group-label">
         <i class="fa fa-user"></i>
       </span>
-      <input class="input-group-field" type="text" placeholder="Full name" > 
+      <input id="userName" class="input-group-field" type="text" placeholder="Full name" > 
     </div>
   </div>
 
-  <button class="button">Sign Up</button>
+  <button id="createUser" class="button">Sign Up</button>
 </form>
 
 <ul class="list-group">
-  <li class="list-group-item active">User 1 (Active)</li>
-  <li class="list-group-item">User 2</li>
-  <li class="list-group-item"> User 3</li>
+ {{#each user}}
+          {{> stocks/user-block}}
+        {{/each}}
 </ul>
 {{!--       
         <div class="bottom-content-section" data-magellan data-threshold="0">
