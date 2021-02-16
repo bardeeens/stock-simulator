@@ -130,7 +130,7 @@ th {
   color:black;
   background-color:darkgrey;
   font-size:17px;
-  border-bottom: 2;
+  border: 1px solid black;
 }
 
 td {
@@ -207,6 +207,7 @@ border: 1px solid #cacaca;
 margin: 0 0 1.25rem;
 padding: 1.25rem;
 background: #fefefe;
+max-width: fit-content;
 }
 
 .card-profile-stats .card-profile-stats-intro {
@@ -276,6 +277,12 @@ display: none;
       -ms-flex-pack: distribute;
           justify-content: space-around;
 }
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /* List of users */
