@@ -40,7 +40,7 @@
         <p>Total Net Worth</p>
       </div> <!-- /.card-profile-stats-statistic -->
     </div> <!-- /.card-profile-stats-container -->
-  
+  {{/each}}
     <div class="card-profile-stats-more">
       <p class="card-profile-stats-more-link"><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a></p>
       <div class="card-profile-stats-more-content">
@@ -58,11 +58,10 @@
                 <h3>My Investments</h3>
               <tr class="headings">
                 <th class="name" width="200">Name</th>
-                <th class="symbol" width="100">Symbol</th>
-                <th class="symbol" width="100">Ticker</th>
-                <th class="value" width="100">Value</th>
-            <th class="shares" width="150">Number Of Shares For Sale</th>
-{{/each}}
+                <th class="symbol" width="100">Ticker Symbol</th>
+                <th class="symbol" width="100">Shares Owned</th>
+                <th class="value" width="100">Current Price</th>
+            	<th class="shares" width="150">Total Value</th>
               </tr>
             </thead>
 				{{#each transactions}}
