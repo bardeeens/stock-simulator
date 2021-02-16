@@ -33,13 +33,13 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	)
 
-	Transaction.associate = function(models) {
-		Transaction.hasOne ( models.User );
-	};
+	// Transaction.associate = function(models) {
+	// 	Transaction.hasOne ( models.User );
+	// };
 
-	Transaction.associate = function(models) {
-		Transaction.hasOne ( models.Stock );
-	};
+	// Transaction.associate = function(models) {
+	// 	Transaction.hasOne ( models.Stock );
+	// };
 	
     return Transaction;
 }
