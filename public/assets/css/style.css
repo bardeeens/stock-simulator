@@ -267,7 +267,10 @@ display: none;
 }
 .card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
   margin: 0 1.25rem 0 0;
-  max-width: 250px;
+  max-width: 320px;
+  border-radius: 5px;
+  position:relative;
+  left:95px;
 }
 .card-profile-stats .card-profile-stats-container {
   display: -webkit-flex;
@@ -277,6 +280,36 @@ display: none;
       -ms-flex-pack: distribute;
           justify-content: space-around;
 }
+}
+
+.balance {
+  position: relative;
+  left:50px;
+}
+
+.holdings {
+  position: relative;
+  top: 80px;
+  right:95px;
+
+}
+.profile {
+  position:relative;
+  right:160px;
+  bottom:20px;
+  color:white;
+  font-weight: bold;
+}
+
+#date {
+  font-size:10px;
+  position:relative;
+ 
+}
+
+.net {
+  position:relative;
+  right:40px;
 }
 
 .img-responsive {
