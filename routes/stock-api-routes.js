@@ -9,24 +9,24 @@ module.exports = function(app) {
 	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 		function(request, response) {
 		      db.Transaction.create(request.body)
-			.then (
-				(result) => {
+			  .then (
+				function(result) {
 					response.json(result);
-					return result;
-				}
-			).then (										//finds the user and decrements their balance by the transaction total value
-				( { fkUserId, totalValue } ) => {
-					db.User.increment (
-						{ currentBalance: -totalValue }, 
-						{ where: { id: fkUserId } }
-					);
-				}
-			).then (
-				(result) => {
-					// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
-					response.json (result);
-				}
-			)
+					
+				});
+			// ).then (										//finds the user and decrements their balance by the transaction total value
+			// 	( { fkUserId, totalValue } ) => {
+			// 		db.User.increment (
+			// 			{ currentBalance: -totalValue }, 
+			// 			{ where: { id: fkUserId } }
+			// 		);
+			// 	}
+			// ).then (
+			// 	(result) => {
+			// 		// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+			// 		response.json (result);
+			// 	}
+			// )
 		}
 	);
 
