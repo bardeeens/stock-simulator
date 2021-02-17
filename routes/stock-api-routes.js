@@ -53,7 +53,6 @@ module.exports = function(app) {
 		}
 	);
 
-<<<<<<< HEAD
 	app.delete("/api/stocks", 
 		function(req, res) {
 			console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
@@ -71,40 +70,111 @@ module.exports = function(app) {
 		}
 	);
 
+	// app.put("/api/stocks", 
+	// 	function(req, res) {
+	// 		// let ids = [1,50];
+	// 		axios.get(
+	// 			`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
+	// 		).then(
+	// 			function (result) {
+	// 				console.log('RESULT FROM PUT REQUEST ', result.data);
+	// 				console.log('NAME ', result.data[0].name);
+	// 				var test = [
+	// 					{
+	// 						symbol: 'TSLA',
+	// 						name: 'Tesla, Inc.',
+	// 						price: 793.8269,
+	// 						changesPercentage: -0.3,
+	// 						change: -2.3931,
+	// 						dayLow: 762.01,
+	// 						dayHigh: 797,
+	// 						yearHigh: 900.4,
+	// 						yearLow: 70.102,
+	// 						marketCap: 761957974016,
+	// 						priceAvg50: 818.9215,
+	// 						priceAvg200: 543.8786,
+	// 						volume: 22487843,
+	// 						avgVolume: 43110073,
+	// 						exchange: 'NASDAQ',
+	// 						open: 779.09,
+	// 						previousClose: 796.22,
+	// 						eps: 0.64,
+	// 						pe: 1240.3546,
+	// 						earningsAnnouncement: '2021-01-27T21:00:00.000+0000',
+	// 						sharesOutstanding: 959854061,
+	// 						timestamp: 1613592249
+	// 					  },
+	// 					  {}
+	// 				]
+	// 				// test.id=50;
+
+	// 				console.log(test);
+
+	// 				db.Stock.bulkCreate([test], { updateOnDuplicate : ["name"], individualHooks:true })
+	// 				.then(
+	// 					function (result){
+	// 						res.send("stocks updated");
+	// 						console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
+	// 					}
+	// 				)
+	// 				// . 
+	// 				// catch (
+	// 				// 	function(err) {
+	// 				// 		console.log('ERROR!!!!!!!!!!!!!!!!!!!!',err)
+	// 				// 	}
+	// 				// )
+	// 			}
+	// 		);
+	// 	}
+	// )
 	app.put("/api/stocks", 
 		function(req, res) {
-			// let ids = [1,50];
 			axios.get(
 				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
 			).then(
 				function (result) {
 					console.log('RESULT FROM PUT REQUEST ', result.data);
-					db.Stock.bulkCreate(result.data, {updateOnDuplicate : true })
-					.then(
-						function (result){
-							res.send("stocks updated");
-							console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
-						}
-					)
+					let stockObj = {};
+					for (let i = 0; i < result.data.length; i++) {
+						stockObj[`${i}`] = result.data[i]
+					}
+					console.log('STOCK OBJECT', stockObj);
+					for (let i = 0; i < result.data.length; i++) {
+						db.Stock.update(
+							{ price: stockObj[`${i}`].price,
+							changesPercentage: stockObj[`${i}`].changesPercentage,
+							change: stockObj[`${i}`].change,
+							dayLow: stockObj[`${i}`].dayLow,
+							dayHigh: stockObj[`${i}`].dayHigh,
+							yearHigh: stockObj[`${i}`].yearHigh,
+							yearLow: stockObj[`${i}`].yearLow,
+							marketCap: stockObj[`${i}`].marketCap,
+							priceAvg50: stockObj[`${i}`].priceAvg50,
+							priceAvg200: stockObj[`${i}`].priceAvg200,
+							volume: stockObj[`${i}`].volume,
+							avgVolume: stockObj[`${i}`].avgVolume,
+							exchange: stockObj[`${i}`].exchange,
+							open: stockObj[`${i}`].open,
+							previousClose: stockObj[`${i}`].previousClose,
+							eps: stockObj[`${i}`].eps,
+							pe: stockObj[`${i}`].pe,
+							earningsAnnouncement: stockObj[`${i}`].earningsAnnouncement,
+							sharesOutstanding: stockObj[`${i}`].sharesOutstanding,
+							timestamp: stockObj[`${i}`].timestamp,
+						},
+							{where: { id:i+1} }
+						).then ((result) => console.log(result))
+						.catch ( (err)=> console.log(err))
+					}
 				}
-			);
+			).then(
+				function (result){
+					res.send("stocks updated");
+					console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
+				}
+			)
 		}
 	)
-=======
-	app.delete("/api/stocks", function(req, res) {
-	db.Stock.destroy({where:{}}).then(function (result){
-		console.log("deleted baby");
-		res.send("delete successful")
-	})
-	});
-// comeback, no new data
-	app.put("/api/stocks", function(req, res) {
-		let ids = [1,50]
-		db.Stock.update({},{where:{id: ids}}).then(function (result){
-			res.send("update successful")
-		})
-		});
->>>>>>> 42bdf8c015e83b2070dbe3ac8c4c4f78d4a26344
 
 	app.post("/api/user", function(req, res) {
 			// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
@@ -132,20 +202,6 @@ module.exports = function(app) {
 	} 
 );
 
-<<<<<<< HEAD
-	
-	
-	app.put("/api/sell/:id",
-		function (request, response) {
-			// console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
-			db.Transaction.update( 
-				{ type: "sell" }, 
-				{ where: { id: request.params.id } }
-			).then (
-				(result) => {
-					console.log(result);
-					// res.json needed
-=======
 app.get("/api/stocks", function(req, res) {
 	console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
 console.log(req.body);
@@ -158,7 +214,6 @@ console.log(req.body);
 		);
 } 
 );
->>>>>>> 42bdf8c015e83b2070dbe3ac8c4c4f78d4a26344
 
 app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 function(request, response) {

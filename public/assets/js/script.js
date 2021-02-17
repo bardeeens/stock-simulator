@@ -85,23 +85,17 @@ $('.sell').click(
 		// console.log(userID);
 		let stockid = this.id
 		// console.log(stockid);
-
-	
-		
-
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
 				method: "GET",
 				// data: {stuff}
-				
 			}
 			).then (
 				function(response) { 
 					console.log("working!!");	
 					console.log(stockid);
 					let price = response[stockid-1].price
-					
 					$.ajax(
 						{ 				
 							url: '/api/sell',  			
@@ -119,14 +113,9 @@ $('.sell').click(
 								console.log("working!!");	
 								console.log(userID);
 								console.log(response);
-								
 								document.location.reload(true)
 							});
 				});
-
-
-		
-				
 	}
 );
 
