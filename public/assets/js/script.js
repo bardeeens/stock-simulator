@@ -120,23 +120,23 @@ $('.buyBtn').click(
 		console.log(currentPrice);
 		console.log(stockId);
 		console.log(userId);
-		// $.ajax(
-		// 	{
-		// 		url: '/api/buy',
-		// 		method: "POST",
-		// 		data: {
-		// 			qtyOwned: qtyOwned,
-		// 			purchasePrice: currentPrice,
-		// 			currentPrice: currentPrice,
-		// 			StockId: stockId,
-		// 			UserId: userId,
-		// 		}
-		// 	}
-		// ).then (
-		// 	function(response) {
-		// 		console.log("this is our response", response);
-		// 	}
-		// );
+		$.ajax(
+			{
+				url: '/api/buy',
+				method: "POST",
+				data: {
+					qty: qtyOwned,
+					price: currentPrice,
+					totalValue: currentPrice,
+					StockId: stockId,
+					UserId: userId,
+				}
+			}
+		).then (
+			function(response) {
+				console.log("this is our response", response);
+			}
+		);
 	}
 );
 
