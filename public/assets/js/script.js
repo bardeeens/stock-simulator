@@ -41,6 +41,8 @@ $('.userBtn').click(
 				function(response) { 	
 					console.log(id);
 					console.log(response);
+					sessionStorage.setItem('id', id)
+			// let data = sessionStorage.getItem('id')
 					
 					window.location.href = `/dashboard/${id}`;
 				});
@@ -50,31 +52,54 @@ $('.userBtn').click(
 
 $('.sell').click(
 	function (event) {
-		
+		event.preventDefault();
+		let sellqty = $('#sellqty').val().trim()
+		let userID = sessionStorage.getItem('id')
+		// console.log(userID);
 		let stockid = this.id
-		console.log(stockid);
+		// console.log(stockid);
+
+	
 		
+
 		$.ajax(
 			{ 				
-				url: '/api/sell',  			
-				method: "POST",
-				data: { 
-					qty: -10,
-					price: 4,
-					totalValue: 12,
-					UserId:1,
-					StockId: 4
-					}
+				url: '/api/stocks',  			
+				method: "GET",
+				// data: {stuff}
+				
 			}
 			).then (
 				function(response) { 
 					console.log("working!!");	
-					console.log(id);
-					console.log(response);
+					console.log(stockid);
+					let price = response[stockid-1].price
 					
-					// window.location.href = `/dashboard/${id}`;
+					$.ajax(
+						{ 				
+							url: '/api/sell',  			
+							method: "POST",
+							data: { 
+								qty: (sellqty * -1),
+								price: price,
+								totalValue: (sellqty * -1)*price,
+								UserId: userID,
+								StockId: stockid
+								}
+						}
+						).then (
+							function(response) { 
+								console.log("working!!");	
+								console.log(userID);
+								console.log(response);
+								
+								document.location.reload(true)
+							});
 				});
+
+
 		
+				
 	}
 );
 
