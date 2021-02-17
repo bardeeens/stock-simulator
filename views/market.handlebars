@@ -26,8 +26,8 @@
             <th class="shares" width="150">Number Of Shares For Purchase</th>
           </tr>
         </thead>
-        {{!-- <tbody>
-          <tr>
+        <tbody>
+          {{!-- <tr>
             <td>Apple</td>
             <td>$277.83</td>
             <td>AAP</td>
@@ -40,19 +40,21 @@
             <td>AMZN</td>
             <td>+10.22%</td>
             <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr>
+          </tr> --}}
           <tr>
             <td>Facebook</td>
             <td>$181.41</td>
             <td>FB</td>
             <td>-0.70%</td>
-            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr> --}}
+            <td><input id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td>
+          </tr>
 
           {{#each stock}}
           {{> stocks/stock-block}}
           {{/each}}
         </tbody>
       </table>
+          {{> stocks/modals}}
+
     </div>
   </div>
