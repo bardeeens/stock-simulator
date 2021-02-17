@@ -20,9 +20,6 @@ function populateStocks () {
 $('#createUser').click(
 	function (event) {
 		event.preventDefault();
-		populateStocks ()
-		.then ( ( response ) => log ( response ) )
-		.catch ( ( err ) => console.log ( err ) )
 
 		let userName = $('#userName').val();
 		$.ajax(
@@ -40,6 +37,9 @@ $('#createUser').click(
 				window.location.href = `/dashboard/${response.id}`;
 			}
 		);
+		populateStocks ()
+		.then ( ( response ) => log ( response ) )
+		.catch ( ( err ) => console.log ( err ) )
 	}
 );
 
