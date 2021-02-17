@@ -24,15 +24,17 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard/:id", 
+  app.get("/dashboard/:id", 			// renders dashboard with user information and transactions summarized by company
 	(req, res) => {
 		db.User.findAll (
 			{ 
 				where: { id: [req.params.id] },
 				include: [ 
-					{ model: db.Transaction, 
-						include: [ { model: db.Stock } ] 
-					} 
+					{ 
+						model: db.Transaction, 
+						include: [ { model: db.Stock } ],
+						group: [ db.Transaction.StockId ]
+					}
 				]
 			}
 		).then ( 
@@ -41,19 +43,50 @@ module.exports = function(app) {
 				let transactionsArr = userObj[0].Transactions;
 				console.log('UNPACKED RESPONSE', unpack(response));
 				console.log('TRANSACTIONS', transactionsArr);
-				console.log('response ', response);
+				// console.log('response ', response);
+				let summaryArr = [];
+				let position = -1;
+		
+				for (let i = 0; i < transactionsArr.length; i++) {
+					if (position === -1 || 
+					transactionsArr[i].Stock.id !== summaryArr[position].id) {
+						let transactionObj = {};
+						transactionObj.id = transactionsArr[i].Stock.id;
+						transactionObj.name = transactionsArr[i].Stock.name;
+						transactionObj.symbol = transactionsArr[i].Stock.symbol;
+						transactionObj.price = transactionsArr[i].Stock.price;
+						transactionObj.qty = 0;
+						transactionsArr.forEach (
+							transaction => {
+								if (transaction.Stock.name === transactionObj.name) {
+									transactionObj.qty += transaction.qty
+								}
+							}
+						);
+						transactionObj.totalVal = transactionObj.qty * transactionObj.price;
+						summaryArr.push (transactionObj);
+						position ++;
+					}
+					console.log('SUMMARY ARRAY ',summaryArr);
+				}
+				return {
+					summaryTransactions: summaryArr,
+					userInfo: userObj
+				}
+			}
+		).then ( 
+			(result) => {
 				res.render ( "dashboard", 
 					{ 
-						user: userObj,
-						transactions: transactionsArr
+						user: result.userInfo,
+						transactions: result.summaryTransactions
 					}
-					// { user: unpack(response) }
 				)
+				console.log('RESULTS', result.userInfo, result.summaryTransactions);
 			}
-		)
+  		)
 	}
-  )
-
+)
 
 
   app.get("/transaction", (req, res) =>{
