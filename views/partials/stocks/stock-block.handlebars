@@ -2,10 +2,15 @@
 	<td>{{this.name}}</td>
 	<td class="currentPrice" id={{this.id}}> {{this.price}}</td>
 	<td>{{this.symbol}}</td>
-	<td><input class="qtyOwned" id={{this.id}} type="text" placeholder="Value"><a class="button buyBtn" id={{this.id}} href="#">Buy Now</a></td>
-	{{!-- <td><input id="buy" type="text" placeholder="Value"><button class="button very-special" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td> --}}
-	{{!-- <td><a class="button very-special" id="{{this.id}}"href="#">Buy Now</a></td> --}}
+	<td>{{changesPercentage}}</td>
+	<td>
+		<input class="qtyOwned" type="text" placeholder="Value">
+		<a class="button buyBtn" id="{{this.id}}" data-open="purchaseModal" href="#">Buy Now</a></td>
 </tr>
+	
+	{{!-- <td><input class="qtyOwned" id={{this.id}} type="text" placeholder="Value"><a class="button buyBtn" id={{this.id}} href="#">Buy Now</a></td> --}}
+	{{!-- <td><a class="button very-special" id="{{this.id}}"href="#">Buy Now</a></td> --}}
+	{{!-- <button class="button very-special buyBtn" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td> --}}
 
 {{!-- <tr>
 	<td>Apple</td>
