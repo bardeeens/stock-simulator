@@ -17,8 +17,8 @@ module.exports = function(app) {
 				}
 			).then (										//finds the user and decrements their balance by the transaction total value
 				( { UserId, totalValue } ) => {
-					console.log(totalValue);
-					console.log(UserId);
+					// console.log(totalValue);
+					// console.log(UserId);
 					db.User.increment (
 						{ currentBalance: -totalValue }, 
 						{ where: { id: UserId } }
@@ -76,12 +76,12 @@ module.exports = function(app) {
 				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
 			).then(
 				function (result) {
-					console.log('RESULT FROM PUT REQUEST ', result.data);
+					// console.log('RESULT FROM PUT REQUEST ', result.data);
 					let stockObj = {};
 					for (let i = 0; i < result.data.length; i++) {
 						stockObj[`${i}`] = result.data[i]
 					}
-					console.log('STOCK OBJECT', stockObj);
+					// console.log('STOCK OBJECT', stockObj);
 					for (let i = 0; i < result.data.length; i++) {
 						db.Stock.update(
 							{ price: stockObj[`${i}`].price,
@@ -121,7 +121,7 @@ module.exports = function(app) {
 
 	app.post("/api/user", function(req, res) {
 			// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-		console.log(req.body);
+		// console.log(req.body);
 				db.User.create(req.body)
 				.then(
 					function(result) {
@@ -134,7 +134,7 @@ module.exports = function(app) {
 
 	app.get("/api/user", function(req, res) {
 		// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-	console.log(req.body);
+	// console.log(req.body);
 			db.User.findAll()
 			.then(
 				function(result) {
@@ -147,7 +147,7 @@ module.exports = function(app) {
 
 app.get("/api/stocks", function(req, res) {
 	console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
-console.log(req.body);
+// console.log(req.body);
 		db.Stock.findAll()
 		.then(
 			function(result) {

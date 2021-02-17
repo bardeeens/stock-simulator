@@ -1,41 +1,30 @@
 function populateStocks () {
-	$.ajax(
-		{ 				
-			url: '/api/stocks',  			
-			method: "POST",
-		}
-	)
+	if (!$('.userBtn').text()) {
+		console.log('MAKING POST CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "POST",
+			}
+		)
+	} else {
+		console.log('MAKING PUT CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "PUT",
+			}
+		)	}
 }
 
 $('#createUser').click(
 	function (event) {
 		event.preventDefault();
-		console.log('CLICK EVENT WORKING');
-		console.log('USER BTN', $('.userBtn').text());
-		populateStocks ();
-		// if (!$('.userBtn').text()) {
-		// 	console.log('USER BUTTON IS UNDEFINED');
-			// $.ajax(
-			// 	{ 				
-			// 		url: '/api/stocks',  			
-			// 		method: "POST",
-			// 	}
-			// )
-			// .then (
-			// 	console.log('AJAX POST CALL MADE')
-			// )
-		// } else {
-		// 	$.ajax(
-		// 		{ 				
-		// 			url: '/api/stocks',  			
-		// 			method: "PUT",
-		// 		}
-		// 	).then (
-		// 		console.log('AJAX PUT CALL MADE')
-		// 	)
-		// }
-		let userName = $('#userName').val();
+		populateStocks ()
+		.then ( ( response ) => log ( response ) )
+		.catch ( ( err ) => console.log ( err ) )
 
+		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
@@ -49,31 +38,26 @@ $('#createUser').click(
 			let data = sessionStorage.getItem('id')
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
-				
-			});
-		}
+			}
+		);
+	}
 );
 
 $('.userBtn').click(
 	function (event) {
-		
 		let id = this.id
-		
-		$.ajax(
-			{ 				
-				url: '/api/stocks',  			
-				method: "PUT",
+		event.preventDefault();
+		populateStocks ()
+		.then (
+			function(response) { 	
+				console.log(id);
+				console.log(response);
+				sessionStorage.setItem('id', id)
 			}
-			).then (
-				function(response) { 	
-					console.log(id);
-					console.log(response);
-					sessionStorage.setItem('id', id)
-			// let data = sessionStorage.getItem('id')
-					
-					window.location.href = `/dashboard/${id}`;
-				});
-		
+		)
+		.catch ( ( err ) => console.log ( err ) )
+		// let data = sessionStorage.getItem('id')
+		window.location.href = `/dashboard/${id}`;
 	}
 );
 
@@ -118,25 +102,6 @@ $('.sell').click(
 				});
 	}
 );
-
-
-// click event for login selection
-
-// sell click events
-
-// buy click events
-
-// transaction page redirect
-
-// dashboard redirect
-
-// market redirect
-
-// onhomepage load, 
-// delete stockstable
-// create stocks api call needed
-
-// Modal alerts
 
 $('.buyBtn').click( 
 	function (){

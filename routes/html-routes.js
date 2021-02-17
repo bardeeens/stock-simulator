@@ -40,7 +40,7 @@ module.exports = function(app) {
 		).then ( 
 			(response) => {
 				let userObj = unpack(response);
-				console.log('USER OBJECT ', userObj);
+				// console.log('USER OBJECT ', userObj);
 				let transArr = userObj[0].Transactions;
 				let summaryArr = [];
 				let position = -1;
