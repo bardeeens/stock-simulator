@@ -187,7 +187,9 @@ background-color: #ededed;
 }
 }
 
-
+.navBtns {
+  color: rgba(73, 37, 65, 0.884);
+}
 
 @media screen and (max-width: 39.9375em) {
 .no-js .top-bar {
@@ -425,7 +427,7 @@ form .form-icons .fa {
   }
   
   .my-nav {
-    background-color: white;
+    background-color: red;
     color: #bdc3c7;
     /* color: #e6e6e6; */
   }
