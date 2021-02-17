@@ -70,8 +70,8 @@ module.exports = function(app) {
 					totStockVal += summaryArr[i].qty * summaryArr[i].price;
 				}
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
-				console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
-				console.log('TOTAL STOCK VALUE ', totStockVal);
+				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
+				// console.log('TOTAL STOCK VALUE ', totStockVal);
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,

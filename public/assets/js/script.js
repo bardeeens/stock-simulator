@@ -1,14 +1,41 @@
+function populateStocks () {
+	$.ajax(
+		{ 				
+			url: '/api/stocks',  			
+			method: "POST",
+		}
+	)
+}
 
 $('#createUser').click(
 	function (event) {
-
+		event.preventDefault();
+		console.log('CLICK EVENT WORKING');
+		console.log('USER BTN', $('.userBtn').text());
+		populateStocks ();
+		// if (!$('.userBtn').text()) {
+		// 	console.log('USER BUTTON IS UNDEFINED');
+			// $.ajax(
+			// 	{ 				
+			// 		url: '/api/stocks',  			
+			// 		method: "POST",
+			// 	}
+			// )
+			// .then (
+			// 	console.log('AJAX POST CALL MADE')
+			// )
+		// } else {
+		// 	$.ajax(
+		// 		{ 				
+		// 			url: '/api/stocks',  			
+		// 			method: "PUT",
+		// 		}
+		// 	).then (
+		// 		console.log('AJAX PUT CALL MADE')
+		// 	)
+		// }
 		let userName = $('#userName').val();
-		$.ajax(
-			{ 				
-				url: '/api/stocks',  			
-				method: "PUT",
-			}
-		)
+
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
@@ -24,7 +51,7 @@ $('#createUser').click(
 				window.location.href = `/dashboard/${response.id}`;
 				
 			});
-	}
+		}
 );
 
 $('.userBtn').click(

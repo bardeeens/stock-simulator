@@ -30,37 +30,70 @@ module.exports = function(app) {
 		}
 	);
 
-  app.post("/api/stocks", function(req, res) {
-	axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`).then(function (response) {
-		
-				db.Stock.bulkCreate(response.data).then(function(result) {
-					console.log(result);
-					res.json(result)
-				})
-  });
-});
+	app.post("/api/stocks", 
+		function(req, res) {
+			axios.get(
+				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
+			).then(
+				function (response) {
+					db.Stock.bulkCreate(response.data)
+					.then(
+						function(result) {
+							// console.log(result);
+							res.json(result)
+						}	
+					).catch (
+						(err) => console.log('HERE IS THE ERROR!!!!!!!!!!!!!!!!!!!',err)
+					)
+				}
+			);
+		}
+	);
 
-	app.delete("/api/stocks", function(req, res) {
-	db.Stock.destroy({where:{}}).then(function (result){
-		console.log("deleted baby");
-		res.send("delete successful")
-	})
-	});
+	app.delete("/api/stocks", 
+		function(req, res) {
+			console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
+			db.Stock.destroy(
+				{
+					where: {},
+					truncate: true
+				}
+			).then(
+				function (result){
+					console.log("INFO DELETED !!!!!!!!!!!!!!!!!!!!!!!!!!");
+					res.json(result);
+				}
+			)
+		}
+	);
 
-	app.put("/api/stocks", function(req, res) {
-		let ids = [1,50]
-		db.Stock.update({},{where:{id: ids}}).then(function (result){
-			res.send("delete successful")
-		})
-		});
+	app.put("/api/stocks", 
+		function(req, res) {
+			// let ids = [1,50];
+			axios.get(
+				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
+			).then(
+				function (result) {
+					console.log('RESULT FROM PUT REQUEST ', result.data);
+					db.Stock.bulkCreate(result.data, {updateOnDuplicate : true })
+					.then(
+						function (result){
+							res.send("stocks updated");
+							console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
+						}
+					)
+				}
+			);
+		}
+	)
 
 	app.post("/api/user", function(req, res) {
-			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+			// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
 		console.log(req.body);
 				db.User.create(req.body)
 				.then(
 					function(result) {
-							console.log("New user created " , result);
+							// console.log("New user created " , result);
 							res.json(result);
 					}     
 				);
@@ -68,12 +101,12 @@ module.exports = function(app) {
 	);
 
 	app.get("/api/user", function(req, res) {
-		console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+		// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
 	console.log(req.body);
 			db.User.findAll()
 			.then(
 				function(result) {
-						console.log("New user created " , result);
+						// console.log("New user created " , result);
 						res.json(result);
 				}     
 			);
@@ -84,7 +117,7 @@ module.exports = function(app) {
 	
 	app.put("/api/sell/:id",
 		function (request, response) {
-			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
+			// console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
 			db.Transaction.update( 
 				{ type: "sell" }, 
 				{ where: { id: request.params.id } }
