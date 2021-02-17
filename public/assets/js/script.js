@@ -56,25 +56,29 @@ $('.buyBtn').click(
 		console.log("before ajax " + this.id);
 		let qtyOwned = parseInt($('.qtyOwned').val()); 
 		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
+		let stockId = this.id;
+		let userId = sessionStorage.getItem('id');
 		console.log(qtyOwned);
 		console.log(currentPrice);
-		$.ajax(
-			{
-				url: '/api/buy',
-				method: "POST",
-				data: {
-					qtyOwned: qtyOwned,
-					type: "buy",
-					purchasePrice: currentPrice,
-					currentPrice: currentPrice,
-				}
-			}
-		).then (
-			function(response) {
-				console.log("this is our response" + response);
-				return(response);
-			}
-		);
+		console.log(stockId);
+		console.log(userId);
+		// $.ajax(
+		// 	{
+		// 		url: '/api/buy',
+		// 		method: "POST",
+		// 		data: {
+		// 			qtyOwned: qtyOwned,
+		// 			purchasePrice: currentPrice,
+		// 			currentPrice: currentPrice,
+		// 			StockId: stockId,
+		// 			UserId: userId,
+		// 		}
+		// 	}
+		// ).then (
+		// 	function(response) {
+		// 		console.log("this is our response", response);
+		// 	}
+		// );
 	}
 );
 
