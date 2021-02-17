@@ -1,8 +1,27 @@
 
 $('#createUser').click(
 	function (event) {
+		event.preventDefault()
 
 		let userName = $('#userName').val();
+		if (userName.length === 0){
+			alert("Surely you have a name! Try again")
+			return;
+		}
+
+		$.ajax(
+			{
+				url: '/api/user',
+				method: "GET"
+			}
+		).then (function(response) {
+			for (let i = 0; i < response.length; i++) {
+				console.log(response[i].userName);
+				
+			}
+			
+		})
+		
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
@@ -19,9 +38,11 @@ $('#createUser').click(
 			}
 		).then (function(response) { 
 			sessionStorage.setItem('id', response.id)
+			console.log(userName.length);
+			console.log(response);
 			let data = sessionStorage.getItem('id')
-				window.location.redirect
-				window.location.href = `/dashboard/${response.id}`;
+				// window.location.redirect
+				// window.location.href = `/dashboard/${response.id}`;
 				
 			});
 	}
@@ -170,3 +191,52 @@ $('.close-button').click(
 		$('.reveal').css("display", "none")
 	}
 )
+
+// $('#createUser').click(
+// 	function (event) {
+// 		event.preventDefault()
+
+// 		let userName = $('#userName').val();
+// 		if (userName.length === 0){
+// 			alert("Surely you have a name! Try again")
+// 			return;
+// 		}
+
+// 		$.ajax(
+// 			{
+// 				url: '/api/user',
+// 				method: "GET"
+// 			}
+// 		).then (function(response) {
+// 			for (let i = 0; i < response.length; i++) {
+// 				console.log(response[i].userName);
+				
+// 			}
+			
+// 		})
+		
+// 		$.ajax(
+// 			{ 				
+// 				url: '/api/stocks',  			
+// 				method: "PUT",
+// 			}
+// 		)
+// 		$.ajax(
+// 			{ 				
+// 				url: '/api/user',  			
+// 				method: "POST",
+// 				data: {
+// 					userName: userName
+// 				}		
+// 			}
+// 		).then (function(response) { 
+// 			sessionStorage.setItem('id', response.id)
+// 			console.log(userName.length);
+// 			console.log(response);
+// 			let data = sessionStorage.getItem('id')
+// 				// window.location.redirect
+// 				// window.location.href = `/dashboard/${response.id}`;
+				
+// 			});
+// 	}
+// );

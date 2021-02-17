@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
             userName: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
             },
             currentBalance: {
             type: DataTypes.DECIMAL(10,2),
