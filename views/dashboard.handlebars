@@ -31,16 +31,18 @@
          <span class="stat">{{currentBalance}}</span>
             <p>Current Balance</p>
       </div> <!-- /.card-profile-stats-statistic -->
+{{/each}}
       <div class="card-profile-stats-statistic">
-        <span class="stat">{{totalHoldings}}</span>
+        <span class="stat">{{totals.stocks}}</span>
         <p>Total Holdings</p>
       </div> <!-- /.card-profile-stats-statistic -->
+  {{!-- {{#each stocksTotal}} --}}
       <div class="card-profile-stats-statistic">
-        <span class="stat">not yet possible</span>
+        <span class="stat">{{totals.netWorth}}</span>
         <p>Total Net Worth</p>
       </div> <!-- /.card-profile-stats-statistic -->
+  {{!-- {{/each}} --}}
     </div> <!-- /.card-profile-stats-container -->
-  {{/each}}
     <div class="card-profile-stats-more">
       <p class="card-profile-stats-more-link"><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a></p>
       <div class="card-profile-stats-more-content">

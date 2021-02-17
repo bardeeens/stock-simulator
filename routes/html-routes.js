@@ -40,38 +40,43 @@ module.exports = function(app) {
 		).then ( 
 			(response) => {
 				let userObj = unpack(response);
-				let transactionsArr = userObj[0].Transactions;
-				console.log('UNPACKED RESPONSE', unpack(response));
-				console.log('TRANSACTIONS', transactionsArr);
-				// console.log('response ', response);
+				let transArr = userObj[0].Transactions;
+				// console.log('USER OBJECT ', userObj);
 				let summaryArr = [];
 				let position = -1;
-		
-				for (let i = 0; i < transactionsArr.length; i++) {
+				for (let i = 0; i < transArr.length; i++) {
 					if (position === -1 || 
-					transactionsArr[i].Stock.id !== summaryArr[position].id) {
-						let transactionObj = {};
-						transactionObj.id = transactionsArr[i].Stock.id;
-						transactionObj.name = transactionsArr[i].Stock.name;
-						transactionObj.symbol = transactionsArr[i].Stock.symbol;
-						transactionObj.price = transactionsArr[i].Stock.price;
-						transactionObj.qty = 0;
-						transactionsArr.forEach (
+					transArr[i].Stock.id !== summaryArr[position].id) {
+						let obj = {};
+						obj.id = transArr[i].Stock.id;
+						obj.name = transArr[i].Stock.name;
+						obj.symbol = transArr[i].Stock.symbol;
+						obj.price = transArr[i].Stock.price;
+						obj.qty = 0;
+						transArr.forEach (
 							transaction => {
-								if (transaction.Stock.name === transactionObj.name) {
-									transactionObj.qty += transaction.qty
+								if (transaction.Stock.name === obj.name) {
+									obj.qty += transaction.qty
 								}
 							}
 						);
-						transactionObj.totalVal = transactionObj.qty * transactionObj.price;
-						summaryArr.push (transactionObj);
+						obj.totalVal = obj.qty * obj.price;
+						summaryArr.push (obj);
 						position ++;
 					}
-					console.log('SUMMARY ARRAY ',summaryArr);
 				}
+				let totStockVal = 0
+				for (let i = 0; i < summaryArr.length; i++) {
+					totStockVal += summaryArr[i].qty * summaryArr[i].price;
+				}
+				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
+				console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
+				console.log('TOTAL STOCK VALUE ', totStockVal);
 				return {
-					summaryTransactions: summaryArr,
-					userInfo: userObj
+					transSummary: summaryArr,
+					userInfo: userObj,
+					totalStocksValue: totStockVal,
+					net: netWorth
 				}
 			}
 		).then ( 
@@ -79,10 +84,14 @@ module.exports = function(app) {
 				res.render ( "dashboard", 
 					{ 
 						user: result.userInfo,
-						transactions: result.summaryTransactions
+						transactions: result.transSummary,
+						totals: {
+							stocks: result.totalStocksValue,
+							netWorth: result.net
+						}
 					}
-				)
-				console.log('RESULTS', result.userInfo, result.summaryTransactions);
+				);
+				// console.log('TOTAL VALUE ', result.totalStocksValue);
 			}
   		)
 	}
