@@ -70,63 +70,6 @@ module.exports = function(app) {
 		}
 	);
 
-	// app.put("/api/stocks", 
-	// 	function(req, res) {
-	// 		// let ids = [1,50];
-	// 		axios.get(
-	// 			`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
-	// 		).then(
-	// 			function (result) {
-	// 				console.log('RESULT FROM PUT REQUEST ', result.data);
-	// 				console.log('NAME ', result.data[0].name);
-	// 				var test = [
-	// 					{
-	// 						symbol: 'TSLA',
-	// 						name: 'Tesla, Inc.',
-	// 						price: 793.8269,
-	// 						changesPercentage: -0.3,
-	// 						change: -2.3931,
-	// 						dayLow: 762.01,
-	// 						dayHigh: 797,
-	// 						yearHigh: 900.4,
-	// 						yearLow: 70.102,
-	// 						marketCap: 761957974016,
-	// 						priceAvg50: 818.9215,
-	// 						priceAvg200: 543.8786,
-	// 						volume: 22487843,
-	// 						avgVolume: 43110073,
-	// 						exchange: 'NASDAQ',
-	// 						open: 779.09,
-	// 						previousClose: 796.22,
-	// 						eps: 0.64,
-	// 						pe: 1240.3546,
-	// 						earningsAnnouncement: '2021-01-27T21:00:00.000+0000',
-	// 						sharesOutstanding: 959854061,
-	// 						timestamp: 1613592249
-	// 					  },
-	// 					  {}
-	// 				]
-	// 				// test.id=50;
-
-	// 				console.log(test);
-
-	// 				db.Stock.bulkCreate([test], { updateOnDuplicate : ["name"], individualHooks:true })
-	// 				.then(
-	// 					function (result){
-	// 						res.send("stocks updated");
-	// 						console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
-	// 					}
-	// 				)
-	// 				// . 
-	// 				// catch (
-	// 				// 	function(err) {
-	// 				// 		console.log('ERROR!!!!!!!!!!!!!!!!!!!!',err)
-	// 				// 	}
-	// 				// )
-	// 			}
-	// 		);
-	// 	}
-	// )
 	app.put("/api/stocks", 
 		function(req, res) {
 			axios.get(
