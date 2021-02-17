@@ -1,14 +1,27 @@
-
-$('#createUser').click(
-	function (event) {
-
-		let userName = $('#userName').val();
+function populateStocks () {
+	if (!$('.userBtn').text()) {
+		console.log('MAKING POST CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "POST",
+			}
+		)
+	} else {
+		console.log('MAKING PUT CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
 				method: "PUT",
 			}
-		)
+		)	}
+}
+
+$('#createUser').click(
+	function (event) {
+		event.preventDefault();
+
+		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
@@ -22,31 +35,29 @@ $('#createUser').click(
 			let data = sessionStorage.getItem('id')
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
-				
-			});
+			}
+		);
+		populateStocks ()
+		.then ( ( response ) => log ( response ) )
+		.catch ( ( err ) => console.log ( err ) )
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-		
 		let id = this.id
-		
-		$.ajax(
-			{ 				
-				url: '/api/stocks',  			
-				method: "PUT",
+		event.preventDefault();
+		populateStocks ()
+		.then (
+			function(response) { 	
+				console.log(id);
+				// console.log(response);
+				sessionStorage.setItem('id', id)
 			}
-			).then (
-				function(response) { 	
-					console.log(id);
-					console.log(response);
-					sessionStorage.setItem('id', id)
-			// let data = sessionStorage.getItem('id')
-					
-					window.location.href = `/dashboard/${id}`;
-				});
-		
+		)
+		.catch ( ( err ) => console.log ( err ) )
+		// let data = sessionStorage.getItem('id')
+		window.location.href = `/dashboard/${id}`;
 	}
 );
 
@@ -58,16 +69,11 @@ $('.sell').click(
 		// console.log(userID);
 		let stockid = this.id
 		// console.log(stockid);
-
-	
-		
-
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
 				method: "GET",
 				// data: {stuff}
-				
 			}
 			).then (
 				function(response) { 
@@ -76,7 +82,7 @@ $('.sell').click(
 					let totalqty = $(`#qty${ourStockId}`).text()
 					
 					
-					 console.log('total quantity:' + totalqty)
+					//  console.log('total quantity:' + totalqty)
 					 if (sellqty > totalqty) {
 						 alert("you can't sell more than you own");
 						 return;
@@ -96,17 +102,13 @@ $('.sell').click(
 						}
 						).then (
 							function(response) { 
-								console.log("working!!");	
+								// console.log("working!!");	
 								// console.log(userID);
 								// console.log(response);
 								
 								document.location.reload(true)
 							});
 				});
-
-
-		
-				
 	}
 );
 
@@ -118,15 +120,15 @@ $('.sell').click(
 // buy click events
 $('.buyBtn').click(
 	function(event) {
-		console.log("before ajax " + this.id);
+		// console.log("before ajax " + this.id);
 		let qtyOwned = parseInt($('.qtyOwned').val()); 
 		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
 		let stockId = this.id;
 		let userId = sessionStorage.getItem('id');
-		console.log(qtyOwned);
-		console.log(currentPrice);
-		console.log(stockId);
-		console.log(userId);
+		// console.log(qtyOwned);
+		// console.log(currentPrice);
+		// console.log(stockId);
+		// console.log(userId);
 		$.ajax(
 			{
 				url: '/api/buy',
@@ -141,7 +143,7 @@ $('.buyBtn').click(
 			}
 		).then (
 			function(response) {
-				console.log("this is our response", response);
+				// console.log("this is our response", response);
 			}
 		);
 	}
