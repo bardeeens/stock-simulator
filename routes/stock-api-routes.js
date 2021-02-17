@@ -1,5 +1,6 @@
 var db = require("../models");
 let axios = require('axios');
+const { sequelize } = require("../models");
 let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,GME,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
 let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
 
@@ -15,10 +16,12 @@ module.exports = function(app) {
 					return result;
 				}
 			).then (										//finds the user and decrements their balance by the transaction total value
-				( { fkUserId, totalValue } ) => {
+				( { UserId, totalValue } ) => {
+					console.log(totalValue);
+					console.log(UserId);
 					db.User.increment (
 						{ currentBalance: -totalValue }, 
-						{ where: { id: fkUserId } }
+						{ where: { id: UserId } }
 					);
 				}
 			).then (
@@ -46,11 +49,11 @@ module.exports = function(app) {
 		res.send("delete successful")
 	})
 	});
-
+// comeback, no new data
 	app.put("/api/stocks", function(req, res) {
 		let ids = [1,50]
 		db.Stock.update({},{where:{id: ids}}).then(function (result){
-			res.send("delete successful")
+			res.send("update successful")
 		})
 		});
 
@@ -80,22 +83,44 @@ module.exports = function(app) {
 	} 
 );
 
-	
-	
-	app.put("/api/sell/:id",
-		function (request, response) {
-			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
-			db.Transaction.update( 
-				{ type: "sell" }, 
-				{ where: { id: request.params.id } }
-			).then (
-				(result) => {
-					console.log(result);
-					// res.json needed
+app.get("/api/stocks", function(req, res) {
+	console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
+console.log(req.body);
+		db.Stock.findAll()
+		.then(
+			function(result) {
+					console.log("CURRENT STOCKS " , result);
+					res.json(result);
+			}     
+		);
+} 
+);
 
-				}
-			)
-		})
+app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+function(request, response) {
+	  db.Transaction.create(request.body)
+	.then (
+		(result) => {
+			response.json(result);
+			return result;
+		}
+	).then (										//finds the user and decrements their balance by the transaction total value
+		( { UserId, totalValue } ) => {
+			db.User.increment (
+				{ currentBalance: -totalValue}, 
+				{ where: { id: UserId } }
+			);
+		}
+	).then (
+		(result) => {
+			// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+			response.json (result);
+		}
+	)
+}
+);
+	
+// Model.update({ field: sequelize.literal('field + 2') }, { where: { id: model_id } });
 
   }
 

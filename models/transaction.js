@@ -6,22 +6,14 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			},
-			purchasePrice: {
+			price: {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: false,
 			},
-			currentPrice: {
-			type: DataTypes.DECIMAL (10,2),
-			allowNull: false,
-			},
-			totalPurchaseValue: {
+			totalValue: {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: true,
-			},
-			// totalCurrentValue: {
-			// type: DataTypes.DECIMAL (10,2),
-			// allowNull: true
-			// }
+			}
 		}
 	)
 	Transaction.associate = function(models) {
