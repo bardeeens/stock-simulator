@@ -3,17 +3,21 @@ let axios = require('axios');
 const { sequelize } = require("../models");
 let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,GME,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
 let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
+let unpack = (data) => JSON.parse(JSON.stringify(data));
 
 module.exports = function(app) {
       
 
 	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 		function(request, response) {
+		
 		      db.Transaction.create(request.body)
-			.then (
-				(result) => {
+			  .then (
+				function(result) {
+					let newResult = unpack(result);
+					console.log("its working", newResult);	
 					response.json(result);
-					return result;
+					
 				}
 			).then (										//finds the user and decrements their balance by the transaction total value
 				( { UserId, totalValue } ) => {
@@ -24,12 +28,13 @@ module.exports = function(app) {
 						{ where: { id: UserId } }
 					);
 				}
-			).then (
-				(result) => {
-					// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
-					response.json (result);
-				}
 			)
+				// .then (
+	// 			(result) => {
+	// 				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+	// 				response.json (result);
+	// 			}
+	// 		)
 		}
 	);
 

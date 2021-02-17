@@ -109,6 +109,36 @@ $('.sell').click(
 // sell click events
 
 // buy click events
+$('.buyBtn').click(
+	function(event) {
+		console.log("before ajax " + this.id);
+		let qtyOwned = parseInt($('.qtyOwned').val()); 
+		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
+		let stockId = this.id;
+		let userId = sessionStorage.getItem('id');
+		console.log(qtyOwned);
+		console.log(currentPrice);
+		console.log(stockId);
+		console.log(userId);
+		$.ajax(
+			{
+				url: '/api/buy',
+				method: "POST",
+				data: {
+					qty: qtyOwned,
+					price: currentPrice,
+					totalValue: currentPrice,
+					StockId: stockId,
+					UserId: userId,
+				}
+			}
+		).then (
+			function(response) {
+				console.log("this is our response", response);
+			}
+		);
+	}
+);
 
 // transaction page redirect
 
