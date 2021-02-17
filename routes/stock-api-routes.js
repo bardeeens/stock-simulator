@@ -15,7 +15,7 @@ module.exports = function(app) {
 			  .then (
 				function(result) {
 					let newResult = unpack(result);
-					console.log("its working", newResult);	
+					// console.log("its working", newResult);	
 					response.json(result);
 					
 				}
@@ -58,22 +58,22 @@ module.exports = function(app) {
 		}
 	);
 
-	app.delete("/api/stocks", 
-		function(req, res) {
-			console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
-			db.Stock.destroy(
-				{
-					where: {},
-					truncate: true
-				}
-			).then(
-				function (result){
-					console.log("INFO DELETED !!!!!!!!!!!!!!!!!!!!!!!!!!");
-					res.json(result);
-				}
-			)
-		}
-	);
+	// app.delete("/api/stocks", 
+	// 	function(req, res) {
+	// 		console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
+	// 		db.Stock.destroy(
+	// 			{
+	// 				where: {},
+	// 				truncate: true
+	// 			}
+	// 		).then(
+	// 			function (result){
+	// 				console.log("INFO DELETED !!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// 				res.json(result);
+	// 			}
+	// 		)
+	// 	}
+	// );
 
 	app.put("/api/stocks", 
 		function(req, res) {
@@ -156,7 +156,7 @@ app.get("/api/stocks", function(req, res) {
 		db.Stock.findAll()
 		.then(
 			function(result) {
-					console.log("CURRENT STOCKS " , result);
+					// console.log("CURRENT STOCKS " , result);
 					res.json(result);
 			}     
 		);
