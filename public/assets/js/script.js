@@ -77,9 +77,20 @@ $('.sell').click(
 			}
 			).then (
 				function(response) { 
-					console.log("working!!");	
-					console.log(stockid);
 					let price = response[stockid-1].price
+<<<<<<< HEAD
+=======
+					let ourStockId = response[stockid-1].id
+					let totalqty = $(`#qty${ourStockId}`).text()
+					
+					
+					 console.log('total quantity:' + totalqty)
+					 if (sellqty > totalqty) {
+						 alert("you can't sell more than you own");
+						 return;
+					 }
+					
+>>>>>>> 9f10d1890795372649ca68ed998ef60e23aaafe2
 					$.ajax(
 						{ 				
 							url: '/api/sell',  			
@@ -95,14 +106,72 @@ $('.sell').click(
 						).then (
 							function(response) { 
 								console.log("working!!");	
+<<<<<<< HEAD
 								console.log(userID);
 								console.log(response);
+=======
+								// console.log(userID);
+								// console.log(response);
+								
+>>>>>>> 9f10d1890795372649ca68ed998ef60e23aaafe2
 								document.location.reload(true)
 							});
 				});
 	}
 );
 
+<<<<<<< HEAD
+=======
+
+// click event for login selection
+
+// sell click events
+
+// buy click events
+$('.buyBtn').click(
+	function(event) {
+		console.log("before ajax " + this.id);
+		let qtyOwned = parseInt($('.qtyOwned').val()); 
+		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
+		let stockId = this.id;
+		let userId = sessionStorage.getItem('id');
+		console.log(qtyOwned);
+		console.log(currentPrice);
+		console.log(stockId);
+		console.log(userId);
+		$.ajax(
+			{
+				url: '/api/buy',
+				method: "POST",
+				data: {
+					qty: qtyOwned,
+					price: currentPrice,
+					totalValue: currentPrice,
+					StockId: stockId,
+					UserId: userId,
+				}
+			}
+		).then (
+			function(response) {
+				console.log("this is our response", response);
+			}
+		);
+	}
+);
+
+// transaction page redirect
+
+// dashboard redirect
+
+// market redirect
+
+// onhomepage load, 
+// delete stockstable
+// create stocks api call needed
+
+// Modal alerts
+
+>>>>>>> 9f10d1890795372649ca68ed998ef60e23aaafe2
 $('.buyBtn').click( 
 	function (){
 		$('.reveal').css("display", "block")
