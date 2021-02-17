@@ -13,18 +13,24 @@
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: url("../images/skyscreen.png") center center no-repeat;
+  background: url("../images/skyscreen2.png") center center no-repeat;
   background-size: cover;
 }
 
-.middle-content-section {
+
+#register {
+  position:relative;
+  left:0px;
+}
+
+.hero-full-screen .middle-content-section {
   text-align: top;
   color: #fefefe !important;
   /* background-image: linear-gradient(to bottom right,  #2e2d2a, #02131a); */
     font-weight: bolder;
   text-shadow: 100px;
   margin:20px;
-  opacity:100% !important;
+  opacity:100%
 }
 
 .hero-full-screen .top-content-section {
@@ -69,7 +75,7 @@
 
 .middle-content-section {
   position:relative;
-  bottom:0px;
+  bottom:90px;
 }
 
 /* Start of the price table css */
@@ -437,7 +443,7 @@ form .form-icons .fa {
   }
   
   body {
-    background-image: url("../images/backgroundStock.png");
+    background-image: url("../images/dulledbackground.png");
     background-size: cover;
     text-align: center;
   }
@@ -492,7 +498,8 @@ form .form-icons .fa {
   
   h4 {
     color: white;
-  }
+position:relative;
+right:160px;  }
   
   .my-stock {
     color: white;
@@ -514,7 +521,7 @@ form .form-icons .fa {
   }
 
   .profile-card {
-    background-image: linear-gradient(to bottom right,  #ffeeee, #1c0f20);
+    background-image: linear-gradient(to bottom right, #fefefe, #96a2af);
     font-size:25px;
     font-weight: bolder;
   }
