@@ -50,7 +50,7 @@ module.exports = function(app) {
 	app.put("/api/stocks", function(req, res) {
 		let ids = [1,50]
 		db.Stock.update({},{where:{id: ids}}).then(function (result){
-			res.send("delete successful")
+			res.send("update successful")
 		})
 		});
 
@@ -80,22 +80,31 @@ module.exports = function(app) {
 	} 
 );
 
+app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+function(request, response) {
+	  db.Transaction.create(request.body)
+	.then (
+		(result) => {
+			response.json(result);
+			return result;
+		}
+	).then (										//finds the user and decrements their balance by the transaction total value
+		( { fkUserId, totalValue } ) => {
+			db.User.increment (
+				{ currentBalance: -totalValue }, 
+				{ where: { id: fkUserId } }
+			);
+		}
+	).then (
+		(result) => {
+			// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+			response.json (result);
+		}
+	)
+}
+);
 	
 	
-	app.put("/api/sell/:id",
-		function (request, response) {
-			console.log('SELL ROUTE HIT !!!!!!!!!!!!', request.params);
-			db.Transaction.update( 
-				{ type: "sell" }, 
-				{ where: { id: request.params.id } }
-			).then (
-				(result) => {
-					console.log(result);
-					// res.json needed
-
-				}
-			)
-		})
 
   }
 
