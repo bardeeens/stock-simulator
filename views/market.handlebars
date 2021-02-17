@@ -46,16 +46,15 @@
             <td>$181.41</td>
             <td>FB</td>
             <td>-0.70%</td>
-            <td><input id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix">Buy Now</button></td>
+            <td><input id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td>
           </tr>
 
           {{#each stock}}
           {{> stocks/stock-block}}
           {{/each}}
         </tbody>
-        {{> stocks/modals}}
-
       </table>
-  
+          {{> stocks/modals}}
+
     </div>
   </div>

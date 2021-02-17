@@ -353,7 +353,7 @@ form .form-icons .input-group-label {
   background-color: #1779ba;
   border-color: #1779ba;
   max-width:400px;
-s
+
 }
 
 form .form-icons .input-group-field {
@@ -371,5 +371,9 @@ form .form-icons .fa {
   max-width:200px;
 }
 
+
+.reveal {
+  display: none;
+}
 
 
