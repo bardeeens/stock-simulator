@@ -1,0 +1,98 @@
+/* css experiments */
+.nav-nav {
+  background-color: #1779ba;
+  background-image: linear-gradient(to bottom right,  #2e2d2a, #02131a);
+  }
+  
+  .my-nav {
+    background-color: #212121;
+    color: #bdc3c7;
+    /* color: #e6e6e6; */
+  }
+  
+  .my-card{
+    margin:2%;
+    background-image: linear-gradient(to bottom right,  #bdc3c7, #2c3e50);
+    border-radius: 8px;
+    opacity: 85%;
+   
+  }
+  
+  a:link {
+    color: white;
+  }
+  
+  body {
+    background-image: url("https://miro.medium.com/max/3840/0*m7555FzS-X2sHcqT.jpg");
+    background-size: cover;
+    text-align: center;
+  }
+  
+  .tiny-text {
+    font-size: xx-small;
+  }
+  
+  .cash {
+    color: #98dd71;
+  }
+  
+  h6 {
+    color: black;
+    font-weight: bold;
+  }
+  
+  /* nav bar stuff */
+  
+  .topbar-sticky-shrink {
+    padding: 2rem;
+    transition: padding 0.25s ease;
+    background: #2c3840;
+  }
+  
+  .topbar-sticky-shrink .menu {
+    background: #2c3840;
+  }
+  
+  .is-stuck .topbar-sticky-shrink {
+    padding: 1rem;
+    transition: padding 0.25s ease;
+  }
+  
+  [data-sticky] {
+    width: 100%;
+  }
+  
+  .topbar-sticky-shrink-header {
+    padding: 10rem 0;
+    background: url("https://placehold.it/2000x500&text=this is a header") center center no-repeat;
+    background-size: cover;
+  }
+  
+  .logo {
+    float: left;
+    size: 10%;
+    margin-right: 50px;
+    padding: 0%;
+  }
+  
+  .logo-img {
+    size: 20px;
+  }
+  
+  h4 {
+    color: white;
+  }
+  
+  .my-stock {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    
+  }
+  
+  .opacity-card {
+    
+    opacity: 95%;
+  }
+  
