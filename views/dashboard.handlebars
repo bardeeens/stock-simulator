@@ -13,6 +13,47 @@
         </div>
     </div>
 </div>
+<div class="grid-container">
+    <div class="grid-x grid-margin-x">
+       <div class="cell large-8 small-12 my-card profile-card">
+           <h1>Welcome, {{userName}}!</h1>
+           <div class="grid-x">
+            <div class="cell medium-4 small-12"><h3 id="summary">$2,000{{totalNet}}</h1><h6>Total Net Worth</h6></div>
+            <div class="cell medium-4 small-6"><h3 id="summary">{{currentBalance}}</h3><h6>Total Cash</h6></div>
+            <div class="cell medium-4 small-6"><h3 id="summary">{{totalHoldings}}</h3><h6>Total Stocks</h6></div>
+           </div>
+       </div>
+    </div>
+  <h4>Investments</h4>
+    <div class="grid-x opacity-card">
+        
+       <div class="cell small-11 large-8 my-card my-stock">
+        <div class="grid-x">
+            <div class="cell large-2 small-2">Apple</div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2">+0.75%</div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2 cash">$357</div>
+        </div>
+       </div>
+    </div>
+     <div class="grid-x opacity-card">
+       <div class="cell small-11 large-8 my-card my-stock">
+        <div class="grid-x stockBlock">
+            <div class="cell large-2 small-2">Amazon</div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2">$40</div>
+            <div class="cell large-2 small-2">AMZN</div>
+        	<input id="buy" class="cell large-2 small-2 cash"type="text" placeholder="Value"><button class="button very-special" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
+        </div>
+       </div>
+
+
+
+
+
+
 <div class="grid-container full">
     <div class="grid-x">
         <div class="cell large-4">
