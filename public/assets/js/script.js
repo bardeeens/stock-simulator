@@ -71,9 +71,16 @@ $('.sell').click(
 			}
 			).then (
 				function(response) { 
-					console.log("working!!");	
-					console.log(stockid);
 					let price = response[stockid-1].price
+					let ourStockId = response[stockid-1].id
+					let totalqty = $(`#qty${ourStockId}`).text()
+					
+					
+					 console.log('total quantity:' + totalqty)
+					 if (sellqty > totalqty) {
+						 alert("you can't sell more than you own");
+						 return;
+					 }
 					
 					$.ajax(
 						{ 				
@@ -90,8 +97,8 @@ $('.sell').click(
 						).then (
 							function(response) { 
 								console.log("working!!");	
-								console.log(userID);
-								console.log(response);
+								// console.log(userID);
+								// console.log(response);
 								
 								document.location.reload(true)
 							});
