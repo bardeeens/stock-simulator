@@ -1,53 +1,39 @@
 <div data-sticky-container>
     <div data-sticky data-options="marginTop:0;">
   
-      <div class="top-bar" id="example-menu">
-        <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
+      <div class="top-bar" id="example-menu my-nav">
+        <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown my-nav">
           <li class="menu-text">Marketplace</li>
           <li>
-            <a href="javascript:history.back()">My Dashboard</a>
+            <a class="navBtns" href="javascript:history.back()">My Portfolio</a>
           </li>
-          <li><a href="./transaction">Transactions</a></li>
-          <li><a href="#">Sign Out</a></li>
+          <li><a class="navBtns" href="./transaction">Transactions</a></li>
+          <li><a class="navBtns" href="/">Sign Out</a></li>
         </ul>
       </div>
   </div>
   <br>
-  <div class="holy-grail-middle">
-    <div class="holy-grail-middle">
-      <table class="pricing-table hover">
-        <thead>
-          <h3> Available Stocks</h3>
-          <tr>
-            <th class="name" width="200">Name</th>
-            <th class="price" width="100">Current Price</th>
-            <th class="symbol" width="100">Symbol</th>
-            <th class="ticker" width="100">📈 Change In %</th>
-            <th class="shares" width="150">Number Of Shares For Purchase</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{!-- <tr>
-            <td>Apple</td>
-            <td>$277.83</td>
-            <td>AAP</td>
-            <td>-6.54%</td>
-            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr>
-          <tr>
-            <td>Amazon</td>
-            <td>$2,408.63</td>
-            <td>AMZN</td>
-            <td>+10.22%</td>
-            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td>
-          </tr> --}}
-          <tr>
-            <td>Facebook</td>
-            <td>$181.41</td>
-            <td>FB</td>
-            <td>-0.70%</td>
-            <td><input id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td>
-          </tr>
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+       <div class="cell large-12 small-12 my-card profile-card">
+           <h1>Available Stocks</h1>
+       </div>
+    </div>
+  {{!-- <h4>Investments</h4> --}}
+    <div class="grid-x opacity-card">
+    </div>
+     <div class="grid-x opacity-card">
+       <div class="cell small-8 large-offset-2 my-card my-stock">
+        <div class="grid-x stockBlock">
+            <div class="cell large-2 small-2">Amazon</div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2">$40</div>
+            <div class="cell large-2 small-2"></div>
+            <div class="cell large-2 small-2">AMZN</div>
+        </div>
+            <input class="cell large-2 small-2" id="buy" type="text" placeholder="Value"><button data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></div>
+
+          <div class="grid-x stockBlock">
 
           {{#each stock}}
           {{> stocks/stock-block}}
