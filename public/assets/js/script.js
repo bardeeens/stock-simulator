@@ -95,3 +95,16 @@ $('.sell').click(
 // delete stockstable
 // create stocks api call needed
 
+// Modal alerts
+
+$('.buyBtn').click( 
+	function (){
+		$('.reveal').css("display", "block")
+	}
+)
+
+$('.close-button').click(
+	function (){
+		$('.reveal').css("display", "none")
+	}
+)
