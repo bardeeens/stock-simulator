@@ -74,14 +74,15 @@
 
 .pricing-table {
   background-color: grey;
-  border: solid 4px #cacaca;
+  border: solid 3px black;
+  border-bottom: solid 3px black;
   width: 100%;
   text-align: left;
   list-style-type: none;
 }
 
 .pricing-table li {
-  border-bottom: dotted 1px #cacaca;
+  border-bottom: solid 1px black;
   padding: 0.875rem 1.125rem;
 }
 
@@ -92,7 +93,7 @@
 .pricing-table .title {
   background-color: #0a0a0a;
   color: #fefefe;
-  border-bottom: 0;
+  border-bottom: solid 4px black;
 }
 
 .pricing-table  {
@@ -124,6 +125,20 @@ font-size: 30px;
 text-align: center;
 
 }
+
+th {
+  color:black;
+  background-color:darkgrey;
+  font-size:17px;
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+  font-size:14px;
+  font-weight:bold;
+}
+
 
 /* test */
 
@@ -192,6 +207,7 @@ border: 1px solid #cacaca;
 margin: 0 0 1.25rem;
 padding: 1.25rem;
 background: #fefefe;
+max-width: fit-content;
 }
 
 .card-profile-stats .card-profile-stats-intro {
@@ -251,7 +267,10 @@ display: none;
 }
 .card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
   margin: 0 1.25rem 0 0;
-  max-width: 250px;
+  max-width: 320px;
+  border-radius: 5px;
+  position:relative;
+  left:95px;
 }
 .card-profile-stats .card-profile-stats-container {
   display: -webkit-flex;
@@ -261,6 +280,42 @@ display: none;
       -ms-flex-pack: distribute;
           justify-content: space-around;
 }
+}
+
+.balance {
+  position: relative;
+  left:50px;
+}
+
+.holdings {
+  position: relative;
+  top: 80px;
+  right:95px;
+
+}
+.profile {
+  position:relative;
+  right:160px;
+  bottom:20px;
+  color:white;
+  font-weight: bold;
+}
+
+#date {
+  font-size:10px;
+  position:relative;
+ 
+}
+
+.net {
+  position:relative;
+  right:40px;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /* List of users */
@@ -331,7 +386,7 @@ form .form-icons .input-group-label {
   background-color: #1779ba;
   border-color: #1779ba;
   max-width:400px;
-s
+
 }
 
 form .form-icons .input-group-field {
@@ -349,5 +404,9 @@ form .form-icons .fa {
   max-width:200px;
 }
 
+
+.reveal {
+  display: none;
+}
 
 

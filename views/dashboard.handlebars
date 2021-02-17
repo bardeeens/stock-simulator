@@ -1,97 +1,118 @@
 {{#each user}}
 <div data-sticky-container>
     <div data-sticky data-options="marginTop:0;">
-  
-      <div class="top-bar" id="example-menu">
-        <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
-          <li class="menu-text">My Dashboard</li>
-          <li>
-            <a href="../market">Marketplace</a>
-          </li>
-          <li><a href="../transaction">Transactions</a></li>
-          <li><a href="/">Sign Out</a></li>
-        </ul>
-      </div>
-  </div>
-</div>
-
-<div class="card-profile-stats">
-    <div class="card-profile-stats-intro">
-      <img class="card-profile-stats-intro-pic" src="../assets/images/placeholder.jpg" alt="profile-image" />
-      <div class="card-profile-stats-intro-content">
-        <h3>{{userName}}</h3>
-        <p>Joined Jan.16th 2017</small></p>
-      </div> <!-- /.card-profile-stats-intro-content -->
-    </div> <!-- /.card-profile-stats-intro -->
-  
-    <hr />
-  
-    <div class="card-profile-stats-container">
-        <div class="card-profile-stats-statistic">
-         <span class="stat">{{currentBalance}}</span>
-            <p>Current Balance</p>
-      </div> <!-- /.card-profile-stats-statistic -->
-      <div class="card-profile-stats-statistic">
-        <span class="stat">{{totalHoldings}}</span>
-        <p>Total Holdings</p>
-      </div> <!-- /.card-profile-stats-statistic -->
-      <div class="card-profile-stats-statistic">
-        <span class="stat">not yet possible</span>
-        <p>Total Net Worth</p>
-      </div> <!-- /.card-profile-stats-statistic -->
-    </div> <!-- /.card-profile-stats-container -->
-  
-    <div class="card-profile-stats-more">
-      <p class="card-profile-stats-more-link"><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a></p>
-      <div class="card-profile-stats-more-content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem libero fugit, pariatur maxime! Optio enim, deserunt quia molestiae fugiat delectus, dolore et esse nostrum, quod autem necessitatibus fugit soluta repellendus.
-        </p>
-      </div> <!-- /.card-profile-stats-more-content -->
-    </div> <!-- /.card-profile-stats-more -->
-  </div> <!-- /.card-profile-stats -->
-  
-  <div class="holy-grail-middle">
-    <div class="holy-grail-middle">
-        <table class="pricing-table hover">
-            <thead>
-                <h3>My Investments</h3>
-              <tr class="headings">
-                <th class="name" width="200">Name</th>
-                <th class="symbol" width="100">Symbol</th>
-                <th class="symbol" width="100">Ticker</th>
-                <th class="value" width="100">Value</th>
-            <th class="shares" width="150">Number Of Shares For Sale</th>
-{{/each}}
-              </tr>
-            </thead>
-				{{#each transactions}}
-					{{> stocks/transaction-block}}
-				{{/each}}
-            {{!-- <tbody>
-              <tr>
-                <td>Facebook</td>
-                <td>FB</td>
-                <td>-0.70%</td>
-	            <td>$181.41</td>
-                <td><input id="sell" type="text" placeholder="Value"><a href="#" class="button postfix">Sell now</a></td> 
-              </tr>
-              <tr>
-	        <td>Amazon</td>
-             <td>AMZN</td>
-             <td>+10.22%</td>
-	          <td>$2,408.63</td>
-            <td><input id="sell" type="text" placeholder="Value"><a href="#" class="button postfix">Sell now</a></td> 
-          </tr>
-            <tr>
-	          <td>Apple</td>
-              <td>AAP</td>
-            <td>-6.54%</td>
-	          <td>$277.83</td>
-            <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy Now</a></td> 
-          </tr>
-            </tbody> --}}
+        <div class="top-bar" id="example-menu">
+            <ul class="vertical medium-horizontal dropdown menu" data-responsive-menu="accordion medium-dropdown">
+                <li class="menu-text">My Dashboard</li>
+                <li>
+                    <a href="../market">Marketplace</a>
+                </li>
+                <li><a href="../transaction">Transactions</a></li>
+                <li><a href="/">Sign Out</a></li>
+            </ul>
+        </div>
     </div>
-  
 </div>
+<div class="grid-container full">
+    <div class="grid-x">
+        <div class="cell large-4">
+            <div class="card-profile-stats">
+                <div class="card-profile-stats-intro stockPic">
+                    <img class="card-profile-stats-intro-pic" src="../assets/images/stock_chart.jpg" alt="profile-image"
+                        class="img-responsive" />
+                    <div class="card-profile-stats-intro-content profile">
+                        <h3>{{userName}}</h3>
+                        <p id="date">Joined Jan.16th 2017</small></p>
+                    </div> <!-- /.card-profile-stats-intro-content -->
+                </div> <!-- /.card-profile-stats-intro -->
 
+                <hr />
+
+                <div class="card-profile-stats-container">
+                    <div class="card-profile-stats-statistic balance">
+                        <span class="stat">{{currentBalance}}</span>
+                        <p>Current Balance</p>
+                    </div> <!-- /.card-profile-stats-statistic -->
+                    <div class="card-profile-stats-statistic holdings">
+                        <span class="stat">{{totalHoldings}}</span>
+                        <p>Total Holdings</p>
+                    </div> <!-- /.card-profile-stats-statistic -->
+                    <div class="card-profile-stats-statistic net">
+                        <span class="stat">not yet possible</span>
+                        <p>Total Net Worth</p>
+                    </div> <!-- /.card-profile-stats-statistic -->
+                </div> <!-- /.card-profile-stats-container -->
+
+                <div class="card-profile-stats-more">
+                    <p class="card-profile-stats-more-link"><a href="#"><i class="fa fa-angle-down"
+                                aria-hidden="true"></i></a>
+                    </p>
+                    <div class="card-profile-stats-more-content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem libero fugit, pariatur
+                            maxime!
+                            Optio enim, deserunt quia molestiae fugiat delectus, dolore et esse nostrum, quod autem
+                            necessitatibus fugit soluta repellendus.
+                        </p>
+                    </div> <!-- /.card-profile-stats-more-content -->
+                </div> <!-- /.card-profile-stats-more -->
+            </div> <!-- /.card-profile-stats -->
+        </div>
+        <div class="cell large-auto">
+            <div class="holy-grail-middle">
+                <div class="holy-grail-middle">
+                    <table class="pricing-table hover">
+                        <thead>
+                            <h3>My Investments</h3>
+                            <tr class="headings">
+                                <th class="name" width="200">Name</th>
+                                <th class="symbol" width="100">Symbol</th>
+                                <th class="symbol" width="100">Ticker</th>
+                                <th class="value" width="100">Value</th>
+                                <th class="shares" width="150">Number Of Shares For Sale</th>
+                                {{/each}}
+                            </tr>
+                        </thead>
+                        {{#each transactions}}
+                        {{> stocks/transaction-block}}
+                        {{/each}}
+                        <tr>
+                            <td>Facebook</td>
+                            <td>FB</td>
+                            <td>-0.70%</td>
+                            <td>$181.41</td>
+                            <td><input id="buy" type="text" placeholder="Value"><button data-open="sellModal" href="#" class="button postfix buyBtn">Sell Now</button></td>
+                        </tr>
+                    </table>
+                    {{> stocks/sellmodal}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- <tbody>
+    <tr>
+        <td>Facebook</td>
+        <td>FB</td>
+        <td>-0.70%</td>
+        <td>$181.41</td>
+        <td><input id="sell" type="text" placeholder="Value"><a href="#" class="button postfix">Sell
+                now</a></td>
+    </tr>
+    <tr>
+        <td>Amazon</td>
+        <td>AMZN</td>
+        <td>+10.22%</td>
+        <td>$2,408.63</td>
+        <td><input id="sell" type="text" placeholder="Value"><a href="#" class="button postfix">Sell
+                now</a></td>
+    </tr>
+    <tr>
+        <td>Apple</td>
+        <td>AAP</td>
+        <td>-6.54%</td>
+        <td>$277.83</td>
+        <td><input id="buy" type="text" placeholder="Value"><a href="#" class="button postfix">Buy
+                Now</a></td>
+    </tr>
+</tbody> --}}

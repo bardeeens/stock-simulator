@@ -2,29 +2,17 @@
 module.exports = function(sequelize, DataTypes) {
 	var Transaction = sequelize.define("Transaction", 
 		{
-			type: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			},
-			qtyOwned: {
+			qty: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			},
-			purchasePrice: {
+			price: {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: false,
 			},
-			currentPrice: {
-			type: DataTypes.DECIMAL (10,2),
-			allowNull: false,
-			},
-			totalPurchaseValue: {
+			totalValue: {
 			type: DataTypes.DECIMAL (10,2),
 			allowNull: true,
-			},
-			totalCurrentValue: {
-			type: DataTypes.DECIMAL (10,2),
-			allowNull: true
 			}
 		}
 	)
