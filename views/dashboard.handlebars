@@ -28,22 +28,16 @@
     <div class="grid-x opacity-card">
     </div>
      <div class="grid-x opacity-card">
-       <div class="cell small-8 large-offset-2 my-card my-stock">
-        <div class="grid-x stockBlock">
-            <div class="cell large-2 small-2">Amazon</div>
-            <div class="cell large-2 small-2"></div>
-            <div class="cell large-2 small-2">$40</div>
-            <div class="cell large-2 small-2">AMZN</div>
-        </div>
-        	<input type="text" id="sellqty" name="sellqty">
-		<a class="button sell" id="{{this.id}}"href="#">Sell</a></td>
-                                        {{!-- {{/each}} --}}
-       </div>
+    
+       
+    
+                                        {{/each}}
+       
                         {{#each transactions}}
                         {{> stocks/transaction-block}}
                         {{/each}}
-                    {{> stocks/sellmodal}}
-                </div>
+                    {{!-- {{> stocks/sellmodal}} --}}
+                
 
     </div>
 </div>
