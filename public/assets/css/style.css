@@ -30,8 +30,8 @@
     font-weight: bolder;
   text-shadow: 100px;
   margin:20px;
-  opacity:100%
-}
+  opacity:100%;
+  }
 
 .hero-full-screen .top-content-section {
   width: 100%;
@@ -364,7 +364,7 @@ display: none;
 .list-group-item.active {
   color: #fefefe;
   background-color: #1779ba;
-  border-color: 1px solid #1779ba;
+  border-color: 1px solid #c6c7c9;
 }
 
 .list-group-item:hover, .list-group-item:focus {
@@ -372,7 +372,7 @@ display: none;
 }
 
 .list-group-item:hover.active, .list-group-item:focus.active {
-  background-color: #1779ba;
+  background-color: rgba(73, 37, 65, 0.884);
 }
 
 .list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus, .list-group-item[disabled], .list-group-item[disabled]:hover, .list-group-item[disabled]:focus {
@@ -394,14 +394,14 @@ form .form-icons h4 {
 }
 
 form .form-icons .input-group-label {
-  background-color: #1779ba;
-  border-color: #1779ba;
+  background-color: rgba(73, 37, 65, 0.884);
+  border-color:  rgba(73, 37, 65, 0.884);
   max-width:400px;
 
 }
 
 form .form-icons .input-group-field {
-  border-color: #1779ba;
+  border-color:  rgba(73, 37, 65, 0.884);
 }
 
 form .form-icons .fa {
@@ -531,4 +531,13 @@ right:160px;  }
   #summary {
     color:#050607;
     font-weight: bolder;
+  }
+
+  .purpleFam {
+    background-color: rgba(73, 37, 65, 0.884)
+  }
+
+  .newUsers {
+    border: 3px solid rgba(73, 37, 65, 0.884);
+    border-bottom:3px solid rgba(73, 37, 65, 0.884)
   }
