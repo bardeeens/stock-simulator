@@ -56,7 +56,7 @@ module.exports = function(app) {
 						transArr.forEach (
 							transaction => {
 								if (transaction.Stock.name === obj.name) {
-									obj.qty += transaction.qty
+									obj.qty += +transaction.qty
 								}
 							}
 						);
