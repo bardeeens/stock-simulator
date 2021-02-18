@@ -180,18 +180,26 @@ $('.close-button').click(
 
 $('#transactionsBtn').click(
 	function (event) {
-		alert ('transactions click event working')
+		event.preventDefault();
+		let userId = sessionStorage.getItem('id')
+
+				window.location.href = `/transactions/${userId}`;
+
+	}
+);
+
+$('#portfolioBtn').click(
+	function (event) {
 		event.preventDefault();
 		let userId = sessionStorage.getItem('id')
 		$.ajax(
 			{ 				
-				url: `/transactions/${userId}`,  			
+				url: `/dashboard/${userId}`,  			
 				method: "GET"	
 			}
 		).then (
 			function(response) { 
-				alert ('BUTTON WORKING')
-				window.location.href = `/market/`;
+				window.location.href = `/dashboard/${userId}`;
 			}
 		)
 		.catch ( ( err ) => console.log ( err ) )
