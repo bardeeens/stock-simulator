@@ -100,10 +100,17 @@ module.exports = function(app) {
 )
 
 
-  app.get("/transaction", (req, res) =>{
-    res.render("transaction")
-    // needs data
-  })
+	app.get("/transaction/:id", 
+		(req, res) =>{
+			let id = req.parmas.user.Id
+			db.Transaction.findAll( ( { where: { UserId: id } } ) )
+			.then(
+				response => {
+					res.render("transaction")
+				}
+			)
+		}
+  	)
 
 };
 

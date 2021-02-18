@@ -107,12 +107,6 @@ $('.sell').click(
 	}
 );
 
-
-// click event for login selection
-
-// sell click events
-
-// buy click events
 $('.buyBtn').click(
 	function(event) {
 		event.preventDefault();
@@ -142,7 +136,6 @@ $('.buyBtn').click(
 	}
 );
 
-
 $('.buyBtn').click( 
 	function (){
 		$('.reveal').css("display", "block")
@@ -154,3 +147,22 @@ $('.close-button').click(
 		$('.reveal').css("display", "none")
 	}
 )
+
+$('#transactionsBtn').click(
+	function (event) {
+		event.preventDefault();
+		let userId = sessionStorage.getItem('id')
+		$.ajax(
+			{ 				
+				url: `/transactions/${userId}`,  			
+				method: "GET"	
+			}
+		).then (
+			function(response) { 
+				alert ('BUTTON WORKING')
+				// window.location.href = `/dashboard/${id}`;
+			}
+		)
+		.catch ( ( err ) => console.log ( err ) )
+	}
+);
