@@ -23,13 +23,12 @@
                     <th class="name" width="100">Name</th>
                     <th class="symbol" width="75">Ticker</th>
                     <th class="price" width="75">Purchase Price</th>
-                    <th class="sharesPurchased" width="100">Number Of Shares Purchased</th>
-                    <th class="sharesSold" width="100">Number Of Shares Sold</th>
-                    <th class="value" width="75">Value</th>
-                    <th class="currentPrice" width="75">Current Price</th>
+                    <th class="sharesPurchased" width="100">Shares</th>
+                    <th class="sharesPurchased" width="100">Price</th>
+                    <th class="value" width="75">Total Value</th>
                 </tr>
             </thead>
-            <tbody>
+            {{!-- <tbody>
                 <tr>
                     <td>Apple</td>
                     <td>-6.54%</td>
@@ -56,16 +55,15 @@
                     <td>20</td>
                     <td>$990</td>
                     <td>$13,800</td>
-                </tr>
-                {{#each stocks}}
+                </tr> --}}
+                {{#each transactions}}
                 <tr>
-                    <td>{{stockName}}</td>
-                    <td>{{ticker}}</td>
-                    <td>{{purchasePrice}}</td>
-                    <td>{{sharesPurchased}}</td>
-                    <td>{{sharesSold}}</td>
-                    <td>{{stockValue}}</td>
+                    <td>{{Stock.name}}</td>
+                    <td>{{Stock.symbol}}</td>
                     <td>{{price}}</td>
+                    <td>{{qty}}</td>
+                    <td>{{price}}</td>
+                    <td>{{totalValue}}</td>
                 </tr>
                 {{/each}}
 

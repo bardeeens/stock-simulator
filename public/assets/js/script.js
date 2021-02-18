@@ -180,20 +180,10 @@ $('.close-button').click(
 
 $('#transactionsBtn').click(
 	function (event) {
-		alert ('transactions click event working')
 		event.preventDefault();
 		let userId = sessionStorage.getItem('id')
-		$.ajax(
-			{ 				
-				url: `/transactions/${userId}`,  			
-				method: "GET"	
-			}
-		).then (
-			function(response) { 
-				alert ('BUTTON WORKING')
-				window.location.href = `/market/`;
-			}
-		)
-		.catch ( ( err ) => console.log ( err ) )
+
+				window.location.href = `/transactions/${userId}`;
+
 	}
 );
