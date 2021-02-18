@@ -197,3 +197,21 @@ $('#transactionsBtn').click(
 		.catch ( ( err ) => console.log ( err ) )
 	}
 );
+
+$('#portfolioBtn').click(
+	function (event) {
+		event.preventDefault();
+		let userId = sessionStorage.getItem('id')
+		$.ajax(
+			{ 				
+				url: `/dashboard/${userId}`,  			
+				method: "GET"	
+			}
+		).then (
+			function(response) { 
+				window.location.href = `/dashboard/${userId}`;
+			}
+		)
+		.catch ( ( err ) => console.log ( err ) )
+	}
+);
