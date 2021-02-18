@@ -47,6 +47,9 @@ module.exports = function(app) {
 				for (let i = 0; i < transArr.length; i++) {
 					if (position === -1 || 
 					transArr[i].Stock.id !== summaryArr[position].id) {
+						console.log('ORIGINAL ARRAY STOCK ID',transArr[i].Stock.id);
+						console.log('SUMMARY ARRAY STOCK ID',summaryArr[position].id);
+						console.log();
 						let obj = {};
 						obj.id = transArr[i].Stock.id;
 						obj.name = transArr[i].Stock.name;
