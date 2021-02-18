@@ -40,13 +40,16 @@ module.exports = function(app) {
 		).then ( 
 			(response) => {
 				let userObj = unpack(response);
-				// console.log('USER OBJECT ', userObj);
 				let transArr = userObj[0].Transactions;
+				console.log('TRANSACTIONS ARR ', userObj[0].Transactions);
 				let summaryArr = [];
 				let position = -1;
+				let summaryIds = [];
 				for (let i = 0; i < transArr.length; i++) {
-					if (position === -1 || 
-					transArr[i].Stock.id !== summaryArr[position].id) {
+					// if (position === -1 || 
+					// transArr[i].Stock.id !== summaryArr[position].id) {
+					if ( !summaryIds.includes ( transArr[i].Stock.id ) ) {
+						console.log('ID OF STOCK BEING BUILT',transArr[i].Stock.id);
 						let obj = {};
 						obj.id = transArr[i].Stock.id;
 						obj.name = transArr[i].Stock.name;
@@ -56,12 +59,18 @@ module.exports = function(app) {
 						transArr.forEach (
 							transaction => {
 								if (transaction.Stock.name === obj.name) {
-									obj.qty += +transaction.qty
+									obj.qty += parseFloat(transaction.qty)
 								}
 							}
 						);
 						obj.totalVal = obj.qty * obj.price;
-						summaryArr.push (obj);
+						// if (position !== -1){
+						// 	console.log('ID OF LAST PUST TO SUMMARY ARRAY',summaryArr[position].id);
+						// }
+						if (obj.qty !== 0){
+							summaryArr.push (obj);
+						}
+							summaryIds.push(obj.id);
 						position ++;
 					}
 				}
