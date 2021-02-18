@@ -1,13 +1,35 @@
-<tr>
+{{!-- <tr>
 	<td>{{this.name}}</td>
 	<td>{{this.symbol}}</td>
 	<td id="qty{{this.id}}">{{this.qty}}</td>
 	<td>{{this.price}}</td>
 	<td>{{this.totalVal}}</td>
 	<td>
-	<input type="text" id="sellqty" name="sellqty">
+	<input type="text" id="sellqty{{this.id}}" name="sellqty">
 		<a class="button sell" id="{{this.id}}"href="#">Sell</a></td>
-</tr>
+</tr> --}}
+
+<div class="cell small-11 large-8 my-card my-stock">
+        <div class="grid-x">
+            <div class="cell large-4 small-4">{{this.name}}</div>
+           
+            <div class="cell large-4 small-4"><span id="qty{{this.id}}">{{this.qty}}</span><br>Total Value:<br>${{this.price}}</div>
+            <div class="cell large-4 small-2 cash"><input id="sellqty{{this.id}}" class="cell large-2 small-2 cash"type="text" placeholder="Value">
+			<button id="{{this.id}}" class="button postfix sell">Sell</button></div></div>
+        </div>
+       </div>
+
+{{!-- <div class="grid-x opacity-card">
+       <div class="cell small-11 large-8 my-card my-stock">
+        <div class="grid-x">
+            <div class="cell large-2 small-2">{{this.name}}</div>
+            <div class="cell large-2 small-2">${{this.price}}</div>
+            <div class="cell large-2 small-2">{{this.qty}}</div>
+			<div class="cell large-2 small-2"><input id="sell{{this.id}}" class="cell large-2 small-2 cash"type="text" placeholder="Value"><button id="{{this.id}}" class="button postfix buyBtn">Sell</button></div>
+        	
+        </div>
+       </div> --}}
+
 
 {{!-- <tr>
 	<td>Apple</td>

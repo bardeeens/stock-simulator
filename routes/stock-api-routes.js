@@ -1,8 +1,9 @@
 var db = require("../models");
+require('dotenv').config();
 let axios = require('axios');
 const { sequelize } = require("../models");
 let stockList = "AAPL,MSFT,AMZN,GOOGL,TSLA,FB,BABA,TSM,V,JNJ,JPM,WMT,NVDA,PYPL,DIS,MA,GME,PG,UNH,HD,BAC,INTC,ASML,NFLX,CMCSA,PDD,ADBE,ABT,TM,VZ,NKE,CRM,KO,XOM,NVS,T,TMO,CSCO,LLY,AVGO,PFE,MRK,ORCL,PEP,ABBV,CVX,SHOP,DHR,ACN,QCOM";
-let apiKey = "e4c3802b17d8e6960e1ea266d24d68d6";
+let apiKey = process.env.APIKEY;
 let unpack = (data) => JSON.parse(JSON.stringify(data));
 
 module.exports = function(app) {
@@ -187,7 +188,7 @@ module.exports = function(app) {
 		).then (										//finds the user and decrements their balance by the transaction total value
 			( { UserId, totalValue } ) => {
 				db.User.increment (
-					{ currentBalance: +totalValue}, 
+					{ currentBalance: -totalValue}, 
 					{ where: { id: UserId } }
 				);
 			}
