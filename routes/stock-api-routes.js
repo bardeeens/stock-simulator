@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
 		function(request, response) {
-			// console.log('ROUTE HIT !!!!!!!!!!!!!!!!!!!!!!!!');
+			console.log('ROUTE HIT !!!!!!!!!!!!!!!!!!!!!!!!');
 			db.Transaction.create(request.body)
 			.then (
 				function( result ) {
