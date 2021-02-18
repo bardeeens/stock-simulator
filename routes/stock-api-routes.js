@@ -18,6 +18,25 @@ module.exports = function(app) {
 					// console.log("its working", newResult);	
 					response.json(result);
 					
+
+				})
+			// ).then (										//finds the user and decrements their balance by the transaction total value
+			// 	( { UserId, totalValue } ) => {
+			// 		console.log(totalValue);
+			// 		console.log(UserId);
+			// 		db.User.increment (
+			// 			{ currentBalance: -totalValue }, 
+			// 			{ where: { id: UserId } }
+			// 		);
+			// 	}
+			// )
+			// 	.then (
+			// 	(result) => {
+			// 		// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+			// 		response.json (result);
+			// 	}
+			// )
+
 				}
 			).then (										//finds the user and decrements their balance by the transaction total value
 				( { UserId, totalValue } ) => {

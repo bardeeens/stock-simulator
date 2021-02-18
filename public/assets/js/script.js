@@ -120,34 +120,47 @@ $('.sell').click(
 // buy click events
 $('.buyBtn').click(
 	function(event) {
+
+		event.preventDefault();
 		// console.log("before ajax " + this.id);
-		let qtyOwned = parseInt($('.qtyOwned').val()); 
-		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
-		let stockId = this.id;
-		let userId = sessionStorage.getItem('id');
-		// console.log(qtyOwned);
-		// console.log(currentPrice);
-		// console.log(stockId);
-		// console.log(userId);
-		$.ajax(
+		let qtyOwned = $('.qtyOwned').val().trim()
+		let currentPrice = parseFloat($('.currentPrice#' + this.id).text())
+		let stockid = this.id
+		let userid = sessionStorage.getItem('id')
+		console.log(qtyOwned)
+		console.log(currentPrice)
+		console.log(stockid)
+		console.log(userid)
+
+			$.ajax(
+
 			{
 				url: '/api/buy',
 				method: "POST",
 				data: {
 					qty: qtyOwned,
 					price: currentPrice,
-					totalValue: currentPrice,
-					StockId: stockId,
-					UserId: userId,
+					totalValue: parseFloat(qtyOwned * currentPrice),
+					StockId: stockid,
+					UserId: userid
 				}
 			}
 		).then (
 			function(response) {
+      
+				console.log("this is working!!");
+				console.log(userid);
+				console.log(response);
+			});
+		});
+
+
 				// console.log("this is our response", response);
 			}
 		);
 	}
 );
+
 
 // transaction page redirect
 
