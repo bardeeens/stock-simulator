@@ -101,13 +101,22 @@ module.exports = function(app) {
 
 
 	app.get("/transactions/:id", 
-		(req, res) =>{
-			console.log('TRANSACTION API HIT');
-			let id = req.params
-			db.Transaction.findAll( ( { where: { UserId: id } } ) )
-			.then(
+		(req, res) => {
+			let id = req.params.id
+			// console.log('ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',id);
+			db.Transaction.findAll (
+				{ 
+					where: { UserId: [req.params.id] },
+					include: [ 
+						{ 
+							model: db.Stock, 
+						}
+					]
+				}
+			).then(
 				response => {
-					res.render("transaction")
+					console.log(unpack(response));
+					res.render("transaction", { transactions: unpack(response) })
 				}
 			)
 		}
