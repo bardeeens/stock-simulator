@@ -8,35 +8,54 @@ let unpack = (data) => JSON.parse(JSON.stringify(data));
 module.exports = function(app) {
       
 
-	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
-		function(request, response) {
+	// app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+	// 	function(request, response) {
 		
-		      db.Transaction.create(request.body)
-			  .then (
-				function(result) {
-					let newResult = unpack(result);
-					// console.log("its working", newResult);	
-					response.json(result);
+	// 	      db.Transaction.create(request.body)
+	// 		  .then (
+	// 			function(result) {
+	// 				let newResult = unpack(result);
+	// 				// console.log("its working", newResult);	
+	// 				response.json(result);
 					
-				}
-			).then (										//finds the user and decrements their balance by the transaction total value
-				( { UserId, totalValue } ) => {
-					// console.log(totalValue);
-					// console.log(UserId);
-					db.User.increment (
-						{ currentBalance: -totalValue }, 
-						{ where: { id: UserId } }
-					);
-				}
-			)
-				// .then (
+
+	// 			})
+			// ).then (										//finds the user and decrements their balance by the transaction total value
+			// 	( { UserId, totalValue } ) => {
+			// 		console.log(totalValue);
+			// 		console.log(UserId);
+			// 		db.User.increment (
+			// 			{ currentBalance: -totalValue }, 
+			// 			{ where: { id: UserId } }
+			// 		);
+			// 	}
+			// )
+			// 	.then (
+			// 	(result) => {
+			// 		// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+			// 		response.json (result);
+			// 	}
+			// )
+
+			// 	}
+			// ).then (										//finds the user and decrements their balance by the transaction total value
+			// 	( { UserId, totalValue } ) => {
+			// 		// console.log(totalValue);
+			// 		// console.log(UserId);
+			// 		db.User.increment (
+			// 			{ currentBalance: -totalValue }, 
+			// 			{ where: { id: UserId } }
+			// 		);
+			// 	}
+			// )
+			// 	// .then (
 	// 			(result) => {
 	// 				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
 	// 				response.json (result);
 	// 			}
 	// 		)
-		}
-	);
+		
+	
 
 	app.post("/api/stocks", 
 		function(req, res) {
@@ -111,8 +130,11 @@ module.exports = function(app) {
 							timestamp: stockObj[`${i}`].timestamp,
 						},
 							{where: { id:i+1} }
-						).then ((result) => console.log(result))
-						.catch ( (err)=> console.log(err))
+						).then ((result) => {
+							// console.log(result);
+							// res.json(result);
+						}
+						).catch ( (err)=> console.log(err))
 					}
 				}
 			).then(
@@ -188,6 +210,6 @@ function(request, response) {
 );
 	
 // Model.update({ field: sequelize.literal('field + 2') }, { where: { id: model_id } });
-
-  }
+}
+  
 

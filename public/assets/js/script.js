@@ -14,7 +14,8 @@ function populateStocks () {
 				url: '/api/stocks',  			
 				method: "PUT",
 			}
-		)	}
+		)	
+	}
 }
 
 $('#createUser').click(
@@ -40,25 +41,19 @@ $('#createUser').click(
 			}
 		);
 		populateStocks ()
-		.then ( ( response ) => log ( response ) )
+		.then ( ( response ) => console.log ( response ) )
 		.catch ( ( err ) => console.log ( err ) )
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-		let id = this.id
-		// event.preventDefault();
-		populateStocks ()
-		.then (
-			function(response) { 	
-				console.log(id);
-				// console.log(response);
-				sessionStorage.setItem('id', id)
-			}
-		)
-		.catch ( ( err ) => console.log ( err ) )
-		// let data = sessionStorage.getItem('id')
+		let id = this.id;
+		event.preventDefault();
+		populateStocks ();
+		// console.log(id);
+		// console.log(response);
+		sessionStorage.setItem('id', id)
 		window.location.href = `/dashboard/${id}`;
 	}
 );
@@ -122,34 +117,43 @@ $('.sell').click(
 // buy click events
 $('.buyBtn').click(
 	function(event) {
+
+		event.preventDefault();
 		// console.log("before ajax " + this.id);
-		let qtyOwned = parseInt($('.qtyOwned').val()); 
-		let currentPrice = parseFloat($('.currentPrice#' + this.id).text());
-		let stockId = this.id;
-		let userId = sessionStorage.getItem('id');
-		// console.log(qtyOwned);
-		// console.log(currentPrice);
-		// console.log(stockId);
-		// console.log(userId);
-		$.ajax(
+		let qtyOwned = $('.qtyOwned').val().trim()
+		let currentPrice = parseFloat($('.currentPrice#' + this.id).text())
+		let stockid = this.id
+		let userid = sessionStorage.getItem('id')
+		console.log(qtyOwned)
+		console.log(currentPrice)
+		console.log(stockid)
+		console.log(userid)
+
+			$.ajax(
+
 			{
 				url: '/api/buy',
 				method: "POST",
 				data: {
 					qty: qtyOwned,
 					price: currentPrice,
-					totalValue: currentPrice,
-					StockId: stockId,
-					UserId: userId,
+					totalValue: parseFloat(qtyOwned * currentPrice),
+					StockId: stockid,
+					UserId: userid
 				}
 			}
 		).then (
 			function(response) {
+      
+				console.log("this is working!!");
+				console.log(userid);
+				console.log(response);
+			});
+		});
+
+
 				// console.log("this is our response", response);
-			}
-		);
-	}
-);
+
 
 // transaction page redirect
 
