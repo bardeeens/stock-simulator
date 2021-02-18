@@ -72,6 +72,7 @@ module.exports = function(app) {
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
 				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
 				// console.log('TOTAL STOCK VALUE ', totStockVal);
+				console.log('USER OBJECT !!!!!!!!!!!!!!!!!!!!!!!!!',userObj);
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,
@@ -81,13 +82,14 @@ module.exports = function(app) {
 			}
 		).then ( 
 			(result) => {
+				console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
 				res.render ( "dashboard", 
 					{ 
-						user: result.userInfo,
+						user: result.userInfo[0],
 						transactions: result.transSummary,
 						totals: {
-							stocks: result.totalStocksValue,
-							netWorth: result.net
+							holdings: result.totalStocksValue.toFixed(2),
+							netWorth: result.net.toFixed(2)
 						}
 					}
 				);
@@ -98,10 +100,17 @@ module.exports = function(app) {
 )
 
 
-  app.get("/transaction", (req, res) =>{
-    res.render("transaction")
-    // needs data
-  })
+	app.get("/transaction/:id", 
+		(req, res) =>{
+			let id = req.parmas.user.Id
+			db.Transaction.findAll( ( { where: { UserId: id } } ) )
+			.then(
+				response => {
+					res.render("transaction")
+				}
+			)
+		}
+  	)
 
 };
 
