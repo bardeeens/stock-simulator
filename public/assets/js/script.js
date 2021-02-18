@@ -14,7 +14,8 @@ function populateStocks () {
 				url: '/api/stocks',  			
 				method: "PUT",
 			}
-		)	}
+		)	
+	}
 }
 
 $('#createUser').click(
@@ -38,25 +39,19 @@ $('#createUser').click(
 			}
 		);
 		populateStocks ()
-		.then ( ( response ) => log ( response ) )
+		.then ( ( response ) => console.log ( response ) )
 		.catch ( ( err ) => console.log ( err ) )
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-		let id = this.id
+		let id = this.id;
 		event.preventDefault();
-		populateStocks ()
-		.then (
-			function(response) { 	
-				console.log(id);
-				// console.log(response);
-				sessionStorage.setItem('id', id)
-			}
-		)
-		.catch ( ( err ) => console.log ( err ) )
-		// let data = sessionStorage.getItem('id')
+		populateStocks ();
+		// console.log(id);
+		// console.log(response);
+		sessionStorage.setItem('id', id)
 		window.location.href = `/dashboard/${id}`;
 	}
 );

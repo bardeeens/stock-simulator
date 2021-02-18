@@ -111,8 +111,11 @@ module.exports = function(app) {
 							timestamp: stockObj[`${i}`].timestamp,
 						},
 							{where: { id:i+1} }
-						).then ((result) => console.log(result))
-						.catch ( (err)=> console.log(err))
+						).then ((result) => {
+							// console.log(result);
+							// res.json(result);
+						}
+						).catch ( (err)=> console.log(err))
 					}
 				}
 			).then(
