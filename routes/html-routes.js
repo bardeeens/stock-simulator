@@ -72,6 +72,7 @@ module.exports = function(app) {
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
 				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
 				// console.log('TOTAL STOCK VALUE ', totStockVal);
+				console.log('USER OBJECT !!!!!!!!!!!!!!!!!!!!!!!!!',userObj);
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,
@@ -81,9 +82,10 @@ module.exports = function(app) {
 			}
 		).then ( 
 			(result) => {
+				console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
 				res.render ( "dashboard", 
 					{ 
-						user: result.userInfo,
+						user: result.userInfo[0],
 						transactions: result.transSummary,
 						totals: {
 							holdings: result.totalStocksValue.toFixed(2),
