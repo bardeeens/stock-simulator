@@ -7,11 +7,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			},
 			price: {
-			type: DataTypes.DECIMAL (10,2),
+			type: DataTypes.DECIMAL (10,5),
 			allowNull: false,
 			},
 			totalValue: {
-			type: DataTypes.DECIMAL (10,2),
+			type: DataTypes.DECIMAL (10,5),
 			allowNull: true,
 			}
 		}
