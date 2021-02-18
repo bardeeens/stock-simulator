@@ -15,9 +15,10 @@ module.exports = function(app) {
 			  .then (
 				function(result) {
 					let newResult = unpack(result);
-					console.log("its working", newResult);	
+					// console.log("its working", newResult);	
 					response.json(result);
 					
+
 				})
 			// ).then (										//finds the user and decrements their balance by the transaction total value
 			// 	( { UserId, totalValue } ) => {
@@ -35,40 +36,120 @@ module.exports = function(app) {
 			// 		response.json (result);
 			// 	}
 			// )
+
+				}
+			).then (										//finds the user and decrements their balance by the transaction total value
+				( { UserId, totalValue } ) => {
+					// console.log(totalValue);
+					// console.log(UserId);
+					db.User.increment (
+						{ currentBalance: -totalValue }, 
+						{ where: { id: UserId } }
+					);
+				}
+			)
+				// .then (
+	// 			(result) => {
+	// 				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+	// 				response.json (result);
+	// 			}
+	// 		)
 		}
 	);
 
-  app.post("/api/stocks", function(req, res) {
-	axios.get(`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`).then(function (response) {
-		
-				db.Stock.bulkCreate(response.data).then(function(result) {
-					console.log(result);
-					res.json(result)
-				})
-  });
-});
+	app.post("/api/stocks", 
+		function(req, res) {
+			axios.get(
+				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
+			).then(
+				function (response) {
+					db.Stock.bulkCreate(response.data)
+					.then(
+						function(result) {
+							// console.log(result);
+							res.json(result)
+						}	
+					).catch (
+						(err) => console.log('HERE IS THE ERROR!!!!!!!!!!!!!!!!!!!',err)
+					)
+				}
+			);
+		}
+	);
 
-	app.delete("/api/stocks", function(req, res) {
-	db.Stock.destroy({where:{}}).then(function (result){
-		console.log("deleted baby");
-		res.send("delete successful")
-	})
-	});
-// comeback, no new data
-	app.put("/api/stocks", function(req, res) {
-		let ids = [1,50]
-		db.Stock.update({},{where:{id: ids}}).then(function (result){
-			res.send("update successful")
-		})
-		});
+	// app.delete("/api/stocks", 
+	// 	function(req, res) {
+	// 		console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
+	// 		db.Stock.destroy(
+	// 			{
+	// 				where: {},
+	// 				truncate: true
+	// 			}
+	// 		).then(
+	// 			function (result){
+	// 				console.log("INFO DELETED !!!!!!!!!!!!!!!!!!!!!!!!!!");
+	// 				res.json(result);
+	// 			}
+	// 		)
+	// 	}
+	// );
+
+	app.put("/api/stocks", 
+		function(req, res) {
+			axios.get(
+				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
+			).then(
+				function (result) {
+					// console.log('RESULT FROM PUT REQUEST ', result.data);
+					let stockObj = {};
+					for (let i = 0; i < result.data.length; i++) {
+						stockObj[`${i}`] = result.data[i]
+					}
+					// console.log('STOCK OBJECT', stockObj);
+					for (let i = 0; i < result.data.length; i++) {
+						db.Stock.update(
+							{ price: stockObj[`${i}`].price,
+							changesPercentage: stockObj[`${i}`].changesPercentage,
+							change: stockObj[`${i}`].change,
+							dayLow: stockObj[`${i}`].dayLow,
+							dayHigh: stockObj[`${i}`].dayHigh,
+							yearHigh: stockObj[`${i}`].yearHigh,
+							yearLow: stockObj[`${i}`].yearLow,
+							marketCap: stockObj[`${i}`].marketCap,
+							priceAvg50: stockObj[`${i}`].priceAvg50,
+							priceAvg200: stockObj[`${i}`].priceAvg200,
+							volume: stockObj[`${i}`].volume,
+							avgVolume: stockObj[`${i}`].avgVolume,
+							exchange: stockObj[`${i}`].exchange,
+							open: stockObj[`${i}`].open,
+							previousClose: stockObj[`${i}`].previousClose,
+							eps: stockObj[`${i}`].eps,
+							pe: stockObj[`${i}`].pe,
+							earningsAnnouncement: stockObj[`${i}`].earningsAnnouncement,
+							sharesOutstanding: stockObj[`${i}`].sharesOutstanding,
+							timestamp: stockObj[`${i}`].timestamp,
+						},
+							{where: { id:i+1} }
+						).then ((result) => console.log(result))
+						.catch ( (err)=> console.log(err))
+					}
+				}
+			).then(
+				function (result){
+					res.send("stocks updated");
+					console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
+				}
+			)
+		}
+	)
 
 	app.post("/api/user", function(req, res) {
-			console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-		console.log(req.body);
+			// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+		// console.log(req.body);
 				db.User.create(req.body)
 				.then(
 					function(result) {
-							console.log("New user created " , result);
+							// console.log("New user created " , result);
 							res.json(result);
 					}     
 				);
@@ -76,12 +157,12 @@ module.exports = function(app) {
 	);
 
 	app.get("/api/user", function(req, res) {
-		console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-	console.log(req.body);
+		// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
+	// console.log(req.body);
 			db.User.findAll()
 			.then(
 				function(result) {
-						console.log("New user created " , result);
+						// console.log("New user created " , result);
 						res.json(result);
 				}     
 			);
@@ -90,11 +171,11 @@ module.exports = function(app) {
 
 app.get("/api/stocks", function(req, res) {
 	console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
-console.log(req.body);
+// console.log(req.body);
 		db.Stock.findAll()
 		.then(
 			function(result) {
-					console.log("CURRENT STOCKS " , result);
+					// console.log("CURRENT STOCKS " , result);
 					res.json(result);
 			}     
 		);

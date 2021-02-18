@@ -13,15 +13,24 @@
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: url("../images/Stock_Market.jpg") center center no-repeat;
+  background: url("../images/skyscreen2.png") center center no-repeat;
   background-size: cover;
+}
+
+
+#register {
+  position:relative;
+  left:0px;
 }
 
 .hero-full-screen .middle-content-section {
   text-align: top;
-  color:black;
-  font-weight: bolder;
-  text-shadow: 50px;
+  color: #fefefe !important;
+  /* background-image: linear-gradient(to bottom right,  #2e2d2a, #02131a); */
+    font-weight: bolder;
+  text-shadow: 100px;
+  margin:20px;
+  opacity:100%
 }
 
 .hero-full-screen .top-content-section {
@@ -66,7 +75,7 @@
 
 .middle-content-section {
   position:relative;
-  bottom:50px;
+  bottom:90px;
 }
 
 /* Start of the price table css */
@@ -178,7 +187,9 @@ background-color: #ededed;
 }
 }
 
-
+.navBtns {
+  color: rgba(73, 37, 65, 0.884);
+}
 
 @media screen and (max-width: 39.9375em) {
 .no-js .top-bar {
@@ -409,4 +420,115 @@ form .form-icons .fa {
   display: none;
 }
 
+/* css experiments */
+.nav-nav {
+  background-color: #1779ba;
+  background-image: linear-gradient(to bottom right,  #2e2d2a, #02131a);
+  }
+  
+  .my-nav {
+    background-color: red;
+    color: #bdc3c7;
+    /* color: #e6e6e6; */
+  }
+  
+  .my-card{
+    margin:2%;
+    background-image: linear-gradient(to bottom right,  #818c92, #2c3e50);
+    border-radius: 8px;
+    text-align: center;
+   
+  }
+  
+  a:link {
+    color: white;
+  }
+  
+  body {
+    background-image: url("../images/dulledbackground.png");
+    background-size: cover;
+    text-align: center;
+  }
+  
+  .tiny-text {
+    font-size: xx-small;
+  }
+  
+  .cash {
+    color: #98dd71;
+    text-emphasis: bold;
+  }
+  
+  h6 {
+    color: black;
+    font-weight: bold;
+    font-size:20px;
+  }
+  
+  /* nav bar stuff */
+  
+  .topbar-sticky-shrink {
+    padding: 2rem;
+    transition: padding 0.25s ease;
+    background: #2c3840;
+  }
+  
+  .topbar-sticky-shrink .menu {
+    background: #2c3840;
+  }
+  
+  .is-stuck .topbar-sticky-shrink {
+    padding: 1rem;
+    transition: padding 0.25s ease;
+  }
+  
+  [data-sticky] {
+    width: 100%;
+  }
+  
 
+  .logo {
+    float: left;
+    size: 10%;
+    margin-right: 50px;
+    padding: 0%;
+  }
+  
+  .logo-img {
+    size: 20px;
+  }
+  
+  h4 {
+    color: white;
+position:relative;
+right:160px;  }
+  
+  .my-stock {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    
+  }
+
+  .opacity-card {
+    opacity: 98%;
+  }
+  
+  .stockBlock {
+    padding:5px;
+    color: #fefefe;
+    font-size:25px;
+    font-weight: bolder;
+  }
+
+  .profile-card {
+    background-image: linear-gradient(to bottom right, #fefefe, #96a2af);
+    font-size:25px;
+    font-weight: bolder;
+  }
+
+  #summary {
+    color:#050607;
+    font-weight: bolder;
+  }

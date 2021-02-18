@@ -1,7 +1,23 @@
-<tr>
+ <div class="grid-x opacity-card">
+       <div class="cell small-11 large-8 my-card my-stock">
+        <div class="grid-x">
+            <div class="cell large-2 small-2">{{this.name}}</div>
+            <div class="cell large-2 small-2">{{this.price}}</div>
+            <div class="cell large-2 small-2">{{this.symbol}}</div>
+        	<input id="buy" class="cell large-2 small-2 cash"type="text" placeholder="Value"><button class="button very-special" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
+        </div>
+       </div>
+
+
+
+
+
+
+{{!-- <tr>
 	<td>{{this.name}}</td>
 	<td class="currentPrice" id={{this.id}}> {{this.price}}</td>
 	<td>{{this.symbol}}</td>
+
 	<td>{{changesPercentage}}</td>
 	<td>
 		<input class="qtyOwned" type="text" placeholder="Value">
@@ -11,6 +27,12 @@
 	{{!-- <td><input class="qtyOwned" id={{this.id}} type="text" placeholder="Value"><a class="button buyBtn" id={{this.id}} href="#">Buy Now</a></td> --}}
 	{{!-- <td><a class="button very-special" id="{{this.id}}"href="#">Buy Now</a></td> --}}
 	{{!-- <button class="button very-special buyBtn" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td> --}}
+
+	<td><input class="qtyOwned" id={{this.id}} type="text" placeholder="Value"><a class="button buyBtn" id={{this.id}} href="#">Buy Now</a></td>
+	{{!-- <td><input id="buy" type="text" placeholder="Value"><button class="button very-special" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button></td> --}}
+	{{!-- <td><a class="button very-special" id="{{this.id}}"href="#">Buy Now</a></td> --}}
+{{!-- </tr> --}} 
+
 
 {{!-- <tr>
 	<td>Apple</td>

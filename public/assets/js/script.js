@@ -1,14 +1,27 @@
-
-$('#createUser').click(
-	function (event) {
-
-		let userName = $('#userName').val();
+function populateStocks () {
+	if (!$('.userBtn').text()) {
+		console.log('MAKING POST CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+		$.ajax(
+			{ 				
+				url: '/api/stocks',  			
+				method: "POST",
+			}
+		)
+	} else {
+		console.log('MAKING PUT CALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
 				method: "PUT",
 			}
-		)
+		)	}
+}
+
+$('#createUser').click(
+	function (event) {
+		event.preventDefault();
+
+		let userName = $('#userName').val();
 		$.ajax(
 			{ 				
 				url: '/api/user',  			
@@ -22,31 +35,29 @@ $('#createUser').click(
 			let data = sessionStorage.getItem('id')
 				window.location.redirect
 				window.location.href = `/dashboard/${response.id}`;
-				
-			});
+			}
+		);
+		populateStocks ()
+		.then ( ( response ) => log ( response ) )
+		.catch ( ( err ) => console.log ( err ) )
 	}
 );
 
 $('.userBtn').click(
 	function (event) {
-		
 		let id = this.id
-		
-		$.ajax(
-			{ 				
-				url: '/api/stocks',  			
-				method: "PUT",
+		event.preventDefault();
+		populateStocks ()
+		.then (
+			function(response) { 	
+				console.log(id);
+				// console.log(response);
+				sessionStorage.setItem('id', id)
 			}
-			).then (
-				function(response) { 	
-					console.log(id);
-					console.log(response);
-					sessionStorage.setItem('id', id)
-			// let data = sessionStorage.getItem('id')
-					
-					window.location.href = `/dashboard/${id}`;
-				});
-		
+		)
+		.catch ( ( err ) => console.log ( err ) )
+		// let data = sessionStorage.getItem('id')
+		window.location.href = `/dashboard/${id}`;
 	}
 );
 
@@ -58,22 +69,24 @@ $('.sell').click(
 		// console.log(userID);
 		let stockid = this.id
 		// console.log(stockid);
-
-	
-		
-
 		$.ajax(
 			{ 				
 				url: '/api/stocks',  			
 				method: "GET",
 				// data: {stuff}
-				
 			}
 			).then (
 				function(response) { 
-					console.log("working!!");	
-					console.log(stockid);
 					let price = response[stockid-1].price
+					let ourStockId = response[stockid-1].id
+					let totalqty = $(`#qty${ourStockId}`).text()
+					
+					
+					//  console.log('total quantity:' + totalqty)
+					 if (sellqty > totalqty) {
+						 alert("you can't sell more than you own");
+						 return;
+					 }
 					
 					$.ajax(
 						{ 				
@@ -89,17 +102,13 @@ $('.sell').click(
 						}
 						).then (
 							function(response) { 
-								console.log("working!!");	
-								console.log(userID);
-								console.log(response);
+								// console.log("working!!");	
+								// console.log(userID);
+								// console.log(response);
 								
 								document.location.reload(true)
 							});
 				});
-
-
-		
-				
 	}
 );
 
@@ -111,6 +120,7 @@ $('.sell').click(
 // buy click events
 $('.buyBtn').click(
 	function(event) {
+
 		event.preventDefault();
 		// console.log("before ajax " + this.id);
 		let qtyOwned = $('.qtyOwned').val().trim()
@@ -123,6 +133,7 @@ $('.buyBtn').click(
 		console.log(userid)
 
 			$.ajax(
+
 			{
 				url: '/api/buy',
 				method: "POST",
@@ -136,11 +147,19 @@ $('.buyBtn').click(
 			}
 		).then (
 			function(response) {
+      
 				console.log("this is working!!");
 				console.log(userid);
 				console.log(response);
 			});
 		});
+
+
+				// console.log("this is our response", response);
+			}
+		);
+	}
+);
 
 
 // transaction page redirect

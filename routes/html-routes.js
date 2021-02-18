@@ -40,8 +40,8 @@ module.exports = function(app) {
 		).then ( 
 			(response) => {
 				let userObj = unpack(response);
-				let transArr = userObj[0].Transactions;
 				// console.log('USER OBJECT ', userObj);
+				let transArr = userObj[0].Transactions;
 				let summaryArr = [];
 				let position = -1;
 				for (let i = 0; i < transArr.length; i++) {
@@ -70,8 +70,8 @@ module.exports = function(app) {
 					totStockVal += summaryArr[i].qty * summaryArr[i].price;
 				}
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
-				console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
-				console.log('TOTAL STOCK VALUE ', totStockVal);
+				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
+				// console.log('TOTAL STOCK VALUE ', totStockVal);
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,
