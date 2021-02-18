@@ -137,12 +137,6 @@ $('.sell').click(
 	}
 );
 
-
-// click event for login selection
-
-// sell click events
-
-// buy click events
 $('.buyBtn').click(
 	function(event) {
 		event.preventDefault();
@@ -172,7 +166,6 @@ $('.buyBtn').click(
 	}
 );
 
-
 $('.buyBtn').click( 
 	function (){
 		$('.reveal').css("display", "block")
@@ -185,51 +178,21 @@ $('.close-button').click(
 	}
 )
 
-// $('#createUser').click(
-// 	function (event) {
-// 		event.preventDefault()
-
-// 		let userName = $('#userName').val();
-// 		if (userName.length === 0){
-// 			alert("Surely you have a name! Try again")
-// 			return;
-// 		}
-
-// 		$.ajax(
-// 			{
-// 				url: '/api/user',
-// 				method: "GET"
-// 			}
-// 		).then (function(response) {
-// 			for (let i = 0; i < response.length; i++) {
-// 				console.log(response[i].userName);
-				
-// 			}
-			
-// 		})
-		
-// 		$.ajax(
-// 			{ 				
-// 				url: '/api/stocks',  			
-// 				method: "PUT",
-// 			}
-// 		)
-// 		$.ajax(
-// 			{ 				
-// 				url: '/api/user',  			
-// 				method: "POST",
-// 				data: {
-// 					userName: userName
-// 				}		
-// 			}
-// 		).then (function(response) { 
-// 			sessionStorage.setItem('id', response.id)
-// 			console.log(userName.length);
-// 			console.log(response);
-// 			let data = sessionStorage.getItem('id')
-// 				// window.location.redirect
-// 				// window.location.href = `/dashboard/${response.id}`;
-				
-// 			});
-// 	}
-// );
+$('#transactionsBtn').click(
+	function (event) {
+		event.preventDefault();
+		let userId = sessionStorage.getItem('id')
+		$.ajax(
+			{ 				
+				url: `/transactions/${userId}`,  			
+				method: "GET"	
+			}
+		).then (
+			function(response) { 
+				alert ('BUTTON WORKING')
+				// window.location.href = `/dashboard/${id}`;
+			}
+		)
+		.catch ( ( err ) => console.log ( err ) )
+	}
+);
