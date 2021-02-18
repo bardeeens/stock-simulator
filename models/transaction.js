@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
 	var Transaction = sequelize.define("Transaction", 
 		{
 			qty: {
-			type: DataTypes.DECIMAL (2,2),
+			type: DataTypes.DECIMAL(10,2),
 			allowNull: false,
 			},
 			price: {

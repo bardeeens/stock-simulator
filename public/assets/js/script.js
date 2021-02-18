@@ -93,7 +93,10 @@ $('.sell').click(
 		let userID = sessionStorage.getItem('id')
 		if (isNaN(sellqty)){
 			alert("you must enter a number ya dummy!")
-			return
+			return;
+		} else if (sellqty.length === 0){
+			alert("you must enter a quantity!")
+			return;
 		} else {
 			$.ajax(
 				{ 				
@@ -165,10 +168,14 @@ $('.buyBtn').click(
 					let totalpurchase = parseFloat(transQty * currentPrice)
 					let userCASH = response[(userid-1)].currentBalance
 					
+					
 					if (userCASH < totalpurchase) {
 						alert("You don't have enough cash!")
 						return;
 					} else {
+						console.log("transaction quantity: ", transQty);
+						console.log("current price: ", currentPrice);
+						console.log((transQty * currentPrice));
 						$.ajax(
 							{
 								url: '/api/buy',
@@ -176,7 +183,7 @@ $('.buyBtn').click(
 								data: {
 									qty: transQty,
 									price: currentPrice,
-									totalValue: transQty * currentPrice,
+									totalValue: (transQty * currentPrice),
 									StockId: stockId,
 									UserId: userid
 								}
