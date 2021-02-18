@@ -88,10 +88,11 @@ $('.userBtn').click(
 $('.sell').click(
 	function (event) {
 		event.preventDefault();
-		let sellqty = $('#sellqty').val().trim()
+		let stockid = this.id
+		let sellqty = $(`#sellqty${stockid}`).val().trim()
 		let userID = sessionStorage.getItem('id')
 		// console.log(userID);
-		let stockid = this.id
+		
 		// console.log(stockid);
 		$.ajax(
 			{ 				
