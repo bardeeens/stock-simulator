@@ -8,54 +8,29 @@ let unpack = (data) => JSON.parse(JSON.stringify(data));
 module.exports = function(app) {
       
 
-	// app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
-	// 	function(request, response) {
-		
-	// 	      db.Transaction.create(request.body)
-	// 		  .then (
-	// 			function(result) {
-	// 				let newResult = unpack(result);
-	// 				// console.log("its working", newResult);	
-	// 				response.json(result);
-					
-
-	// 			})
-			// ).then (										//finds the user and decrements their balance by the transaction total value
-			// 	( { UserId, totalValue } ) => {
-			// 		console.log(totalValue);
-			// 		console.log(UserId);
-			// 		db.User.increment (
-			// 			{ currentBalance: -totalValue }, 
-			// 			{ where: { id: UserId } }
-			// 		);
-			// 	}
-			// )
-			// 	.then (
-			// 	(result) => {
-			// 		// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
-			// 		response.json (result);
-			// 	}
-			// )
-
-			// 	}
-			// ).then (										//finds the user and decrements their balance by the transaction total value
-			// 	( { UserId, totalValue } ) => {
-			// 		// console.log(totalValue);
-			// 		// console.log(UserId);
-			// 		db.User.increment (
-			// 			{ currentBalance: -totalValue }, 
-			// 			{ where: { id: UserId } }
-			// 		);
-			// 	}
-			// )
-			// 	// .then (
-	// 			(result) => {
-	// 				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
-	// 				response.json (result);
-	// 			}
-	// 		)
-		
-	
+	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+		function(request, response) {
+			// console.log('ROUTE HIT !!!!!!!!!!!!!!!!!!!!!!!!');
+			db.Transaction.create(request.body)
+			.then (
+				function( result ) {
+					let newResult = unpack(result);
+					// console.log('NEW RESULT ',newResult);
+					db.User.increment (
+						{ currentBalance: -newResult.totalValue }, 
+						{ where: { id: newResult.UserId } }
+					);
+					return newResult;
+				}
+			)
+			.then (										//finds the user and decrements their balance by the transaction total value
+				( result ) => {
+					console.log('RESULT!!!!!!!!!!!!!!!!!!!',result);
+					response.json (result);
+				}
+			)
+		}
+	)
 
 	app.post("/api/stocks", 
 		function(req, res) {
@@ -169,47 +144,63 @@ module.exports = function(app) {
 						res.json(result);
 				}     
 			);
-	} 
-);
+		} 
+	);
 
-app.get("/api/stocks", function(req, res) {
-	console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
-// console.log(req.body);
-		db.Stock.findAll()
-		.then(
-			function(result) {
-					// console.log("CURRENT STOCKS " , result);
-					res.json(result);
-			}     
-		);
-} 
-);
-
-app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
-function(request, response) {
-	  db.Transaction.create(request.body)
-	.then (
-		(result) => {
-			response.json(result);
-			return result;
-		}
-	).then (										//finds the user and decrements their balance by the transaction total value
-		( { UserId, totalValue } ) => {
-			db.User.increment (
-				{ currentBalance: -totalValue}, 
-				{ where: { id: UserId } }
+	app.get("/api/stocks", function(req, res) {
+		console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
+	// console.log(req.body);
+			db.Stock.findAll()
+			.then(
+				function(result) {
+						// console.log("CURRENT STOCKS " , result);
+						res.json(result);
+				}     
 			);
-		}
-	).then (
-		(result) => {
-			// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
-			response.json (result);
-		}
-	)
-}
-);
-	
-// Model.update({ field: sequelize.literal('field + 2') }, { where: { id: model_id } });
-}
-  
+		} 
+	);
 
+	app.get("/api/singleStock/:id", function(req, res) {
+		// console.log("api/singleStock route hit !!!!!!!!!!!!!!!!!");
+		// console.log('PARAMS',req.params);
+		let stockId = req.params.id
+			db.Stock.findAll ( ( { where: { id: stockId } } ) )
+			.then(
+				(result) => {
+						console.log(result);
+						// console.log("CURRENT STOCKS " , result);
+						res.json(result);
+				}
+  
+			);
+		} 
+	);
+
+	app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+	function(request, response) {
+		db.Transaction.create(request.body)
+		.then (
+			(result) => {
+				response.json(result);
+				return result;
+			}
+		).then (										//finds the user and decrements their balance by the transaction total value
+			( { UserId, totalValue } ) => {
+				db.User.increment (
+					{ currentBalance: -totalValue}, 
+					{ where: { id: UserId } }
+				);
+			}
+		).then (
+			(result) => {
+				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
+				response.json (result);
+			}
+		)
+	}
+	);
+	
+	// Model.update({ field: sequelize.literal('field + 2') }, { where: { id: model_id } });
+
+  
+}

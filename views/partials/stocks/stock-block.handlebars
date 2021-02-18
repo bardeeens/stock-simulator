@@ -2,9 +2,10 @@
        <div class="cell small-11 large-8 my-card my-stock">
         <div class="grid-x">
             <div class="cell large-2 small-2">{{this.name}}</div>
-            <div class="cell large-2 small-2">{{this.price}}</div>
+            <div class="cell large-2 small-2 currentPrice" id={{this.id}}>{{this.price}}</div>
             <div class="cell large-2 small-2">{{this.symbol}}</div>
-        	<input id="buy" class="cell large-2 small-2 cash"type="text" placeholder="Value"><button class="button very-special" id="{{this.id}}" data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
+        	<input id="buyQty{{this.id}}" class="cell large-2 small-2 cash" type="text" placeholder="Qty">
+			<button id="{{this.id}}" class="buyBtn button very-special"  data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
         </div>
        </div>
 

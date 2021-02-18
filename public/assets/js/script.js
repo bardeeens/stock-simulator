@@ -145,55 +145,33 @@ $('.sell').click(
 // buy click events
 $('.buyBtn').click(
 	function(event) {
-
 		event.preventDefault();
-		// console.log("before ajax " + this.id);
-		let qtyOwned = $('.qtyOwned').val().trim()
-		let currentPrice = parseFloat($('.currentPrice#' + this.id).text())
-		let stockid = this.id
+		let stockId = this.id
+		let transQty = $(`#buyQty${stockId}`).val().trim()
+		let currentPrice = parseFloat($('.currentPrice#' + stockId).text())
 		let userid = sessionStorage.getItem('id')
-		console.log(qtyOwned)
-		console.log(currentPrice)
-		console.log(stockid)
-		console.log(userid)
-
-			$.ajax(
-
+		$.ajax(
 			{
 				url: '/api/buy',
 				method: "POST",
 				data: {
-					qty: qtyOwned,
+					qty: transQty,
 					price: currentPrice,
-					totalValue: parseFloat(qtyOwned * currentPrice),
-					StockId: stockid,
+					totalValue: parseFloat(transQty * currentPrice),
+					StockId: stockId,
 					UserId: userid
 				}
 			}
 		).then (
 			function(response) {
-      
 				console.log("this is working!!");
-				console.log(userid);
 				console.log(response);
-			});
-		});
+				document.location.reload(true);
+			}
+		);
+	}
+);
 
-
-				// console.log("this is our response", response);
-
-
-// transaction page redirect
-
-// dashboard redirect
-
-// market redirect
-
-// onhomepage load, 
-// delete stockstable
-// create stocks api call needed
-
-// Modal alerts
 
 $('.buyBtn').click( 
 	function (){
