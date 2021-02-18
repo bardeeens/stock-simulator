@@ -202,6 +202,7 @@ $('.close-button').click(
 
 $('#transactionsBtn').click(
 	function (event) {
+		alert ('transactions click event working')
 		event.preventDefault();
 		let userId = sessionStorage.getItem('id')
 		$.ajax(
@@ -212,7 +213,25 @@ $('#transactionsBtn').click(
 		).then (
 			function(response) { 
 				alert ('BUTTON WORKING')
-				// window.location.href = `/dashboard/${id}`;
+				window.location.href = `/market/`;
+			}
+		)
+		.catch ( ( err ) => console.log ( err ) )
+	}
+);
+
+$('#portfolioBtn').click(
+	function (event) {
+		event.preventDefault();
+		let userId = sessionStorage.getItem('id')
+		$.ajax(
+			{ 				
+				url: `/dashboard/${userId}`,  			
+				method: "GET"	
+			}
+		).then (
+			function(response) { 
+				window.location.href = `/dashboard/${userId}`;
 			}
 		)
 		.catch ( ( err ) => console.log ( err ) )
