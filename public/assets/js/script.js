@@ -144,25 +144,47 @@ $('.buyBtn').click(
 		let transQty = $(`#buyQty${stockId}`).val().trim()
 		let currentPrice = parseFloat($('.currentPrice#' + stockId).text())
 		let userid = sessionStorage.getItem('id')
+		
+
 		$.ajax(
 			{
-				url: '/api/buy',
-				method: "POST",
-				data: {
-					qty: transQty,
-					price: currentPrice,
-					totalValue: parseFloat(transQty * currentPrice),
-					StockId: stockId,
-					UserId: userid
-				}
+				url: '/api/user',
+				method: "GET"
 			}
 		).then (
 			function(response) {
-				console.log("this is working!!");
-				console.log(response);
-				document.location.reload(true);
+				let totalpurchase = parseFloat(transQty * currentPrice)
+				let userCASH = response[(userid-1)].currentBalance
+				
+				if (userCASH < totalpurchase) {
+					alert("You don't have enough cash!")
+					return;
+				} else {
+					$.ajax(
+						{
+							url: '/api/buy',
+							method: "POST",
+							data: {
+								qty: transQty,
+								price: currentPrice,
+								totalValue: transQty * currentPrice,
+								StockId: stockId,
+								UserId: userid
+							}
+						}
+					).then (
+						function(response) {
+							console.log("this is working!!");
+							console.log(response);
+							alert("You have just made a purchase!")
+							document.location.reload(true);
+						}
+					);
+				}
 			}
 		);
+
+		
 	}
 );
 
