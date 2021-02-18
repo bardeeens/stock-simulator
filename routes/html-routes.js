@@ -86,8 +86,8 @@ module.exports = function(app) {
 						user: result.userInfo,
 						transactions: result.transSummary,
 						totals: {
-							stocks: result.totalStocksValue,
-							netWorth: result.net
+							holdings: result.totalStocksValue.toFixed(2),
+							netWorth: result.net.toFixed(2)
 						}
 					}
 				);

@@ -1,4 +1,4 @@
-{{#each user}}
+{{!-- {{#each user}} --}}
 <div data-sticky-container>
     <div data-sticky data-options="marginTop:0;">
         <div class="top-bar" id="example-menu">
@@ -16,11 +16,11 @@
 <div class="grid-container">
     <div class="grid-x grid-margin-x">
        <div class="cell large-12 small-12 my-card profile-card">
-           <h1>Welcome, {{userName}}!</h1>
+           <h1>Welcome, {{user.userName}}!</h1>
            <div class="grid-x">
-            <div class="cell medium-4 small-12"><h3 id="summary">$2,000{{totalNet}}</h1><h6>Total Net Worth</h6></div>
-            <div class="cell medium-4 small-6"><h3 id="summary">{{currentBalance}}</h3><h6>Total Cash</h6></div>
-            <div class="cell medium-4 small-6"><h3 id="summary">{{totalHoldings}}</h3><h6>Total Stocks</h6></div>
+            <div class="cell medium-4 small-12"><h3 id="summary">$2,000{{totals.netWorth}}</h1><h6>Total Net Worth</h6></div>
+            <div class="cell medium-4 small-6"><h3 id="summary">{{user.currentBalance}}</h3><h6>Total Cash</h6></div>
+            <div class="cell medium-4 small-6"><h3 id="summary">{{totals.holdings}}</h3><h6>Total Stocks</h6></div>
            </div>
        </div>
     </div>
@@ -37,7 +37,7 @@
         </div>
         	<input type="text" id="sellqty" name="sellqty">
 		<a class="button sell" id="{{this.id}}"href="#">Sell</a></td>
-                                        {{/each}}
+                                        {{!-- {{/each}} --}}
        </div>
                         {{#each transactions}}
                         {{> stocks/transaction-block}}
