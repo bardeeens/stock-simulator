@@ -27,7 +27,7 @@ module.exports = function(app) {
 			.then (										//finds the user and decrements their balance by the transaction total value
 				( result ) => {
 					console.log('RESULT!!!!!!!!!!!!!!!!!!!',result);
-					response.json (result);
+					response.json(result);
 				}
 			)
 		}

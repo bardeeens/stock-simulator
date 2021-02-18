@@ -159,8 +159,8 @@ $('.buyBtn').click(
 		).then (
 			function(response) {
 				console.log("this is working!!");
-				console.log(response);
-				document.location.reload(true);
+				console.log('THIS IS THE RESPONSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!',response);
+				// document.location.reload(true);
 			}
 		);
 	}
