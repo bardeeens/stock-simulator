@@ -100,9 +100,10 @@ module.exports = function(app) {
 )
 
 
-	app.get("/transaction/:id", 
+	app.get("/transactions/:id", 
 		(req, res) =>{
-			let id = req.parmas.user.Id
+			console.log('TRANSACTION API HIT');
+			let id = req.params
 			db.Transaction.findAll( ( { where: { UserId: id } } ) )
 			.then(
 				response => {
@@ -111,7 +112,6 @@ module.exports = function(app) {
 			)
 		}
   	)
-
 };
 
 
