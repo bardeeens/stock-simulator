@@ -227,7 +227,7 @@ text-align: center;
 
 .card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-pic {
 border-radius: 50%;
-margin: 0 0 1.25rem;
+/* margin: 0 0 1.25rem; */
 }
 
 .card-profile-stats .card-profile-stats-intro .card-profile-stats-intro-content p:last-child {
@@ -239,7 +239,7 @@ text-align: center;
 }
 
 .card-profile-stats .card-profile-stats-container .card-profile-stats-statistic {
-margin: 0 0 1.25rem;
+/* margin: 0 0 1.25rem; */
 }
 
 .card-profile-stats .card-profile-stats-container .card-profile-stats-statistic p:last-child {
