@@ -23,26 +23,53 @@ $('#createUser').click(
 		event.preventDefault();
 
 		let userName = $('#userName').val();
-		$.ajax(
-			{ 				
-				url: '/api/user',  			
-				method: "POST",
-				data: {
-					userName: userName
-				}		
+		if (userName.length === 0){
+						alert("Surely you have a name! Try again")
+						return;
+			} else {
+						$.ajax(
+			{
+				url: '/api/user',
+				method: "GET"
 			}
-		).then (function(response) { 
-			sessionStorage.setItem('id', response.id)
-			console.log(userName.length);
-			console.log(response);
-			let data = sessionStorage.getItem('id')
-				window.location.redirect
-				window.location.href = `/dashboard/${response.id}`;
+		).then (function(response) {
+			let nameArray = []
+			for (let i = 0; i < response.length; i++) {	
+				nameArray.push(response[i].userName)
+				console.log(userName);	
 			}
-		);
-		populateStocks ()
-		.then ( ( response ) => console.log ( response ) )
-		.catch ( ( err ) => console.log ( err ) )
+			if (nameArray.includes(userName)) {
+				alert("Sorry, this is already an active profile!")
+			} else {
+				$.ajax(
+					{ 				
+						url: '/api/user',  			
+						method: "POST",
+						data: {
+							userName: userName
+						}		
+					}
+				).then (function(response) { 
+					sessionStorage.setItem('id', response.id)
+					console.log(userName.length);
+					console.log(response);
+					let data = sessionStorage.getItem('id')
+						window.location.redirect
+						window.location.href = `/dashboard/${response.id}`;
+					}
+				);
+				populateStocks ()
+				.then ( ( response ) => console.log ( response ) )
+				.catch ( ( err ) => console.log ( err ) )
+			}
+			
+		})
+
+
+
+				
+			}
+		
 	}
 );
 
