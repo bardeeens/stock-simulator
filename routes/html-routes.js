@@ -69,7 +69,14 @@ module.exports = function(app) {
 				for (let i = 0; i < summaryArr.length; i++) {
 					totStockVal += summaryArr[i].qty * summaryArr[i].price;
 				}
+<<<<<<< HEAD
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
+=======
+				let netWorth = totStockVal + parseFloat(userObj[0].currentBalance)
+				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
+				// console.log('TOTAL STOCK VALUE ', totStockVal);
+				console.log('USER OBJECT !!!!!!!!!!!!!!!!!!!!!!!!!',userObj);
+>>>>>>> bd13391590d39f8ab8a48a6e4b1a8b82498faff2
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,
@@ -79,6 +86,11 @@ module.exports = function(app) {
 			}
 		).then ( 
 			(result) => {
+<<<<<<< HEAD
+=======
+				// console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
+				// console.log('PRICE!!!!!!!!!!!!!!!!!!',result.transSummary[0].price.toFixed(2));
+>>>>>>> bd13391590d39f8ab8a48a6e4b1a8b82498faff2
 				res.render ( "dashboard", 
 					{ 
 						user: result.userInfo[0],
