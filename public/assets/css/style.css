@@ -238,9 +238,9 @@ margin: 0;
 text-align: center;
 }
 
-.card-profile-stats .card-profile-stats-container .card-profile-stats-statistic {
-/* margin: 0 0 1.25rem; */
-}
+/* .card-profile-stats .card-profile-stats-container .card-profile-stats-statistic {
+margin: 0 0 1.25rem;
+} */
 
 .card-profile-stats .card-profile-stats-container .card-profile-stats-statistic p:last-child {
 margin: 0;
