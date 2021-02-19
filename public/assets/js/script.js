@@ -78,8 +78,6 @@ $('.userBtn').click(
 		let id = this.id;
 		event.preventDefault();
 		populateStocks ();
-		// console.log(id);
-		// console.log(response);
 		sessionStorage.setItem('id', id)
 		window.location.href = `/dashboard/${id}`;
 	}
@@ -111,7 +109,6 @@ $('.sell').click(
 						let totalqty = $(`#qty${ourStockId}`).text()
 						
 						
-						//  console.log('total quantity:' + totalqty)
 						 if (sellqty > totalqty) {
 							 alert("you can't sell more than you own");
 							 return;
@@ -131,9 +128,6 @@ $('.sell').click(
 							}
 							).then (
 								function(response) { 
-									// console.log("working!!");	
-									// console.log(userID);
-									// console.log(response);
 									
 									document.location.reload(true)
 								});

@@ -9,14 +9,12 @@ let unpack = (data) => JSON.parse(JSON.stringify(data));
 module.exports = function(app) {
       
 
-	app.post("/api/buy", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+	app.post("/api/buy", 									
 		function(request, response) {
-			console.log('ROUTE HIT !!!!!!!!!!!!!!!!!!!!!!!!');
 			db.Transaction.create(request.body)
 			.then (
 				function( result ) {
 					let newResult = unpack(result);
-					// console.log('NEW RESULT ',newResult);
 					db.User.increment (
 						{ currentBalance: -newResult.totalValue }, 
 						{ where: { id: newResult.UserId } }
@@ -24,9 +22,8 @@ module.exports = function(app) {
 					return newResult;
 				}
 			)
-			.then (										//finds the user and decrements their balance by the transaction total value
+			.then (										
 				( result ) => {
-					console.log('RESULT!!!!!!!!!!!!!!!!!!!',result);
 					response.json(result);
 				}
 			)
@@ -42,7 +39,6 @@ module.exports = function(app) {
 					db.Stock.bulkCreate(response.data)
 					.then(
 						function(result) {
-							// console.log(result);
 							res.json(result)
 						}	
 					).catch (
@@ -53,35 +49,16 @@ module.exports = function(app) {
 		}
 	);
 
-	// app.delete("/api/stocks", 
-	// 	function(req, res) {
-	// 		console.log('DELETE STOCKS ROUTE HIT!!!!!!!!!!!!!!!!!!!!!!!!!');
-	// 		db.Stock.destroy(
-	// 			{
-	// 				where: {},
-	// 				truncate: true
-	// 			}
-	// 		).then(
-	// 			function (result){
-	// 				console.log("INFO DELETED !!!!!!!!!!!!!!!!!!!!!!!!!!");
-	// 				res.json(result);
-	// 			}
-	// 		)
-	// 	}
-	// );
-
 	app.put("/api/stocks", 
 		function(req, res) {
 			axios.get(
 				`https://financialmodelingprep.com/api/v3/quote/${stockList}?apikey=${apiKey}`
 			).then(
 				function (result) {
-					// console.log('RESULT FROM PUT REQUEST ', result.data);
 					let stockObj = {};
 					for (let i = 0; i < result.data.length; i++) {
 						stockObj[`${i}`] = result.data[i]
 					}
-					// console.log('STOCK OBJECT', stockObj);
 					for (let i = 0; i < result.data.length; i++) {
 						db.Stock.update(
 							{ price: stockObj[`${i}`].price,
@@ -107,8 +84,6 @@ module.exports = function(app) {
 						},
 							{where: { id:i+1} }
 						).then ((result) => {
-							// console.log(result);
-							// res.json(result);
 						}
 						).catch ( (err)=> console.log(err))
 					}
@@ -116,19 +91,16 @@ module.exports = function(app) {
 			).then(
 				function (result){
 					res.send("stocks updated");
-					console.log('STOCKS PUT API HIT AND STOCKS UPDATED!!!!!!!!!!!!!!!!!!!!!');
 				}
 			)
 		}
 	)
 
 	app.post("/api/user", function(req, res) {
-			// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-		// console.log(req.body);
+
 				db.User.create(req.body)
 				.then(
 					function(result) {
-							// console.log("New user created " , result);
 							res.json(result);
 					}     
 				);
@@ -136,12 +108,10 @@ module.exports = function(app) {
 	);
 
 	app.get("/api/user", function(req, res) {
-		// console.log("api/user route hit !!!!!!!!!!!!!!!!!");
-	// console.log(req.body);
+
 			db.User.findAll()
 			.then(
 				function(result) {
-						// console.log("New user created " , result);
 						res.json(result);
 				}     
 			);
@@ -149,12 +119,9 @@ module.exports = function(app) {
 	);
 
 	app.get("/api/stocks", function(req, res) {
-		console.log("api/stocks route hit !!!!!!!!!!!!!!!!!");
-	// console.log(req.body);
 			db.Stock.findAll()
 			.then(
 				function(result) {
-						// console.log("CURRENT STOCKS " , result);
 						res.json(result);
 				}     
 			);
@@ -162,14 +129,11 @@ module.exports = function(app) {
 	);
 
 	app.get("/api/singleStock/:id", function(req, res) {
-		// console.log("api/singleStock route hit !!!!!!!!!!!!!!!!!");
-		// console.log('PARAMS',req.params);
+
 		let stockId = req.params.id
 			db.Stock.findAll ( ( { where: { id: stockId } } ) )
 			.then(
 				(result) => {
-						console.log(result);
-						// console.log("CURRENT STOCKS " , result);
 						res.json(result);
 				}
   
@@ -177,7 +141,7 @@ module.exports = function(app) {
 		} 
 	);
 
-	app.post("/api/sell", 									//creates new transaction - all data needed from frontend formatted correctly as an object with propper key names
+	app.post("/api/sell", 									
 	function(request, response) {
 		db.Transaction.create(request.body)
 		.then (
@@ -185,7 +149,7 @@ module.exports = function(app) {
 				response.json(result);
 				return result;
 			}
-		).then (										//finds the user and decrements their balance by the transaction total value
+		).then (										
 			( { UserId, totalValue } ) => {
 				db.User.increment (
 					{ currentBalance: -totalValue}, 
@@ -194,14 +158,10 @@ module.exports = function(app) {
 			}
 		).then (
 			(result) => {
-				// console.log('RESULT!!!!!!!!!!!!!!!!!', result);
 				response.json (result);
 			}
 		)
 	}
 	);
-	
-	// Model.update({ field: sequelize.literal('field + 2') }, { where: { id: model_id } });
-
   
 }
