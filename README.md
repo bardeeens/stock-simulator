@@ -1,27 +1,34 @@
 # **Stock Market Simulator** 
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/) 
+
 ## Description:
 This is a program designed to help the user learn about stocks, while being fun and educational. All without ever risking a single dollar! 
 ![Page Preview](preview.png)
-  ## Table of Contents: 
-* Installation 
-* Usage 
-* Contributors 
-* Tests 
-* Questions 
-* License 
+
+## Table of Contents: 
+* [Installation](#installation) 
+* [Usage](#usage) 
+* [Contributors](#contributors) 
+* [Tests](#tests) 
+* [Questions](#questions) 
+* [Licensing](#licensing)
+
 ## Installation 
 Simply visit the site at https://secret-cliffs-66187.herokuapp.com/ 
+
 ## Usage 
 First the user will create an account my entering in their name. Then, they are given $1000 and directed to the dashboard. They will see that they have $1000 to spend, and will be directed to the marketplace to buy their first stock. Then by going back to the marketplace they can see their purchase in their portfolio. They can also view a detailed history of all transactions made. The prices in the market are tied to the real world, and are updated with each login. As time goes on, the user will be able to see if their purchases were wise or foolish.  
 
-## License 
 ## Contributors 
-Hector Fernandez, Derek Bardini, Aly May, & Justin Vang 
-## Tests 
-not yet 
-## Questions? 
+- [Hector Fernandez](https://github.com/hkfernandez)
+- [Derek Bardini](https://github.com/bardeeens)
+- [Aly May](https://github.com/amay1421)
+- [Justin Vang](https://github.com/justinkvang) 
 
+## Tests 
+None yet.
+
+## Questions? 
  You can find the github repository here: 
 https://github.com/bardeeens/stock-simulator 
  Feel free to contact me at derekbardini@gmail.com with any questions or comments! 
