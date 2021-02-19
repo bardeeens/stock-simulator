@@ -20,15 +20,11 @@ Simply visit the site at https://secret-cliffs-66187.herokuapp.com/
 First the user will create an account my entering in their name. Then, they are given $1000 and directed to the dashboard. They will see that they have $1000 to spend, and will be directed to the marketplace to buy their first stock. Then by going back to the marketplace they can see their purchase in their portfolio. They can also view a detailed history of all transactions made. The prices in the market are tied to the real world, and are updated with each login. As time goes on, the user will be able to see if their purchases were wise or foolish.  
 
 ## Contributors 
-<<<<<<< HEAD
 - [Hector Fernandez](https://github.com/hkfernandez)
 - [Derek Bardini](https://github.com/bardeeens)
 - [Aly May](https://github.com/amay1421)
 - [Justin Vang](https://github.com/justinkvang) 
 
-=======
-Hector Fernandez, Derek Bardini, Aly May, & Justin Vang! 
->>>>>>> bd13391590d39f8ab8a48a6e4b1a8b82498faff2
 ## Tests 
 None yet.
 
