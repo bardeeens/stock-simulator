@@ -91,7 +91,8 @@ module.exports = function(app) {
 			}
 		).then ( 
 			(result) => {
-				console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
+				// console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
+				// console.log('PRICE!!!!!!!!!!!!!!!!!!',result.transSummary[0].price.toFixed(2));
 				res.render ( "dashboard", 
 					{ 
 						user: result.userInfo[0],
