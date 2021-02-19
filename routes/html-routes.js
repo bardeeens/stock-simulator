@@ -1,16 +1,12 @@
 var db = require("../models");
 var router = require('express').Router();
 var path = require("path");
-// const { where } = require("sequelize/types");
 let unpack = (data) => JSON.parse(JSON.stringify(data));
 
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
-
-  // index route loads view.html
   app.get("/", (req, res) =>{
     db.User.findAll().then(response => {
       res.render("index", { user: unpack(response) })
@@ -24,7 +20,7 @@ module.exports = function(app) {
   })
   })
 
-  app.get("/dashboard/:id", 			// renders dashboard with user information and transactions summarized by company
+  app.get("/dashboard/:id", 			
 	(req, res) => {
 		db.User.findAll (
 			{ 
@@ -46,8 +42,6 @@ module.exports = function(app) {
 				let position = -1;
 				let summaryIds = [];
 				for (let i = 0; i < transArr.length; i++) {
-					// if (position === -1 || 
-					// transArr[i].Stock.id !== summaryArr[position].id) {
 					if ( !summaryIds.includes ( transArr[i].Stock.id ) ) {
 						console.log('ID OF STOCK BEING BUILT',transArr[i].Stock.id);
 						let obj = {};
@@ -64,9 +58,6 @@ module.exports = function(app) {
 							}
 						);
 						obj.totalVal = obj.qty * obj.price;
-						// if (position !== -1){
-						// 	console.log('ID OF LAST PUST TO SUMMARY ARRAY',summaryArr[position].id);
-						// }
 						if (obj.qty !== 0){
 							summaryArr.push (obj);
 						}
@@ -79,9 +70,6 @@ module.exports = function(app) {
 					totStockVal += summaryArr[i].qty * summaryArr[i].price;
 				}
 				let netWorth = totStockVal + parseInt(userObj[0].currentBalance)
-				// console.log('USER CURRENT BALANCE ', userObj[0].currentBalance);
-				// console.log('TOTAL STOCK VALUE ', totStockVal);
-				console.log('USER OBJECT !!!!!!!!!!!!!!!!!!!!!!!!!',userObj);
 				return {
 					transSummary: summaryArr,
 					userInfo: userObj,
@@ -91,7 +79,6 @@ module.exports = function(app) {
 			}
 		).then ( 
 			(result) => {
-				console.log('USER INFO !!!!!!!!!!!!!!!!!!!!!!!!!',result.userInfo);
 				res.render ( "dashboard", 
 					{ 
 						user: result.userInfo[0],
@@ -102,7 +89,6 @@ module.exports = function(app) {
 						}
 					}
 				);
-				// console.log('TOTAL VALUE ', result.totalStocksValue);
 			}
   		)
 	}
@@ -112,7 +98,6 @@ module.exports = function(app) {
 	app.get("/transactions/:id", 
 		(req, res) => {
 			let id = req.params.id
-			// console.log('ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',id);
 			db.Transaction.findAll (
 				{ 
 					where: { UserId: [req.params.id] },
@@ -124,7 +109,6 @@ module.exports = function(app) {
 				}
 			).then(
 				response => {
-					console.log(unpack(response));
 					res.render("transaction", { transactions: unpack(response) })
 				}
 			)
