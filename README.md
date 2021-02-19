@@ -17,7 +17,7 @@ First the user will create an account my entering in their name. Then, they are 
 
 ## License 
 ## Contributors 
-Hector Fernandez, Derek Bardini, Aly May, & Justin Vang 
+Hector Fernandez, Derek Bardini, Aly May, & Justin Vang! 
 ## Tests 
 not yet 
 ## Questions? 
