@@ -2,8 +2,8 @@
        <div class="cell small-11 large-8 my-card my-stock">
         <div class="grid-x">
             <div class="cell large-12 small-12">{{this.name}}<br>{{this.symbol}}</div>
-            <div class="cell large-4 small-4 currentPrice" id={{this.id}}>{{this.price}}</div>
+            <div class="cell large-4 small-4 currentPrice" id={{this.id}}>${{this.price}}</div>
         	<input id="buyQty{{this.id}}" class="cell large-4 small-4" type="text" placeholder="Qty">
-			<button id="{{this.id}}" class="buyBtn button very-special"  data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
+			<button id="{{this.id}}" class="buyBtn button very-special purpleFam"  data-open="purchaseModal" href="#" class="button postfix buyBtn">Buy Now</button>
         </div>
        </div>
